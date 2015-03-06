@@ -1,25 +1,25 @@
 class QuestionsController < ApplicationController
   respond_to :html, :js
 
-def index
-    @questions = Question.order(created_at: :desc).limit(10)
-    @user = User.new
+  def index
+    @questions = Question.all
   end
 
-def new
+  def new
    #will render new form
-  @question = Question.new
-end
+  @question = Question.newf
+  end
 
-def create
+  def create
   # @question = Question.new(question_params) 
-  if submit_new_question?
+    if submit_new_question?
       @question.user = current_user
-  render 'new' unless @question.save
-end
+     render 'new' unless @question.save
+   end
+  end
 
-def show
-  @question = Question.find(params[:id])
+  def show
+    @question = Question.find(params[:id])
     if @question.save
       render 'show'
     else
