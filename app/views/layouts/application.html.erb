@@ -2,9 +2,13 @@
 <html>
 <head>
   <title>InSession</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %>
+
+  <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
 </head>
 <body>
         <ul>
@@ -16,7 +20,10 @@
           <li><%= button_to 'Logout', destroy_user_session_path, class: "btn btn-primary btn-sm", method: :delete %></li>
           <% end %>
         </ul>  
+<div class="container">
+        
 <%= yield %>
 
+</div>
 </body>
 </html>
