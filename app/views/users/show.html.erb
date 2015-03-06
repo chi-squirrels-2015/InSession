@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-md-offset-3 col-md-6 col-md-offset-3">
       <div class="caption">
-        <h3><%= @user.email %></h3>
+        <%= 'Hi, ' + @current_user.first_name + '.'%>
+        <%= @current_user.email %>
       </div>
     </div>
   </div>
@@ -10,13 +11,12 @@
 
 <!-- Link your Khan Academy Account -->
 
-
 <div class="row">
   <div class="col-md-offset-2 col-md-3">
     <h3>My courses</h3>
-    <% if @user.courses %>
-    <% @user.courses.each do |course| %>
-<!--       <%=# link_to course.url, "http://www.khanacademy.com#{course.url}" %><br /> -->
+    <% if @current_user.courses %>
+    <% @current_user.courses.each do |course| %>
+      <%= link_to "Learn how to OAuth", '#' %>
     <% end %>
     <% end %>
   </div>
