@@ -1,5 +1,9 @@
 <div class = "container" style = "margin-bottom: 30px">
 
-<h3>All Questions</h3>
+<h3>10 Questions</h3>
  <%=render "questions_table", locals: {questions: @questions}%>
+  <%=link_to "Ask a Question", new_question_path, remote: true, id: "ask-question-btn" %>
+ 
+</div>
+<div id = "question-form">
 </div>
