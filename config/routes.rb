@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
 
   get   '/auth', :to => 'authorizations#new', :as => :login, :via => [:get, :post]
   match '/auth/:provider/callback', :to => 'authorizations#create', :via => [:get, :post]
   match '/auth/failure', :to => 'authorizations#failure', :via => [:get, :post]
+
+
 
 
   root to: 'static#index'
