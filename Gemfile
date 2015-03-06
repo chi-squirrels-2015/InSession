@@ -19,8 +19,7 @@ gem 'faker'
 gem 'omniauth'
 gem 'omniauth-khan-academy'
 gem 'omniauth-coursera'
-gem 'oauth'
-gem 'turbolinks'
+# gem 'turbolinks'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
