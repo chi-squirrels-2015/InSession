@@ -24,4 +24,34 @@ class User < ActiveRecord::Base
     end
   end
 
+  # require 'oauth/request_proxy/typhoeus_request'
+  def self.test_request
+    token = "t6480427084414976" # The user token from the Credentials
+    secret = "ebHgCUXVBmfmtqpQ" # The user secret from the Credentials
+    oauth_token = OAuth::Token.new(token, secret)
+
+
+    consumer = OAuth::Consumer.new("UHze9rM6n5NtNee2", "f9Z24DkmGTyWZx5E", site: "http://www.khanacademy.org/api/v1")
+    oauth_params = {:consumer => consumer, :token => oauth_token}
+
+    uri = URI("http://www.khanacademy.org/api/v1/user/playlists")
+    req = Net::HTTP::Get.new(uri)
+
+
+    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+      req.oauth!(http, consumer, oauth_token)
+      http.request(req)
+    end
+
+    puts res.body
+
+    # hydra = Typhoeus::Hydra.new
+    # req = Typhoeus::Request.new("http://www.khanacademy.org/api/v1/user/playlists") # :method needs to be specified in options
+    # oauth_helper = OAuth::Client::Helper.new(req, oauth_params.merge(:request_uri => "/user/playlists"))
+    # req.options[:headers].merge!({"Authorization" => oauth_helper.header}) # Signs the request
+    # hydra.queue(req)
+    # hydra.run
+    # puts req.response
+  end
+
 end
