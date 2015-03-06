@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   has_many :course_memberships
   has_many :courses, through: :course_memberships
   has_many :questions
-
   has_many :responses
 
   has_many :authorizations
