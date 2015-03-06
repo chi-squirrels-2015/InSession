@@ -16,3 +16,4 @@
 //= require_tree .
 //= require private_pub
 //= require chat
+
