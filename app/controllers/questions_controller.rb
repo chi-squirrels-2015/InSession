@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @questions = Question.all
+    @questions = Question.order(created_at: :desc).limit(10)
   end
 
   def new
@@ -11,11 +11,18 @@ class QuestionsController < ApplicationController
   end
 
   def create
-  # @question = Question.new(question_params) 
+      @question = Question.new(question_params)
+
     if submit_new_question?
       @question.user = current_user
-     render 'new' unless @question.save
-   end
+      @questions = Question.order(created_at: :desc).limit(10)
+      
+      render 'new' unless @question.save
+
+    elsif preview?
+      @content = markdown(params[:question][:content]).gsub("\n","<p></p>")
+      render :preview
+    end
   end
 
   def show
@@ -35,5 +42,9 @@ class QuestionsController < ApplicationController
 
   def submit_new_question?
     params[:commit] == "Submit New Question"
+  end
+
+  def preview?
+    params[:commit] == "Preview"
   end
 end
