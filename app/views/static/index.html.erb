@@ -1,4 +1,17 @@
 <% if current_user %>
+  <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= index +=1 %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
+                      "data-sid" => current_user.id, "data-rip" => user.id %>
+        </td>
+      </tr>
+  <% end %>
+<% end %>
+
+<% if current_user %>
 Questions asked :
   <ul>
   <% if @user_questions.nil? == false %>
@@ -24,5 +37,3 @@ Suggestions :
     <% end %>
  <% end %> 
 </ul>
-<% end %>
-

@@ -8,7 +8,6 @@ class StaticController < ApplicationController
 		new_querry = filter.filter(query.split).join(" ")
 	end
 	
-
 	def index
 		if current_user
 			@user = User.find(current_user.id)
@@ -26,8 +25,6 @@ class StaticController < ApplicationController
 			query_without_stopwords = remove_stopwords(query)
 			@questions = Question.search(query: {multi_match: {_all: {query: query_without_stopwords, fuzziness: 1, fields: ['title^10', 'body']}}})
 			# records = Article.search(query: {multi_match: {query: 'world', fields: ['title^10', 'body']}}).records
-
-
 			end
 		end
 	end

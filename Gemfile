@@ -20,7 +20,6 @@ gem 'omniauth'
 gem 'omniauth-khan-academy'
 gem 'omniauth-coursera'
 gem 'oauth'
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -41,6 +40,9 @@ gem 'elasticsearch-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'rails_12factor', group: :production
+
+gem 'private_pub'
+gem 'thin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
