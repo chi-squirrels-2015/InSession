@@ -73,9 +73,9 @@ array_of_question = ["How do I use css?",
 "UNRELATED: What is the real story behind Cinco de Mayo?",
 "UNRELATED: When will DBC's website be rebuilt with Meteor?"]
 39.times do 
-	Question.create!(title: array_of_question.pop, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
+  Question.create!(title: array_of_question.pop, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 
-end	
+end 
 questions = Question.all
 
 75.times do
@@ -124,8 +124,9 @@ users.each do |user|
                         user_secret: "user_secret" + number)
 end
 
+User.create!(name:"sarah", first_name:"sarah", last_name: "ing", email:"chocolate1@gmail.com", password:"password")
+User.create!(name:"jd", first_name:"sarah", last_name: "ing", email:"chocolate2@gmail.com", password:"password")
+User.create!(name:"john", first_name:"sarah", last_name: "ing", email:"chocolate3@gmail.com", password:"password")
+User.create!(name:"dan", first_name:"sarah", last_name: "ing", email:"chocolate4@gmail.com", password:"password")
+User.create!(name:"matthew", first_name:"sarah", last_name: "ing", email:"chocolate5@gmail.com", password:"password")
 
-# def struggle
-#   if parsed_response.exercise_states["struggling"] = true
-#   end
-# end
