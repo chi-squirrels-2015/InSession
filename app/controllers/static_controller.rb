@@ -10,6 +10,7 @@ class StaticController < ApplicationController
 	
 
 	def index
+    @users = User.all
 		if current_user
 			@user = User.find(current_user.id)
 			#taking all the question from the user as an array making it string without special characters.

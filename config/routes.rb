@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   resources :courses, only: [:index, :show]
   resources :groups, only: [:index]
 
+
+  resources :conversations do
+    resources :messages
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min
-//= require_tree .
+//= require private_pub
+//= require chat
+//= require turbolinks
+//= require_tree

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :courses, through: :course_memberships
   has_many :questions
   has_many :responses
+  has_many :conversations, :foreign_key => :sender_id      
 
   has_many :authorizations
   validates :first_name, :email, :presence => true #lines 2 and 3 are from tutsplus tutorial
@@ -76,5 +77,6 @@ class User < ActiveRecord::Base
   def full_street_address
     [street_address, city, state, zip].compact.join(', ')
   end
+
 
 end
