@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'omniauth'
 gem 'omniauth-khan-academy'
 gem 'omniauth-coursera'
-gem 'turbolinks'
+# gem 'turbolinks'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
