@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :course_memberships
   has_many :courses, through: :course_memberships
   has_many :questions
+
   has_many :responses
 
   has_many :authorizations
@@ -23,5 +24,3 @@ class User < ActiveRecord::Base
       Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
     end
   end
-
-end
