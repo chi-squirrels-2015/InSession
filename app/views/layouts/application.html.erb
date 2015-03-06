@@ -2,11 +2,13 @@
 <html>
 <head>
   <title>InSession</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+        <h1>INSession</h1>
         <ul>
           <% unless current_user %>
           <li><%= button_to 'Signup', new_user_registration_path, class: "btn btn-primary btn-sm", method: :get %></li>

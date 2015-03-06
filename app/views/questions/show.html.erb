@@ -1,0 +1,14 @@
+<div>
+  <h1 class = "center"><%=@question.title%></h1>
+  <br>
+  <p class = "left"><%= @question.content %></p>
+  <p class = "text-info"><small>Author: <%=@question.user.email%></small></p>
+</div>
+
+<div class = "answers">
+  <% @question.responses.each do |response| %>
+   <%=response.content%>
+  <% end %>
+</div>
+
+ 
