@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 
   def new
    #will render new form
-  @question = Question.newf
+    @question = Question.new
   end
 
   def create
