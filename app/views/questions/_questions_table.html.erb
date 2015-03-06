@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <th>User </th>
+    <th>Question Title</th>
+    <th>Content</th>
+  </tr>
+  <% @questions.each do |question| %>
+    <tr id = "<%=question.id%>">
+      <td ><%=question.user.email %></td>
+      <td ><%=link_to "#{question.title}", question_path(question) %></td>
+      <td><%=question.content %></td>
+    </tr>
+  <%end %>
+</table>
