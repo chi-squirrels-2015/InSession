@@ -39,7 +39,6 @@ gem 'elasticsearch-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'rails_12factor', group: :production
-
 gem 'private_pub'
 gem 'thin'
 gem 'rails_12factor', group: :production

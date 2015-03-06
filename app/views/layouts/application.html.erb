@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>InSession</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' %>
   <%= javascript_include_tag 'application'%>
@@ -9,7 +10,7 @@
 
   <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
 
 </head>
 <body>
@@ -26,7 +27,6 @@
     </div>
   </div>
 </div>
-<div id="ChatNotificationMsg"> You have a message </div>
 
 </body>
 </html>
