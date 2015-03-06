@@ -3,12 +3,8 @@ class CreateMeetupMemberships < ActiveRecord::Migration
     create_table :meetup_memberships do |t|
       t.references :user, index: true
       t.references :meetup, index: true
-      t.references :organizer, index: true 
-      t.datetime  :begin_time
-      t.datetime  :end_time
-      t.references :venue, index: true
-        
-      end
+      
+      t.timestamps  
     end
   end
 end

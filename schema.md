@@ -69,7 +69,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1003" y="517" name="Courses">
+<table x="1237" y="506" name="Courses">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -117,7 +117,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="383" y="645" name="Responses">
+<table x="312" y="647" name="Responses">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -136,7 +136,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1352" y="836" name="Tags">
+<table x="730" y="726" name="Tags">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -144,7 +144,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1064" y="32" name="Meetups">
+<table x="1040" y="30" name="Meetups">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -152,9 +152,22 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Courses" row="id" />
 </row>
-<row name="subject" null="1" autoincrement="0">
+<row name="organizer_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="Xsubject" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
+<row name="begin_time" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="end_time" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="venue_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Venues" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -170,20 +183,6 @@
 <row name="meetup_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Meetups" row="id" />
-</row>
-<row name="organizer_id(Class User)" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Users" row="id" />
-</row>
-<row name="begin_time" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="end_time" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="venue_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Venues" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -205,7 +204,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="245" y="34" name="authorizations">
+<table x="182" y="20" name="authorizations">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -247,4 +246,5 @@
 </key>
 </table>
 </sql>
+
 ```
