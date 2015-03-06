@@ -1,3 +1,4 @@
+
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,7 +14,8 @@ class User < ActiveRecord::Base
   has_many :responses
 
   has_many :authorizations
-  validates :name, :email, :presence => true #lines 2 and 3 are from tutsplus tutorial
+  validates :first_name, :email, :presence => true #lines 2 and 3 are from tutsplus tutorial
+  validates :last_name, :email, :presence => true  #lines 2 and 3 are from tutsplus tutorial
 
   def add_provider(auth_hash)
     # Check if the provider already exists, so we don't add it twice

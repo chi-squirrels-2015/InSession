@@ -29,7 +29,7 @@ class AuthorizationsController < ApplicationController
       # Create the session
       current_user = auth.user.id
 
-      render :text => "Welcome #{auth.user.name}!"
+      render :text => "Welcome #{auth.user.first_name auth.user.last_name}!"
     end
   end
 end
