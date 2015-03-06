@@ -5,5 +5,5 @@ test:
   server: "http://test-server-2.herokuapp.com/faye"
   secret_token: "vivelafrance"
 production:
-  server: "http://test-server-2.herokuapp.com/faye"
+  server: "https://test-server-2.herokuapp.com/faye"
   secret_token: "vivelafrance"
