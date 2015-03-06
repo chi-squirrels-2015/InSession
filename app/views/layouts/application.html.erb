@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+        <h1>INSession</h1>
         <ul>
           <% unless current_user %>
           <li><%= button_to 'Signup', new_user_registration_path, class: "btn btn-primary btn-sm", method: :get %></li>
