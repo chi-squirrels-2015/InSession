@@ -13,8 +13,12 @@ class AuthorizationsController < ApplicationController
   #     render :text => "Hi #{user.name}! You've signed up."
   #   end
   # end
+  def new
+    @provider = "khan_academy"
+  end
 
   def create
+
     auth_hash = request.env['omniauth.auth']
 
     if current_user
