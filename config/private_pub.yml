@@ -5,5 +5,5 @@ test:
   server: "http://localhost:9292/faye/faye"
   secret_token: "secret"
 production:
-  server: "https://insessionserver.herokuapp.com/faye/faye"
+  server: "https://insessionserver.herokuapp.com/faye"
   secret_token: "vivelafrance"
