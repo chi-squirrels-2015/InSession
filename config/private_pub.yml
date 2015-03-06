@@ -1,4 +1,4 @@
-development:
+gitdevelopment:
   server: "http://test-server-2.herokuapp.com/faye"
   secret_token: "vivelafrance"
 test:
