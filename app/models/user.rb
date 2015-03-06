@@ -1,4 +1,3 @@
-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -24,34 +23,26 @@ class User < ActiveRecord::Base
     end
   end
 
-  # require 'oauth/request_proxy/typhoeus_request'
-  def self.test_request
-    token = "t6480427084414976" # The user token from the Credentials
-    secret = "ebHgCUXVBmfmtqpQ" # The user secret from the Credentials
+  def self.oauth_request(params)
+    token = "t6480427084414976"                                   # The user token from the Credentials
+    secret = "ebHgCUXVBmfmtqpQ"                                   # The user secret from the Credentials
     oauth_token = OAuth::Token.new(token, secret)
-
-
+    #                               Our Site Key        Our Site Secret           Our Site Stub
     consumer = OAuth::Consumer.new("UHze9rM6n5NtNee2", "f9Z24DkmGTyWZx5E", site: "http://www.khanacademy.org/api/v1")
+
     oauth_params = {:consumer => consumer, :token => oauth_token}
 
-    uri = URI("http://www.khanacademy.org/api/v1/user/playlists")
-    req = Net::HTTP::Get.new(uri)
+    uri = URI("http://www.khanacademy.org/api/v1/user/playlists") # This is the url that we want to pull data from
 
 
-    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
-      req.oauth!(http, consumer, oauth_token)
-      http.request(req)
+    req = Net::HTTP::Get.new(uri)                                 # This is the GET request
+
+    response = Net::HTTP.start(uri.hostname, uri.port) do |http|  # This is processing the request
+      req.oauth!(http, consumer, oauth_token)                     # .oauth! call which formats the request
+      http.request(req)                                           # The actual http request is made here
     end
 
-    puts res.body
-
-    # hydra = Typhoeus::Hydra.new
-    # req = Typhoeus::Request.new("http://www.khanacademy.org/api/v1/user/playlists") # :method needs to be specified in options
-    # oauth_helper = OAuth::Client::Helper.new(req, oauth_params.merge(:request_uri => "/user/playlists"))
-    # req.options[:headers].merge!({"Authorization" => oauth_helper.header}) # Signs the request
-    # hydra.queue(req)
-    # hydra.run
-    # puts req.response
+    puts response.body                                            # <Net::HTTPOK:0x007f88b30485b0> body content
   end
 
 end

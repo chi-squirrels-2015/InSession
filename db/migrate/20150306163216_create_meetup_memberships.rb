@@ -5,6 +5,4 @@ class CreateMeetupMemberships < ActiveRecord::Migration
       t.references :meetup, index: true
       
       t.timestamps  
-    end
-  end
-end
+    endn
