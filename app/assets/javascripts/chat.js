@@ -45,6 +45,7 @@ var ready = function () {
  
         notify: function () {
             var audioplayer = $('#ChatNotificationMsg')[0];
+            console.log('youhaveanewmsg')
             $( "#dialog" ).dialog();
         },
  
