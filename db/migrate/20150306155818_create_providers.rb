@@ -1,4 +1,4 @@
-class CreateProvider < ActiveRecord::Migration
+class CreateProviders < ActiveRecord::Migration
   def change
     create_table :providers do |t|
       t.string :name
@@ -6,7 +6,7 @@ class CreateProvider < ActiveRecord::Migration
       t.string :key
       t.string :secret
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

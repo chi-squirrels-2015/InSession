@@ -17,14 +17,13 @@ ActiveRecord::Schema.define(version: 20150307200507) do
   enable_extension "plpgsql"
 
   create_table "authorizations", force: :cascade do |t|
-    t.string   "provider"
+    t.integer  "provider_id"
+    t.string   "user_token"
+    t.string   "user_secret"
     t.string   "uid"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "user_token"
-    t.string   "user_secret"
-    t.string   "provider_id"
   end
 
   create_table "course_memberships", force: :cascade do |t|
@@ -79,8 +78,8 @@ ActiveRecord::Schema.define(version: 20150307200507) do
     t.string   "site"
     t.string   "key"
     t.string   "secret"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|

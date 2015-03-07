@@ -27,9 +27,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.oauth_request(params)
-    token = "t6480427084414976"                                   # The user token from the Credentials
-    secret = "ebHgCUXVBmfmtqpQ"                                   # The user secret from the Credentials
+  def oauth_request(params)
+    token = self.authorizations.find_by(provider_id: params[:provider_id]).user_token   # The user token from the auth_has.credentials
+    secret = self.authorizations.find_by(provider_id: params[:provider_id]).user_secret # The user secret from the Credentials
     oauth_token = OAuth::Token.new(token, secret)
     #                               Our Site Key        Our Site Secret           Our Site Stub
     consumer = OAuth::Consumer.new("UHze9rM6n5NtNee2", "f9Z24DkmGTyWZx5E", site: "http://www.khanacademy.org/api/v1")

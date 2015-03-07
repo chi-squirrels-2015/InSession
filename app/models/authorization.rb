@@ -1,5 +1,6 @@
 class Authorization < ActiveRecord::Base
   belongs_to :user
+  belongs_to :provider
   validates :provider, :uid, presence: true
 
   def self.find_or_create(auth_hash)
