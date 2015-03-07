@@ -1,13 +1,9 @@
 
 <%=form_for [@question, @response], remote: true do |f| %>
-<br>
-<br>
+
+<p><%= "What's your input?" %></p>
 <%= f.text_area :content, placeholder: "content"%>
 <br>
 <br>
 <%= submit_tag "Submit New Response", id: "submit-new-response-btn",class: "btn btn-success" %>
-<%= submit_tag "Preview", class: "btn btn-default" %>
 <% end %>
-<p></p>
-<div id="preview-container">
-</div>

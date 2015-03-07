@@ -12,11 +12,7 @@ class ResponsesController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @response = Response.new(response_params)
-    if @response.save
-      redirect_to index                                                                                             
-    else
-      render 'new' unless @response.save
-    end
+    @response.save                                                   
   end
 
   def edit
