@@ -44,5 +44,4 @@ class User < ActiveRecord::Base
 
     puts response.body                                            # <Net::HTTPOK:0x007f88b30485b0> body content
   end
-
 end
