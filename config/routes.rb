@@ -11,8 +11,11 @@ Rails.application.routes.draw do
   root to: 'static#index'
   get '/' => 'questions#index', as: :index
   resources :questions do
-    resources :responses 
+    resources :responses
   end
+
+  resources :groups, only: [:index]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
