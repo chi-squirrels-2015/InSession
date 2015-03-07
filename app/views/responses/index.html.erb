@@ -1,10 +1,10 @@
 <div class = "container" style = "margin-bottom: 30px">
 
-<h3>10 Questions</h3>
- <%=render "questions_table", locals: {questions: @questions}%>
+  <h3>10 Responses</h3>
+  <%=render "responses_table", locals: {responses: @responses}%>
   <% if current_user %>
-  <%=link_to "Ask a Question", new_question_path, remote: true, id: "ask-question-btn" %>
+  <%=link_to "Respond", new_question_response_path, remote: true, id: "ask-response-btn" %>
   <% end %>
 </div>
-<div id = "question-form">
+<div id = "response-form">
 </div>

@@ -1,10 +1,11 @@
+
 $('#question-form').html("<%= j (render 'form') %>");
-$('#question-form').slideDown(350);
-$('#ask-question-btn').hide();
+$('#response-form').slideDown(350);
+$('#ask-response-btn').hide();
 
 $(document).mousedown(function (e)
 {
-  var container = $("#question-form");
+  var container = $("#response-form");
     if (!container.is(e.target) // if the target of the click isn't the container...
         && container.has(e.target).length === 0) // ... nor a descendant of the container
     {
@@ -13,6 +14,6 @@ $(document).mousedown(function (e)
 
   });
 
-$('#submit-new-question-btn').on( "click", function(){
-  $('#ask-question-btn').show();
+$('#submit-new-response-btn').on( "click", function(){
+  $('#ask-response-btn').show();
 });

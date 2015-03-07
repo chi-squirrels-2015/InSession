@@ -1,11 +1,11 @@
-<!-- NEW QUESTION FORM -->
 <%=form_for @response, remote: true do |f| %>
+
 <br>
 <br>
 <%= f.text_area :content, placeholder: "content"%>
 <br>
 <br>
-<%= submit_tag "Submit New Response", id: "submit-new-response-btn",class: "btn btn-success" %>
+<%= submit_tag "Submit Edited Response", id: "submit-edit-response-btn",class: "btn btn-success" %>
 <%= submit_tag "Preview", class: "btn btn-default" %>
 <% end %>
 <p></p>

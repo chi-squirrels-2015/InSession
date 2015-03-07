@@ -7,12 +7,14 @@
 
 <div class = "answers">
   <% @question.responses.each do |response| %>
-  <%=response.content%>
+  <p class = "left">Response: <%= response.content%></p>
   <% end %>
 </div>
 
 <% if current_user == @question.user%>
 <%=link_to "Edit Question", edit_question_path(question: @question), remote: true, id: "edit-question-btn" %>
+<br><br>
+<%=link_to "Respond", new_question_response_path(question_id: @question.id), remote: true, id: "add-response-btn" %>
 <% end %>
 </div>
 <div id = "edit-question-form">
