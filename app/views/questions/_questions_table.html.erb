@@ -1,13 +1,11 @@
 <table class = "questiontable">
   <tr>
-    <th>User </th>
-    <th>Question</th>
-    <th>Content</th>
   </tr>
   <% @questions.each do |question| %>
     <tr id = "<%=question.id%>">
-      <td ><%=question.user.email %></td>
       <td ><%=link_to "#{question.title}", question_path(question) %></td>
+    </tr>
+    <tr id = "<%=question.id%>">
       <td><%=question.content %></td>
     </tr>
   <%end %>

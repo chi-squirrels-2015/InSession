@@ -1,5 +1,6 @@
 <tr>
-  <td><%= @question.user.email %></td>
   <td ><%=link_to "#{@question.title}", question_path(@question) %></td>
-      <td><%=@question.content %></td>
+</tr>
+<tr>
+  <td><%=@question.content %></td>
 </tr>

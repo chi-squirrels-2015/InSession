@@ -1,6 +1,6 @@
 $('#question-form').html("<%= j (render 'form') %>");
 $('#question-form').slideDown(350);
-$('#ask-question-btn').toggle();
+$('#ask-question-btn').hide();
 
 
 
@@ -15,3 +15,7 @@ $(document).mousedown(function (e)
 
 });
  
+$('#submit-new-question-btn').on( "click", function(){
+  console.log("hi");
+  $('#ask-question-btn').show();
+});
