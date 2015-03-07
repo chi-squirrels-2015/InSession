@@ -60,3 +60,17 @@ end
 50.times do
   MeetupMembership.create!(meetup_id: meetups.sample.id, user_id: users.sample.id)
 end
+
+ka = Provider.create!(name: "khan_academy",
+                      site: "http://www.khanacademy.org/api/v1",
+                      key: "UHze9rM6n5NtNee2",
+                      secret: "f9Z24DkmGTyWZx5E")
+
+users.each do |user|
+  number = rand(1000..9999).to_s
+  Authorization.create!(provider: Provider.find(ka.id),
+                        uid: "uidstring" + number,
+                        user: user,
+                        user_token: "user_token" + number,
+                        user_secret: "user_secret" + number)
+end

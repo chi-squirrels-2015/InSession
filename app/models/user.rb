@@ -22,20 +22,44 @@ class User < ActiveRecord::Base
 
   def add_provider(auth_hash)
     # Check if the provider already exists, so we don't add it twice
-    unless authorizations.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
-      Authorization.create :user => self, :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+    unless authorizations.find_by_oauth_credentials(auth_hash)
+      provider = Provider.find_by(name: auth_hash[:provider])
+      Authorization.create :user => self, :provider => provider, :uid => auth_hash[:uid], :user_token => auth_hash.credentials[:token], :user_secret => auth_hash.credentials[:secret]
     end
   end
 
-  def self.oauth_request(params)
-    token = "t6480427084414976"                                   # The user token from the Credentials
+  def oauth_request(auth_hash)
+    provider = Provider.find_by(name: auth_hash[:provider])
+
+    oauth_token = auth_hash[:extra].access_token
+    consumer = auth_hash[:extra][:access_token].consumer
+
+    uri = URI("http://www.khanacademy.org/api/v1/user") # This is the url that we want to pull data from
+    req = Net::HTTP::Get.new(uri)
+    response = Net::HTTP.start(uri.hostname, uri.port) do |http|
+      req.oauth!(http, consumer, oauth_token)
+      http.request(req)
+    end
+    puts response.body
+    if response.code == "200"
+      sec = self.authorizations.find_by(provider: provider)
+      sec.user_secret = oauth_token.secret
+      sec.save
+      tok = self.authorizations.find_by(provider: provider)
+      tok.user_token = oauth_token.token
+      tok.save
+      response
+    else
+      puts "Fuck Off!"
+    end
+  end
+
+  def self.oauth_request
     secret = "ebHgCUXVBmfmtqpQ"                                   # The user secret from the Credentials
+    token = "t6480427084414976"                                   # The user token from the Credentials
     oauth_token = OAuth::Token.new(token, secret)
     #                               Our Site Key        Our Site Secret           Our Site Stub
     consumer = OAuth::Consumer.new("UHze9rM6n5NtNee2", "f9Z24DkmGTyWZx5E", site: "http://www.khanacademy.org/api/v1")
-
-    oauth_params = {:consumer => consumer, :token => oauth_token}
-
     uri = URI("http://www.khanacademy.org/api/v1/user/playlists") # This is the url that we want to pull data from
 
 
@@ -45,7 +69,6 @@ class User < ActiveRecord::Base
       req.oauth!(http, consumer, oauth_token)                     # .oauth! call which formats the request
       http.request(req)                                           # The actual http request is made here
     end
-
     puts response.body                                            # <Net::HTTPOK:0x007f88b30485b0> body content
   end
 
