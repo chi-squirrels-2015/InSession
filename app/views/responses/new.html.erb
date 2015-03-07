@@ -1,8 +1,7 @@
-<%=form_for @question, remote: true do |f| %>
-  <br>
-  <%=f.text_field :title, placeholder: "title"%>
-  <br>
-  <%=f.text_area :content, placeholder: "question"%>
-  <br>
-  <%=submit_tag "Ask Question" %>
+<%=form_for @response, remote: true do |f| %>
+
+<br>
+<%=f.text_area :content, placeholder: "response"%>
+<br>
+<%=submit_tag "Respond" %>
 <%end%>

@@ -1,0 +1,11 @@
+<table class = "questiontable">
+  <tr>
+  </tr>
+  <% @responses.each do |response| %>
+  <tr id = "<%=response.id%>">
+    <td><%=response.content %></td>
+    <br>
+  </tr>
+
+  <%end %>
+</table>

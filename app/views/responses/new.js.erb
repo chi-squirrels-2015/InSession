@@ -1,7 +1,5 @@
-$('#question-form').html("<%= j (render 'form') %>");
-$('#question-form').slideDown(350);
-$('#ask-question-btn').hide();
-
+$('#edit-question-form').html("<%= j (render 'form') %>");
+$('#add-response-btn').hide();
 $(document).mousedown(function (e)
 {
   var container = $("#question-form");
@@ -13,6 +11,6 @@ $(document).mousedown(function (e)
 
   });
 
-$('#submit-new-question-btn').on( "click", function(){
-  $('#ask-question-btn').show();
+$('#submit-new-response-btn').on( "click", function(){
+  $('#ask-response-btn').show();
 });

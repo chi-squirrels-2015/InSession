@@ -1,22 +1,18 @@
 class ResponsesController < ApplicationController
   respond_to :html, :js
   def index
-    @response = Response.order(created_at: :desc).limit(5)
+    @responses = Response.order(created_at: :desc).limit(5)
   end
 
   def new
     @question = Question.find_by_id(params[:question_id])
-    @response = Response.new
+    @response = Response.new(question: @question)
   end
 
   def create
     @question = Question.find(params[:question_id])
-    response = Response.new(response_params)
-    if response.save
-      redirect_to index                                                                                             
-    else
-      render 'new' unless @response.save
-    end
+    @response = Response.new(response_params)
+    @response.save                                                   
   end
 
   def edit
