@@ -16,6 +16,7 @@
 <% if current_user == @question.user%>
 <%=link_to "Edit Question", edit_question_path(question: @question), remote: true, id: "edit-question-btn" %>
 <% end %>
+
 </div>
 <div id = "edit-question-form">
 </div>

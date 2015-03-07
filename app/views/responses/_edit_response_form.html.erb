@@ -1,4 +1,4 @@
-<%=form_for @response, remote: true do |f| %>
+<%=form_for [@question, @response], remote: true do |f| %>
 
 <br>
 <br>
@@ -6,8 +6,6 @@
 <br>
 <br>
 <%= submit_tag "Submit Edited Response", id: "submit-edit-response-btn",class: "btn btn-success" %>
-<%= submit_tag "Preview", class: "btn btn-default" %>
+
 <% end %>
-<p></p>
-<div id="preview-container">
-</div>
+

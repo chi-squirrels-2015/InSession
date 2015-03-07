@@ -125,9 +125,7 @@ ActiveRecord::Schema.define(version: 20150307200507) do
     t.inet     "last_sign_in_ip"
     t.string   "street_address"
     t.string   "city"
-    t.string   "state"
-    t.integer  "zip"
-    t.integer  "max_distance"
+    t.integer  "zip_code"
     t.float    "latitude"
     t.float    "longitude"
   end
@@ -137,15 +135,10 @@ ActiveRecord::Schema.define(version: 20150307200507) do
 
   create_table "venues", force: :cascade do |t|
     t.string  "name"
-    t.string  "hours_of_operation"
-    t.string  "address"
+    t.string  "street_address"
     t.string  "city"
-    t.string  "state"
-    t.integer "zip"
-    t.string  "full_street_address"
-    t.string  "phone"
-    t.string  "website"
-    t.string  "venue_type"
+    t.integer "zip_code"
+    t.string  "type"
     t.float   "latitude"
     t.float   "longitude"
   end
