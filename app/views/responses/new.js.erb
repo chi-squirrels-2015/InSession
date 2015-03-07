@@ -1,19 +1,20 @@
+$('#edit-question-form').html("<%= j (render 'form') %>");
 
-$('#question-form').html("<%= j (render 'form') %>");
-$('#response-form').slideDown(350);
-$('#ask-response-btn').hide();
 
-$(document).mousedown(function (e)
-{
-  var container = $("#response-form");
-    if (!container.is(e.target) // if the target of the click isn't the container...
-        && container.has(e.target).length === 0) // ... nor a descendant of the container
-    {
-      container.hide();
-    }
+// hide form and add response
 
-  });
+
+// $(document).mousedown(function (e)
+// {
+//   var container = $("#question-form");
+//     if (!container.is(e.target) // if the target of the click isn't the container...
+//         && container.has(e.target).length === 0) // ... nor a descendant of the container
+//     {
+//       container.hide();
+//     }
+
+//   });
 
 $('#submit-new-response-btn').on( "click", function(){
-  $('#ask-response-btn').show();
+  $('#question-form').hide();
 });

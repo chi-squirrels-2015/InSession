@@ -11,10 +11,10 @@
   <% end %>
 </div>
 
+<%=link_to "Respond", new_question_response_path(question_id: @question.id), remote: true, id: "add-response-btn" %>
+<br><br>
 <% if current_user == @question.user%>
 <%=link_to "Edit Question", edit_question_path(question: @question), remote: true, id: "edit-question-btn" %>
-<br><br>
-<%=link_to "Respond", new_question_response_path(question_id: @question.id), remote: true, id: "add-response-btn" %>
 <% end %>
 </div>
 <div id = "edit-question-form">

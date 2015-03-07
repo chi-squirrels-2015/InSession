@@ -5,14 +5,14 @@ class ResponsesController < ApplicationController
   end
 
   def new
-    # @question = Question.find_by_id(params[:question_id])
-    @response = Response.new
+    @question = Question.find_by_id(params[:question_id])
+    @response = Response.new(question: @question)
   end
 
   def create
     @question = Question.find(params[:question_id])
     @response = Response.new(response_params)
-    if response.save
+    if @response.save
       redirect_to index                                                                                             
     else
       render 'new' unless @response.save

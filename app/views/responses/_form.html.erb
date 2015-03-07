@@ -1,5 +1,5 @@
-<!-- NEW QUESTION FORM -->
-<%=form_for @response, remote: true do |f| %>
+
+<%=form_for [@question, @response], remote: true do |f| %>
 <br>
 <br>
 <%= f.text_area :content, placeholder: "content"%>
