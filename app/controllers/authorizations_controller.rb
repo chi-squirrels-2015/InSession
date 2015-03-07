@@ -13,10 +13,14 @@ class AuthorizationsController < ApplicationController
   #     render :text => "Hi #{user.name}! You've signed up."
   #   end
   # end
+  def new
+    @provider = "khan_academy"
+  end
 
   def create
-    auth_hash = request.env['omniauth.auth']
 
+    p auth_hash = request.env['omniauth.auth']
+    p auth_hash.credentials # Contains the token and secret
     if current_user
       # Means our user is signed in. Add the authorization to the user
       current_user.add_provider(auth_hash)

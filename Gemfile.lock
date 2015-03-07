@@ -228,6 +228,7 @@ DEPENDENCIES
   faker
   jbuilder (~> 2.0)
   jquery-rails
+  oauth
   omniauth
   omniauth-coursera
   omniauth-khan-academy

@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306172004) do
+ActiveRecord::Schema.define(version: 20150307002058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "authorizations", force: :cascade do |t|
-    t.string   "provider"
     t.string   "uid"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "user_token"
+    t.string   "user_secret"
+    t.string   "provider_id"
   end
 
   create_table "course_memberships", force: :cascade do |t|
@@ -68,6 +70,15 @@ ActiveRecord::Schema.define(version: 20150306172004) do
   add_index "meetups", ["course_id"], name: "index_meetups_on_course_id", using: :btree
   add_index "meetups", ["organizer_id"], name: "index_meetups_on_organizer_id", using: :btree
   add_index "meetups", ["venue_id"], name: "index_meetups_on_venue_id", using: :btree
+
+  create_table "providers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "site"
+    t.string   "key"
+    t.string   "secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.string   "title"
