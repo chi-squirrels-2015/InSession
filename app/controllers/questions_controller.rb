@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     if submit_new_question?
       @question.user = current_user
       @questions = Question.order(created_at: :desc).limit(10)
-      
+
       render 'new' unless @question.save
 
     elsif preview?
