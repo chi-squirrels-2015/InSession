@@ -18,7 +18,7 @@ gem 'omniauth'
 gem 'omniauth-khan-academy'
 gem 'omniauth-coursera'
 gem 'oauth'
-gem 'typhoeus'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
