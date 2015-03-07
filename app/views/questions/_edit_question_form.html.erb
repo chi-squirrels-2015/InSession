@@ -1,4 +1,3 @@
-<!-- NEW QUESTION FORM -->
 <%=form_for @question, remote: true do |f| %>
   <br>
   <%= f.text_field :title, placeholder: "title" %>
@@ -7,7 +6,7 @@
   <%= f.text_area :content, placeholder: "content"%>
   <br>
   <br>
-  <%= submit_tag "Submit New Question", id: "submit-new-question-btn",class: "btn btn-success" %>
+  <%= submit_tag "Submit Edited Question", id: "submit-new-question-btn",class: "btn btn-success" %>
   <%= submit_tag "Preview", class: "btn btn-default" %>
 <% end %>
 <p></p>
