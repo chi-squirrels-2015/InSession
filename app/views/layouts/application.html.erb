@@ -6,6 +6,8 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
         <h1>INSession</h1>
@@ -14,6 +16,7 @@
           <li><%= button_to 'Signup', new_user_registration_path, class: "btn btn-primary btn-sm", method: :get %></li>
           <li><%= button_to 'Signin', new_user_session_path, class: "btn btn-primary btn-sm", method: :get %></li>
           <% else %>
+          <li><%= button_to "Profile", user_path(current_user), class: "btn btn-primary btn-sm" %></li>
           <li><%= button_to 'Logout', destroy_user_session_path, class: "btn btn-primary btn-sm", method: :delete %></li>
           <% end %>
         </ul>
