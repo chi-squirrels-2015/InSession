@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-
+# Smarter CSV for parsing Library file
+gem 'smarter_csv'
+gem 'geocoder'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use pg as the database for Active Record

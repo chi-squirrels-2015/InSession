@@ -5,24 +5,25 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-require 'faker'
+# require 'faker'
 
-User.create!(first_name:"sarah", last_name: "ing", email:"chocolate@gmail.com", password:"chocolate")
+User.create!(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 2)
 
-
+# Added sleep 1 to keep Google happy
 30.times do
-  User.create!(first_name: Faker::Name.name, last_name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password, bio: "just want to learn", preferred_language: "english", street_address: Faker::Address.street_address, city: Faker::Address.city, zip_code: Faker::Address.zip_code)
+  User.create!(first_name: Faker::Name.name, last_name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password, bio: "just want to learn", preferred_language: "english", street_address: Faker::Address.street_address, city: Faker::Address.city, zip: Faker::Address.zip_code)
+  sleep 1
 end
 
 users = User.all
 
-10.times do 
+10.times do
   Course.create!(name: Faker::Company.name, organization: Faker::Company.name, description: Faker::Commerce.product_name)
 end
 
 courses = Course.all
 
-50.times do 
+50.times do
   Question.create!(title: Faker::Lorem.word, content: Faker::Lorem.sentence, user: users.sample, course: courses.sample)
 end
 
@@ -34,14 +35,20 @@ end
 
 responses = Response.all
 
-10.times do 
-  Venue.create!(name: Faker::Company.name, street_address: Faker::Address.street_address, city: Faker::Address.city, zip_code: Faker::Address.zip_code)
+# response = HTTParty.get("https://data.cityofchicago.org/resource/wa2i-tm5d.json")
+# p venues = JSON.parse(response.body)
+
+venues_array = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
+
+venues_array.each do |venue|
+  Venue.create!(venue)
 end
 
-venues = Venue.all
+
 
 50.times do
-  Meetup.create!(course: courses.sample, organizer: users.sample, venue: venues.sample, remote: true)
+  venue = Venue.find(rand(Venue.count)+1)
+  Meetup.create!(course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude)
 end
 
 meetups = Meetup.all
