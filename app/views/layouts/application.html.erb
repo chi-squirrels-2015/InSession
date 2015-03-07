@@ -15,47 +15,27 @@
 </head>
 <body>
 
-
-
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-               <a href="#" class="navbar-brand">IN<b>SESSION</b></a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li>
-                <form role="search">
-                  <div class="form-group">
-                    <input type="text" placeholder="Search for Answers" class="form-control">
-                  </div>
-                  <!-- <button type="submit" class="btn btn-default">Submit</button> -->
-                </form>
-              </li>
-              <li><%= link_to 'Questions', questions_path %></li>
-              <% unless current_user %>
-              <li><%= link_to 'Signup', new_user_registration_path, method: :get %></li>
-              <li><%= link_to 'Signin', new_user_session_path, method: :get %></li>
-              <% else %>
-              <li><%= link_to "Profile", user_path(current_user)%></li>
-              <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-              <% end %>
-        </ul>
-        </div>
+  <div class="screen">
+    <header>
+      <h1>iOS 7 Blurred Header</h1>
+    </header>
+    <div class="content-wrapper">
+      <div class="content">
+            <%= yield %>
+      </div>
     </div>
-</nav>
-        
-<div id="layout_container">
-  <%= yield %>
+  </div>
 </div>
+
+</div>
+
+<!-- firefox svg blurring trick -->
+<svg id="svg-image-blur">
+  <filter id="blur-effect">
+    <feGaussianBlur stdDeviation="10" />
+  </filter>
+</svg>
 
 </body>
 </html>
+
