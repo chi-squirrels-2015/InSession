@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   validates :first_name, :email, :presence => true #lines 2 and 3 are from tutsplus tutorial
   validates :last_name, :email, :presence => true  #lines 2 and 3 are from tutsplus tutorial
 
+  # GEOCODER
+  geocoded_by :full_street_address   # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates
+
   def add_provider(auth_hash)
     # Check if the provider already exists, so we don't add it twice
     unless authorizations.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
@@ -44,4 +48,10 @@ class User < ActiveRecord::Base
 
     puts response.body                                            # <Net::HTTPOK:0x007f88b30485b0> body content
   end
+
+  #GEOCODER
+  def full_street_address
+    [street_address, city, state, zip].compact.join(', ')
+  end
+
 end
