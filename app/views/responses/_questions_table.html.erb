@@ -1,0 +1,12 @@
+<table class = "questiontable">
+  <tr>
+  </tr>
+  <% @questions.each do |question| %>
+    <tr id = "<%=question.id%>">
+      <td ><%=link_to "#{question.title}", question_path(question) %></td>
+    </tr>
+    <tr id = "<%=question.id%>">
+      <td><%=question.content %></td>
+    </tr>
+  <%end %>
+</table>

@@ -1,0 +1,23 @@
+$('#question-form').hide();
+$(".questiontable tr:first" ).after("<%= j (render 'row') %>")
+// $(".container").append("<%= j (render 'askquestionbutton') %>")
+
+
+
+
+
+
+// $(document).mousedown(function (e){
+//    var container = $("#question-form");
+//     if (!container.is(e.target) // if the target of the click isn't the container...
+//         && container.has(e.target).length === 0) // ... nor a descendant of the container
+//     {
+//      $('#ask-question-btn').show();
+         
+//     }
+// });
+
+// $('#submit-new-question-btn').on( "click", function(){
+//   console.log("h");
+//   $("#question-form").remove();
+// });
