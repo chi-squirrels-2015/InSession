@@ -37,6 +37,7 @@ gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -44,7 +45,7 @@ group :development, :test do
   gem 'pry'
   # Sorry, I forgot to -T when I built the initial app
   gem 'rspec-rails'
-
+  gem 'capybara'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
