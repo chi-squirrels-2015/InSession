@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307200507) do
+ActiveRecord::Schema.define(version: 20150308190126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(version: 20150307200507) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "course_id"
     t.text     "bio"
     t.string   "preferred_language"
     t.datetime "created_at",                          null: false
@@ -123,11 +122,13 @@ ActiveRecord::Schema.define(version: 20150307200507) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.string   "street_address"
-    t.string   "city"
-    t.integer  "zip_code"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.integer  "max_distance"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -135,10 +136,15 @@ ActiveRecord::Schema.define(version: 20150307200507) do
 
   create_table "venues", force: :cascade do |t|
     t.string  "name"
-    t.string  "street_address"
+    t.string  "hours_of_operation"
+    t.string  "address"
     t.string  "city"
-    t.integer "zip_code"
-    t.string  "type"
+    t.string  "state"
+    t.integer "zip"
+    t.string  "full_street_address"
+    t.string  "phone"
+    t.string  "website"
+    t.string  "venue_type"
     t.float   "latitude"
     t.float   "longitude"
   end
