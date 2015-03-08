@@ -10,11 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require mapbox
  *= require_tree .
  *= require_self
  */
 
-.navbar{
+ .navbar{
   padding-top: 10px;
   min-height: 100px;
 }

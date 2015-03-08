@@ -1,20 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'users/registrations' }
-  resources :users, only: [:show]
+  resources :users, only: [:index, :show]
+
   get   '/auth', :to => 'authorizations#new', :as => :login, :via => [:get, :post]
   match '/auth/:provider/callback', :to => 'authorizations#create', :via => [:get, :post]
   match '/auth/failure', :to => 'authorizations#failure', :via => [:get, :post]
-
-
-
 
   root to: 'static#index'
   get '/' => 'questions#index', as: :index
   resources :questions do
     resources :responses
   end
-
-  resources :groups, only: [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

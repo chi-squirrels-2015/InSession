@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'mapbox-rails'
 # Smarter CSV for parsing Library file
 gem 'smarter_csv'
 gem 'geocoder'
