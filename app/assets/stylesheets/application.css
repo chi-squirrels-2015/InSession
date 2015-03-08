@@ -11,11 +11,12 @@
  * file per style scope.
  *
  *= require bootstrap.min
+ *= require mapbox
  *= require_tree .
  *= require_self
  */
 
-.navbar{
+ .navbar{
   padding-top: 10px;
   min-height: 100px;
 }
