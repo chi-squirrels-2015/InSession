@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(version: 20150307200507) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "course_id"
     t.text     "bio"
     t.string   "preferred_language"
     t.datetime "created_at",                          null: false
@@ -125,7 +124,9 @@ ActiveRecord::Schema.define(version: 20150307200507) do
     t.inet     "last_sign_in_ip"
     t.string   "street_address"
     t.string   "city"
-    t.integer  "zip_code"
+    t.string   "state"
+    t.integer  "zip"
+    t.integer  "max_distance"
     t.float    "latitude"
     t.float    "longitude"
   end
@@ -135,10 +136,15 @@ ActiveRecord::Schema.define(version: 20150307200507) do
 
   create_table "venues", force: :cascade do |t|
     t.string  "name"
-    t.string  "street_address"
+    t.string  "hours_of_operation"
+    t.string  "address"
     t.string  "city"
-    t.integer "zip_code"
-    t.string  "type"
+    t.string  "state"
+    t.integer "zip"
+    t.string  "full_street_address"
+    t.string  "phone"
+    t.string  "website"
+    t.string  "venue_type"
     t.float   "latitude"
     t.float   "longitude"
   end
