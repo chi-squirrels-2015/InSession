@@ -23,18 +23,10 @@ class StaticController < ApplicationController
 				end	
 
 			query = array_of_question_title.flatten.join(" ").gsub!(/[^0-9A-Za-z]/, ' ').downcase
-			p query
-			p query
-			p query
-
-
 			query_without_stopwords = remove_stopwords(query)
-			puts query_without_stopwords
-			puts query_without_stopwords
-			puts query_without_stopwords
-			puts query_without_stopwords
-			puts query_without_stopwords
-			@questions = Question.search(query: {match: {_all: {query: query_without_stopwords, fuzziness: 1}}})
+			@questions = Question.search(query: {multi_match: {_all: {query: query_without_stopwords, fuzziness: 1, fields: ['title^10', 'body']}}})
+			# records = Article.search(query: {multi_match: {query: 'world', fields: ['title^10', 'body']}}).records
+
 
 			end
 		end
