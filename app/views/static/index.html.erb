@@ -1,0 +1,15 @@
+<% if current_user %>
+Suggestions :
+<ul>
+  <% if @questions.nil? == false %>
+    <% @questions.each do |question| %>
+      <li>
+        <h3>
+          <%= link_to question.title, question_path(question.id) %>
+        </h3>
+      </li>
+    <% end %>
+ <% end %> 
+</ul>
+<% end %>
+

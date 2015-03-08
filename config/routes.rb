@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   match '/auth/:provider/callback', :to => 'authorizations#create', :via => [:get, :post]
   match '/auth/failure', :to => 'authorizations#failure', :via => [:get, :post]
 
+  get 'search', to: 'search#search'
 
 
 

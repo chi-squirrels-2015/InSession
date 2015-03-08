@@ -11,8 +11,7 @@ User.create!(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", 
 
 # Added sleep 1 to keep Google happy
 30.times do
-  User.create!(first_name: Faker::Name.name, last_name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password, bio: "just want to learn", preferred_language: "english", street_address: Faker::Address.street_address, city: Faker::Address.city, zip: Faker::Address.zip_code)
-  sleep 1
+  User.create!(first_name: Faker::Name.name, last_name: Faker::Name.name, email: Faker::Internet.email, password: "password", bio: "just want to learn", preferred_language: "english", street_address: Faker::Address.street_address, city: Faker::Address.city, zip_code: Faker::Address.zip_code)
 end
 
 users = User.all
@@ -23,8 +22,9 @@ end
 
 courses = Course.all
 
-50.times do
-  Question.create!(title: Faker::Lorem.word, content: Faker::Lorem.sentence, user: users.sample, course: courses.sample)
+
+150.times do 
+  Question.create!(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 end
 
 questions = Question.all
