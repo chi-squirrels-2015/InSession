@@ -28,13 +28,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  def oauth_request(auth_hash)
+  def oauth_request(auth_hash, url_stub)
     provider = Provider.find_by(name: auth_hash[:provider])
 
     oauth_token = auth_hash[:extra].access_token
     consumer = auth_hash[:extra][:access_token].consumer
-
-    uri = URI("http://www.khanacademy.org/api/v1/user") # This is the url that we want to pull data from
+    full_url = provider.site + url_stub
+    uri = URI(full_url) # This is the url that we want to pull data from
     req = Net::HTTP::Get.new(uri)
     response = Net::HTTP.start(uri.hostname, uri.port) do |http|
       req.oauth!(http, consumer, oauth_token)
