@@ -1,11 +1,11 @@
-<div class = "container" style = "margin-bottom: 30px">
+<div class="content">
+  <div class = "container" style = "margin-bottom: 30px">
+    <h3>5 Questions</h3>
+     <%=render "questions_table", locals: {questions: @questions}%>
+      <% if current_user %>
+      <% end %>
+    <%=link_to "Ask a Question", new_question_path, remote: true, id: "ask-question-btn" %>
+  </div>
+</div>
 
-<h3>10 Questions</h3>
- <%=render "questions_table", locals: {questions: @questions}%>
-  <% if current_user %>
-  <%=link_to "Ask a Question", new_question_path, remote: true, id: "ask-question-btn" %>
-  <% end %>
-</div>
-<div id = "question-form">
-  hello
-</div>
+<div id = "question-form"></div>

@@ -17,25 +17,15 @@
 
   <div class="screen">
     <header>
-      <h1>iOS 7 Blurred Header</h1>
+      <h1>IN<b>SESSION</b></h1>
     </header>
     <div class="content-wrapper">
       <div class="content">
-            <%= yield %>
+        <div class="spacer"></div>
+        <%= yield %>
       </div>
     </div>
   </div>
-</div>
-
-</div>
-
-<!-- firefox svg blurring trick -->
-<svg id="svg-image-blur">
-  <filter id="blur-effect">
-    <feGaussianBlur stdDeviation="10" />
-  </filter>
-</svg>
 
 </body>
 </html>
-

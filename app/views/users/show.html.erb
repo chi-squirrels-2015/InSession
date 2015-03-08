@@ -1,23 +1,25 @@
 <!-- Link your Khan Academy Account -->
-<div class="container">
+<div class="content">
+  <div class="container">
 
-  <div class="row">
-    <div class="col-xs-offset-1 col-xs-10">
-      <div class="thumbnail">
-        <%= link_to image_tag("sarah.jpg", :class => "img-circle") %>
-        <div class="caption">
-          <li><%= @current_user.first_name.capitalize + " " + @current_user.last_name.capitalize %></li>
-          <li><%= @current_user.email %></li>
-          <li><%= @current_user.preferred_language = "Preferred Language: Spanish" %></li>
+    <div class="row">
+      <div class="col-xs-offset-1 col-xs-10">
+        <div class="thumbnail">
+          <%= link_to image_tag("sarah.jpg", :class => "img-circle") %>
+          <div class="caption">
+            <li><%= @current_user.first_name.capitalize + " " + @current_user.last_name.capitalize %></li>
+            <li><%= @current_user.email %></li>
+            <li><%= @current_user.preferred_language = "Preferred Language: Spanish" %></li>
+          </div>
+          <i class="fa fa-leaf"></i>
+          <i class="fa fa-jsfiddle"></i>
         </div>
-        <i class="fa fa-leaf"></i>
-        <i class="fa fa-jsfiddle"></i>
       </div>
     </div>
-  </div>
 
 
 
+<<<<<<< HEAD
   <div class="row">
     <div class="col-xs-offset-1 col-xs-10">
       <div class="thumbnail">
@@ -28,17 +30,30 @@
         <% end %>
         <% end %>
         <h4 class="completed_courses">Completed Courses</h4>
+=======
+    <div class="row">
+      <div class="col-xs-offset-1 col-xs-10">
+        <div class="thumbnail">
+          <h3>Current Courses</h3>
+          <% if @current_user.courses %>
+            <% @current_user.courses.each do |course| %>
+              <li><%= link_to "Learn how to OAuth", '#' %></li>
+            <% end %>
+          <% end %>
+          <h4 class="completed_courses">Completed Courses</h4>
+        </div>
+>>>>>>> end of night commit
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-xs-offset-1 col-xs-10">
-      <div class="thumbnail">
-        <h3>Bio</h3>
-        <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>
+    <div class="row">
+      <div class="col-xs-offset-1 col-xs-10">
+        <div class="thumbnail">
+          <h3>Bio</h3>
+          <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>
+        </div>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>
