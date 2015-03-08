@@ -1,0 +1,10 @@
+  <div class = "container" style = "margin-bottom: 30px">
+    <h1 class = "center">Courses Student Is Taking</h1>
+    <% @courses.each do |course| %>
+    <h2 class = "center">Course Name: <%=course.name%></h2>
+    <h2>Course Org: <%= course.organization %></h2>
+    <br>
+    <p class = "center">Description: <%= course.description %></p>
+    <% end %>
+  </div>
+
