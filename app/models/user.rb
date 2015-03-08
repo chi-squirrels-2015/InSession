@@ -78,5 +78,4 @@ class User < ActiveRecord::Base
     [street_address, city, state, zip].compact.join(', ')
   end
 
-
 end

@@ -7,6 +7,7 @@
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
 
+<<<<<<< HEAD
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -25,5 +26,26 @@
       </div>
     </div>
   </div>
+=======
+  <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
+</head>
+<body>
+        <ul>
+          <% unless current_user %>
+          <li><%= button_to 'Signup', new_user_registration_path, class: "btn btn-primary btn-sm", method: :get %></li>
+          <li><%= button_to 'Signin', new_user_session_path, class: "btn btn-primary btn-sm", method: :get %></li>
+          <% else %>
+          <li>Hello, <%= current_user.name %> </li>
+          <li><%= button_to 'Logout', destroy_user_session_path, class: "btn btn-primary btn-sm", method: :delete %></li>
+          <% end %>
+        </ul>  
+<div class="container">
+        
+<%= yield %>
+
+</div>
+<div id="ChatNotificationMsg"> You have a message </div>
+
+>>>>>>> 3efbc970d7533c762335cbc85d99e552ca5fea95
 </body>
 </html>

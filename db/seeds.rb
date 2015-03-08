@@ -125,6 +125,7 @@ users.each do |user|
                         user_secret: "user_secret" + number)
 end
 
+
 User.create!(name:"sarah", first_name:"sarah", last_name: "ing", email:"chocolate1@gmail.com", password:"password")
 User.create!(name:"jd", first_name:"sarah", last_name: "ing", email:"chocolate2@gmail.com", password:"password")
 User.create!(name:"john", first_name:"sarah", last_name: "ing", email:"chocolate3@gmail.com", password:"password")

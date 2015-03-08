@@ -13,8 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20150307200507) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
 
   create_table "authorizations", force: :cascade do |t|
@@ -34,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150307200507) do
 
   add_index "course_memberships", ["course_id"], name: "index_course_memberships_on_course_id", using: :btree
   add_index "course_memberships", ["user_id"], name: "index_course_memberships_on_user_id", using: :btree
+
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -172,6 +175,7 @@ ActiveRecord::Schema.define(version: 20150307200507) do
     t.float   "latitude"
     t.float   "longitude"
   end
+
 
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
