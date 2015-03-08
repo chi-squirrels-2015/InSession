@@ -1,9 +1,9 @@
 development:
-  server: "http://localhost:9292/faye/faye"
-  secret_token: "secret"
+  server: "https://test-server-2.herokuapp.com/faye"
+  secret_token: "vivelafrance"
 test:
-  server: "http://localhost:9292/faye/faye"
-  secret_token: "secret"
+  server: "https://test-server-2.herokuapp.com/faye"
+  secret_token: "vivelafrance"
 production:
   server: "https://test-server-2.herokuapp.com/faye"
   secret_token: "vivelafrance"
