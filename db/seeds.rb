@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+<<<<<<< HEAD
 # require 'faker'
 
 User.create!(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 2)
@@ -123,3 +124,12 @@ users.each do |user|
                         user_token: "user_token" + number,
                         user_secret: "user_secret" + number)
 end
+=======
+
+
+User.create!(name:"sarah", first_name:"sarah", last_name: "ing", email:"chocolate1@gmail.com", password:"password")
+User.create!(name:"jd", first_name:"sarah", last_name: "ing", email:"chocolate2@gmail.com", password:"password")
+User.create!(name:"john", first_name:"sarah", last_name: "ing", email:"chocolate3@gmail.com", password:"password")
+User.create!(name:"dan", first_name:"sarah", last_name: "ing", email:"chocolate4@gmail.com", password:"password")
+User.create!(name:"matthew", first_name:"sarah", last_name: "ing", email:"chocolate5@gmail.com", password:"password")
+>>>>>>> 3efbc970d7533c762335cbc85d99e552ca5fea95

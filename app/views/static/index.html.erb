@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% if current_user %>
 Questions asked :
   <ul>
@@ -24,5 +25,19 @@ Suggestions :
     <% end %>
  <% end %> 
 </ul>
+=======
+
+<% if current_user %>
+  <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= index +=1 %></td></br>
+        <td><%= user.name %></td></br>
+        <td>
+          <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
+                      "data-sid" => current_user.id, "data-rip" => user.id %>
+        </td>
+      </tr>
+  <% end %>
+>>>>>>> 3efbc970d7533c762335cbc85d99e552ca5fea95
 <% end %>
 

@@ -19,11 +19,14 @@ gem 'faker'
 gem 'omniauth'
 gem 'omniauth-khan-academy'
 gem 'omniauth-coursera'
+<<<<<<< HEAD
 gem 'oauth'
 
+=======
+>>>>>>> 3efbc970d7533c762335cbc85d99e552ca5fea95
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
+gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -40,8 +43,14 @@ gem 'elasticsearch-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+<<<<<<< HEAD
 gem 'rails_12factor', group: :production
 
+=======
+gem 'private_pub'
+gem 'thin'
+gem 'rails_12factor', group: :production
+>>>>>>> 3efbc970d7533c762335cbc85d99e552ca5fea95
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

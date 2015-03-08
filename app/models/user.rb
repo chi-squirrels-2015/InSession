@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+<<<<<<< HEAD
   has_many :meetup_memberships
   has_many :meetups, through: :meetup_memberships
   has_many :organized_meetups, class_name: "Meetup", foreign_key: :organizer_id
@@ -77,4 +78,7 @@ class User < ActiveRecord::Base
     [street_address, city, state, zip].compact.join(', ')
   end
 
+=======
+  has_many :conversations, :foreign_key => :sender_id      
+>>>>>>> 3efbc970d7533c762335cbc85d99e552ca5fea95
 end

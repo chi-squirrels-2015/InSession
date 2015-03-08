@@ -4,8 +4,10 @@
   <title>InSession</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' %>
+  <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
+<<<<<<< HEAD
   <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
@@ -26,6 +28,27 @@
       </div>
     </div>
   </div>
+=======
+
+  <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
+</head>
+<body>
+        <ul>
+          <% unless current_user %>
+          <li><%= button_to 'Signup', new_user_registration_path, class: "btn btn-primary btn-sm", method: :get %></li>
+          <li><%= button_to 'Signin', new_user_session_path, class: "btn btn-primary btn-sm", method: :get %></li>
+          <% else %>
+          <li>Hello, <%= current_user.name %> </li>
+          <li><%= button_to 'Logout', destroy_user_session_path, class: "btn btn-primary btn-sm", method: :delete %></li>
+          <% end %>
+        </ul>  
+<div class="container">
+        
+<%= yield %>
+>>>>>>> 3efbc970d7533c762335cbc85d99e552ca5fea95
+
+</div>
+<div id="ChatNotificationMsg"> You have a message </div>
 
 </body>
 </html>

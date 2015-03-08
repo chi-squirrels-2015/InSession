@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
 
   root to: 'static#index'
+<<<<<<< HEAD
   get '/' => 'questions#index', as: :index
   resources :questions do
     resources :responses
@@ -17,6 +18,12 @@ Rails.application.routes.draw do
   resources :courses, only: [:index, :show]
   resources :groups, only: [:index]
 
+=======
+
+  resources :conversations do
+    resources :messages
+  end
+>>>>>>> 3efbc970d7533c762335cbc85d99e552ca5fea95
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
