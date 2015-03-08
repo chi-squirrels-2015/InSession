@@ -99,7 +99,7 @@ end
   venue = Venue.find(rand(Venue.count)+1)
   Meetup.create!(course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude)
 end
-
+venues = Venue.all
 meetups = Meetup.all
 
 50.times do
@@ -111,15 +111,18 @@ end
 end
 
 ka = Provider.create!(name: "khan_academy",
-                      site: "http://www.khanacademy.org/api/v1",
-                      key: "UHze9rM6n5NtNee2",
-                      secret: "f9Z24DkmGTyWZx5E")
+  site: "http://www.khanacademy.org/api/v1",
+  key: "UHze9rM6n5NtNee2",
+  secret: "f9Z24DkmGTyWZx5E")
 
 users.each do |user|
   number = rand(1000..9999).to_s
   Authorization.create!(provider: Provider.find(ka.id),
-                        uid: "uidstring" + number,
-                        user: user,
-                        user_token: "user_token" + number,
-                        user_secret: "user_secret" + number)
+    uid: "uidstring" + number,
+    user: user,
+    user_token: "user_token" + number,
+    user_secret: "user_secret" + number)
 end
+
+adv_js_meetup = Meetup.create!(name: "Advanced JavaScript", organizer: users.sample, remote: true)
+adv_js_meetup.courses << [Course.create!(name: "HTML and CSS: Making Webpages", organization: "Khan Academy", description: Faker::Commerce.product_name), Course.create!(name: "HTML and JS: Making Webpages Interactive", organization: "Khan Academy", description: Faker::Commerce.product_name)]

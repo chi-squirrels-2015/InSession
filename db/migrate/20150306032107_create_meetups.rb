@@ -3,6 +3,7 @@ class CreateMeetups < ActiveRecord::Migration
     create_table :meetups do |t|
       t.references :course, index: true     
       t.references :organizer, index: true 
+      t.string    :name
       t.datetime  :begin_time
       t.datetime  :end_time
       t.references :venue, index: true
@@ -12,3 +13,4 @@ class CreateMeetups < ActiveRecord::Migration
     end
   end
 end
+
