@@ -2,12 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+window.onload = ->
+  L.mapbox.accessToken = 'pk.eyJ1IjoiaGFuaWVsZGFuc29uIiwiYSI6IkFocjdTOUUifQ.xyT3gJjivbRhXnxojbrUHg'
+  map = L.mapbox.map('map', 'hanieldanson.ldep8j96')
+  myLayer = L.mapbox.featureLayer().addTo(map)
+
+  return
+
 $(document).ready
-
-L.mapbox.accessToken = 'pk.eyJ1IjoiaGFuaWVsZGFuc29uIiwiYSI6IkFocjdTOUUifQ.xyT3gJjivbRhXnxojbrUHg'
-map = L.mapbox.map('map', 'hanieldanson.ldep8j96')
-myLayer = L.mapbox.featureLayer().addTo(map)
-
 # get JSON object
 # on success, parse it and
 # hand it over to MapBox for mapping
@@ -15,17 +17,20 @@ myLayer = L.mapbox.featureLayer().addTo(map)
 $.ajax
   type: 'GET'
   dataType: 'json'
-  url: '/users/current.json'
+  url: '/users'
   success: (data) ->
     geojson = $.parseJSON(data)
     map.featureLayer.setGeoJSON(geojson)
+
+console.log data
+console.log geojson
 
 # add custom popups to each marker
 map.featureLayer.on 'layeradd', (e) ->
   marker = e.layer
   properties = marker.feature.properties
 
-  # create custom popup
+  # create custom popupf
   popupContent =  '<div class="popup">' +
                     '<h3>' + properties.name + '</h3>' +
                     '<p>' + properties.address + '</p>' +
