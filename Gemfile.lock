@@ -136,6 +136,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mapbox-rails (1.6.1.1)
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
@@ -294,6 +295,7 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 2.0)
   jquery-rails
+  mapbox-rails
   omniauth
   omniauth-coursera
   omniauth-khan-academy

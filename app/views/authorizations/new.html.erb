@@ -6,6 +6,7 @@
 
   <h3><%= provider.name.gsub("_"," ").titleize %></h3>
 
+
   <%= form_for provider.name, :url => "/auth/#{provider.name}" do |f| %>
   <h3>Enter the url stub - <%= f.text_field :url_stub %></h3>
   <h3><%= f.submit "Gimme data!" %></h3>

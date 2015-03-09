@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307200507) do
+ActiveRecord::Schema.define(version: 20150308190126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,9 +130,9 @@ ActiveRecord::Schema.define(version: 20150307200507) do
   add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
+    t.string    "name"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "name"
     t.integer  "course_id"
     t.text     "bio"
     t.string   "preferred_language"
@@ -148,13 +148,13 @@ ActiveRecord::Schema.define(version: 20150307200507) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "street_address"
     t.string   "city"
     t.string   "state"
     t.integer  "zip"
     t.integer  "max_distance"
-    t.float    "latitude"
-    t.float    "longitude"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

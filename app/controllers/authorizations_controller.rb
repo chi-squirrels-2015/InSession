@@ -7,18 +7,20 @@ class AuthorizationsController < ApplicationController
   end
 
   def create
-    @auth_hash = request.env['omniauth.auth']
+
+    auth_hash = authenticate
+
     user = current_user
     if current_user
       # Means our user is signed in. Add the authorization to the user
-      current_user.add_provider(@auth_hash)
-      url_stub = "/user/exercises"
-      req = user.oauth_request(@auth_hash, url_stub)
+      current_user.add_provider(auth_hash)
+      url_stub = "/user/playlists"
+      req = user.oauth_request(auth_hash, url_stub)
 
       parsed_response = JSON::parse(req.body)
+raise
       parsed_response.each do |data|
         data.except!("exercise_model")
-
         unless data["maximum_exercise_progress_"] == "unstarted"
           course = Course.find_or_create_by(name: data["exercise"])
           coursemembership = CourseMembership.where(user_id: current_user.id).find_or_create_by(course: course)
@@ -28,7 +30,8 @@ class AuthorizationsController < ApplicationController
         end
       end
 
-      render :data_landing, locals: {provider: Provider.find_by(name: @auth_hash[:provider]), data: parsed_response, auth_hash: @auth_hash}
+      enrolled_courses = CourseMembership.where(user_id: current_user.id)
+      render :data_landing, locals: {provider: Provider.find_by(name: auth_hash[:provider]), enrolled_courses: enrolled_courses, auth_hash: auth_hash}
 
     else
       raise
@@ -36,15 +39,14 @@ class AuthorizationsController < ApplicationController
     end
   end
 
-  def show
-    if current_user
-      req = user.oauth_request(@auth_hash)
-raise
-      render :data_retrieval, locals: {provider: Provider.find_by(name: @auth_hash[:provider]), req: req}
-      # render :text => "#{current_user.first_name} can now login using #{auth_hash["provider"].capitalize} too!"
-    else
-      redirect "/"
-    end
+  def authenticate
+    auth_hash = request.env['omniauth.auth']
+    provider = Provider.find_by(name: auth_hash.provider)
+    auth = current_user.authorizations.find_by(provider: provider)
+    auth.user_secret = auth_hash.credentials.secret
+    auth.user_token = auth_hash.credentials.token
+    auth.save
+    auth_hash
   end
 
 
