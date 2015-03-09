@@ -7,7 +7,6 @@ class StaticController < ApplicationController
 		filter = Stopwords::Filter.new stopwords
 		new_querry = filter.filter(query.split).join(" ")
 	end
-	
 
 	def index
     @users = User.all

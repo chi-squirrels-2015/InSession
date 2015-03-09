@@ -1,11 +1,3 @@
-.navbar{
-  padding-top: 10px;
-  min-height: 100px;
-}
-.navbar-brand {
-  font-size: 40px;
-  text-align: center;
-}
 ::-webkit-scrollbar {
   display: none;
 }
@@ -13,12 +5,14 @@
 html {
   font-family:"Helvetica Neue","Helvetica",sans-serif;
   font-size:1rem;
+
 }
 
 html,body {
   margin:0;
   padding:0;
   background:#fff;
+  background-image: url("bg.png");
   overflow:hidden;
 }
 
@@ -26,7 +20,7 @@ html,body {
   // position:absolute;
   // top:90px;
   width:100%;
-  height:700px;
+  height:736px;
   overflow:hidden;
 }
 
@@ -35,18 +29,20 @@ header {
   left:0;
   top:0;
   right:0;
-  height:90px;
+  height:100px;
   overflow:hidden;
-  background:#f8f8f8;
+  background-image: url("blur_bg.png");
+  background-color: rgba(121,189,154,.90);
   z-index:2;
   box-shadow:0 1px 0 rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.1);
 }
 
 header h1 {
-position: relative;
+  color:rgba(121,189,154,.3);
+  position: relative;
   font-family:"Helvetica Neue","Helvetica",sans-serif;
   font-weight:normal;
-  font-size:30px;
+  font-size:40px;
   margin:0;
   padding:0;
   line-height:100px;
@@ -81,7 +77,7 @@ position: relative;
   z-index:1;
   height:100%;
   overflow:auto;
-  -webkit-backface-visibility:hidden;
+  // -webkit-backface-visibility:hidden;
 }
 
 .content-wrapper .content {
@@ -93,7 +89,7 @@ position: relative;
   padding-top:1em;
 }
 
-.spacer {
+.spacer {  
   width: 100%;
-  height: 40px;
+  height: 50px;
 }

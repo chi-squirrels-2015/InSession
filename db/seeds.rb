@@ -74,9 +74,9 @@ array_of_question = ["How do I use css?",
 "UNRELATED: What is the real story behind Cinco de Mayo?",
 "UNRELATED: When will DBC's website be rebuilt with Meteor?"]
 39.times do 
-	Question.create!(title: array_of_question.pop, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
+  Question.create!(title: array_of_question.pop, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 
-end	
+end 
 questions = Question.all
 
 75.times do

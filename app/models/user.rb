@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
   has_many :meetup_memberships
   has_many :meetups, through: :meetup_memberships
   has_many :organized_meetups, class_name: "Meetup", foreign_key: :organizer_id
