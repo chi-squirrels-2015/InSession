@@ -9,9 +9,9 @@ class SearchController < ApplicationController
 		  if params[:q].nil?
 		    @questions = []
 		  else
-		    # @questions = Question.search(params[:q])
+		    @questions = Question.search(params[:q])
 		    query_without_stopwords = remove_stopwords(params[:q])
-		    @questions = Question.search(query: {match: {_all: {query: query_without_stopwords, fuzziness: 1}}})
+		    # @questions = Question.search(query: {match: {_all: {query: query_without_stopwords, fuzziness: 1}}})
 		  end
 	 end
 

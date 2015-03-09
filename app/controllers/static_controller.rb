@@ -7,10 +7,9 @@ class StaticController < ApplicationController
 		filter = Stopwords::Filter.new stopwords
 		new_querry = filter.filter(query.split).join(" ")
 	end
-	
+
 	def index
     @users = User.all
-	@questions = Question.search(query: {match: {_all: {query: params[:q], fuzziness: 1}}})
 		if current_user
 			@user = User.find(current_user.id)
 			#taking all the question from the user as an array making it string without special characters.
