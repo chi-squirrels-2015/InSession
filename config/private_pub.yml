@@ -1,9 +1,8 @@
-<<<<<<< HEAD
-gitdevelopment:
+development:
   server: "http://test-server-2.herokuapp.com/faye"
   secret_token: "vivelafrance"
 test:
-  server: "http://test-server-2.herokuapp.com/faye"g
+  server: "http://test-server-2.herokuapp.com/faye"
   secret_token: "vivelafrance"
 production:
   server: "https://test-server-2.herokuapp.com/faye"

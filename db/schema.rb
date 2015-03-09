@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20150307200507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-
   create_table "authorizations", force: :cascade do |t|
     t.integer  "provider_id"
     t.string   "user_token"
@@ -47,6 +46,14 @@ ActiveRecord::Schema.define(version: 20150307200507) do
 
   add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
   add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
+
+  create_table "course_memberships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+  end
+
+  add_index "course_memberships", ["course_id"], name: "index_course_memberships_on_course_id", using: :btree
+  add_index "course_memberships", ["user_id"], name: "index_course_memberships_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.integer  "course_memberships_id"
@@ -87,15 +94,6 @@ ActiveRecord::Schema.define(version: 20150307200507) do
   add_index "meetups", ["organizer_id"], name: "index_meetups_on_organizer_id", using: :btree
   add_index "meetups", ["venue_id"], name: "index_meetups_on_venue_id", using: :btree
 
-  create_table "providers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "site"
-    t.string   "key"
-    t.string   "secret"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "conversation_id"
@@ -106,6 +104,15 @@ ActiveRecord::Schema.define(version: 20150307200507) do
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
+  create_table "providers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "site"
+    t.string   "key"
+    t.string   "secret"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "questions", force: :cascade do |t|
     t.string   "title"
