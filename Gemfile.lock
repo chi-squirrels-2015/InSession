@@ -279,7 +279,6 @@ GEM
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
-
 PLATFORMS
   ruby
 
@@ -310,11 +309,6 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   smarter_csv
   stopwords-filter
-  rails (= 4.2.0)
-  rails_12factor
-  sass-rails (~> 5.0)
-  sdoc (~> 0.4.0)
-  spring
   thin
   turbolinks
   uglifier (>= 1.3.0)
