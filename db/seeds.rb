@@ -123,3 +123,9 @@ users.each do |user|
                         user_token: "user_token" + number,
                         user_secret: "user_secret" + number)
 end
+
+
+# def struggle
+#   if parsed_response.exercise_states["struggling"] = true
+#   end
+# end

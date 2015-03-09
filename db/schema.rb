@@ -27,8 +27,11 @@ ActiveRecord::Schema.define(version: 20150307200507) do
   end
 
   create_table "course_memberships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "course_id"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.boolean  "struggling",                default: false
+    t.string   "maximum_exercise_progress"
+    t.datetime "last_done"
   end
 
   add_index "course_memberships", ["course_id"], name: "index_course_memberships_on_course_id", using: :btree

@@ -1,0 +1,25 @@
+<h1>What kind of data do we need from <%= provider.name.gsub("_"," ").titleize %>?</h1>
+
+<%= provider.inspect %><br>
+
+<br><br>
+
+<% data.each do |datum| %>
+  <% datum.except!("exercise_model") %>
+    <h2 style="color: #02117d"><%= datum["exercise"] %></h2>
+  <% datum.each do |key,value| %>
+    <% value = "nil" if value == nil %>
+    <span style="font-size:18px; color: #0d4e8f;">
+      <%=key%>
+    </span> ---
+    <span style="font-size:14px; color: #1276dc;">
+      <%=value%>
+    </span>
+    <br>
+  <% end %>
+<% end %>
+
+
+<!-- <%#= render "data_retrieval", locals: {:provider_id => provider.id, auth_hash: @auth_hash } %> -->
+
+
