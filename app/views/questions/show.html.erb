@@ -1,3 +1,4 @@
+
 <div>
   <h1 class = "center"><%=@question.title%></h1>
   <br>
@@ -16,7 +17,6 @@
 <% if current_user == @question.user%>
 <%=link_to "Edit Question", edit_question_path(question: @question), remote: true, id: "edit-question-btn" %>
 <% end %>
+</div>
 
-</div>
-<div id = "edit-question-form">
-</div>
+<div id = "edit-question-form"></div>
