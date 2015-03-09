@@ -19,6 +19,21 @@
   <div class="screen">
     <header>
       <h1>IN<b>SESSION</b></h1>
+        <div id="menu-button">
+          <i class="fa fa-lg fa-bars"></i>
+        </div>
+        <div id="menu-items">
+        <ul>
+          <% unless current_user %>
+          <li><%= link_to 'Sign In', new_user_session_path, method: :get %></li>
+          <% else %>
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "Profile", user_path(current_user) %></li>
+          <li><%= link_to 'Questions', questions_path %></li>
+          <% end %>
+        </ul>
+      </div>
+
     </header>
     <div class="content-wrapper">
       <div class="content">
@@ -27,7 +42,8 @@
       </div>
     </div>
   </div>
-</div>
+
+
 
 </body>
 </html>
