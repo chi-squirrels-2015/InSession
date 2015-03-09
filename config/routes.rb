@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   resources :users, only: [:show]
-  get   '/auth', :to => 'authorizations#new', :as => :login, :via => [:get, :post]
+  match '/auth', :to => 'authorizations#new', :as => :login, :via => [:get, :post]
   match '/auth/:provider/callback', :to => 'authorizations#create', :via => [:get, :post]
   match '/auth/failure', :to => 'authorizations#failure', :via => [:get, :post]
 
