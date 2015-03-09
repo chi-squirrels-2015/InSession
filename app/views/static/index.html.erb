@@ -1,3 +1,28 @@
+<h1>Questions Search</h1>
+ 
+<%= form_for search_path, method: :get do |f| %>
+  <p>
+    <%= f.label "Search for" %>
+    <%= text_field_tag :q, params[:q] %>
+    <%= submit_tag "Go", name: nil %>
+  </p>
+<% end %>
+ 
+<ul>
+  <% if @questions.empty? == false %>
+    <% @questions.each do |question| %>
+      <li>
+        <h3>
+          <%= link_to question.title, question_path(question.id) %>
+        </h3>
+      </li>
+    <% end %>
+ <% end %> 
+</ul>
+
+
+
+
 <% if current_user %>
 <% @users.each_with_index do |user, index| %>
 <tr>
@@ -10,6 +35,8 @@
 </tr>
 <% end %>
 <% end %>
+
+User question ( TO REMOVE )
 
 <% if current_user %>
 <ul>
@@ -26,11 +53,11 @@
 
 Meetup Suggestions :
 <ul>
-  <% if @questions.nil? == false %>
-  <% @questions.each do |question| %>
+  <% if @meetups.nil? == false %>
+  <% @meetups.each do |meetup| %>
   <li>
     <h3>
-      <%= link_to question.title, question_path(question.id) %>
+      <%= link_to meet.title, meetup_path(meetup.id) %>
     </h3>
   </li>
   <% end %>

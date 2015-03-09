@@ -10,6 +10,7 @@ class StaticController < ApplicationController
 	
 	def index
     @users = User.all
+	@questions = Question.search(query: {match: {_all: {query: params[:q], fuzziness: 1}}})
 		if current_user
 			@user = User.find(current_user.id)
 			#taking all the question from the user as an array making it string without special characters.
@@ -25,6 +26,7 @@ class StaticController < ApplicationController
 			query = array_of_question_title.flatten.join(" ").gsub!(/[^0-9A-Za-z]/, ' ').downcase
 			query_without_stopwords = remove_stopwords(query)
 			@meetups = Meetup.search(query: {multi_match: {_all: {query: query_without_stopwords, fuzziness: 1, fields: ['title^10', 'body']}}})
+
 			# records = Article.search(query: {multi_match: {query: 'world', fields: ['title^10', 'body']}}).records
 			end
 		end
