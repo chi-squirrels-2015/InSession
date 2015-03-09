@@ -4,14 +4,14 @@
         <td><%= index +=1 %></td></br>
         <td><%= user.name %></td></br>
         <td>
-          <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation","data-sid" => current_user.id, "data-rip" => user.id %>
+          <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
+                      "data-sid" => current_user.id, "data-rip" => user.id %>
         </td>
       </tr>
   <% end %>
 <% end %>
 
 <% if current_user %>
-Questions asked :
   <ul>
   <% if @user_questions.nil? == false %>
     <% @user_questions.each do |question| %>

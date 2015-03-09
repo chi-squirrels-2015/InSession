@@ -14,6 +14,11 @@ class StaticController < ApplicationController
 			@user = User.find(current_user.id)
 			#taking all the question from the user as an array making it string without special characters.
 			@user_questions = @user.questions
+			puts @user_questions
+			puts @user_questions
+
+			p @user_questions
+
 			array_of_question_title = []  	
 			if @user_questions.empty?
 
