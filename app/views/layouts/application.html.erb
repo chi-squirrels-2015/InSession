@@ -9,13 +9,8 @@
   <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' %>
   <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
-
   <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
-  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
   <meta content='<%= user_signed_in? ? current_user.id : "" %>' name='user-id'/>
 </head>
 <body>
@@ -23,6 +18,21 @@
   <div class="screen">
     <header>
       <h1>IN<b>SESSION</b></h1>
+        <div id="menu-button">
+          <i class="fa fa-lg fa-bars"></i>
+        </div>
+        <div id="menu-items">
+        <ul>
+          <% unless current_user %>
+          <li><%= link_to 'Sign In', new_user_session_path, method: :get %></li>
+          <% else %>
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to "Profile", user_path(current_user) %></li>
+          <li><%= link_to 'Questions', questions_path %></li>
+          <% end %>
+        </ul>
+      </div>
+
     </header>
     <div class="content-wrapper">
       <div class="content">

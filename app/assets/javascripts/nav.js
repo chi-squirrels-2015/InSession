@@ -19,4 +19,14 @@ $( document ).ready(function() {
   });
 
   contentWrapper.scrollTop = 1;
+
+  $("#menu-button").on("click", function(){
+    if ( $("header").height() === 90 ){
+      $("header").css("height","300px");
+    } else {
+      $("header").css("height","90px");
+    }
+  });
 });
+
+
