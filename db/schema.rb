@@ -26,17 +26,6 @@ ActiveRecord::Schema.define(version: 20150307200507) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "course_memberships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "course_id"
-    t.boolean  "struggling",                default: false
-    t.string   "maximum_exercise_progress"
-    t.datetime "last_done"
-  end
-
-  add_index "course_memberships", ["course_id"], name: "index_course_memberships_on_course_id", using: :btree
-  add_index "course_memberships", ["user_id"], name: "index_course_memberships_on_user_id", using: :btree
-
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
@@ -48,8 +37,11 @@ ActiveRecord::Schema.define(version: 20150307200507) do
   add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
 
   create_table "course_memberships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "course_id"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.boolean  "struggling",                default: false
+    t.string   "maximum_exercise_progress"
+    t.datetime "last_done"
   end
 
   add_index "course_memberships", ["course_id"], name: "index_course_memberships_on_course_id", using: :btree
