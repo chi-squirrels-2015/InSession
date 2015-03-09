@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :conversations, :foreign_key => :sender_id 
   has_many :meetup_memberships
   has_many :meetups, through: :meetup_memberships
   has_many :organized_meetups, class_name: "Meetup", foreign_key: :organizer_id
@@ -12,7 +11,6 @@ class User < ActiveRecord::Base
   has_many :courses, through: :course_memberships
   has_many :questions
   has_many :responses
-  has_many :conversations, :foreign_key => :sender_id      
 
   has_many :authorizations
   validates :first_name, :email, :presence => true #lines 2 and 3 are from tutsplus tutorial
@@ -44,12 +42,6 @@ class User < ActiveRecord::Base
     end
     puts response.body
     if response.code == "200"
-      sec = self.authorizations.find_by(provider: provider)
-      sec.user_secret = oauth_token.secret
-      sec.save
-      tok = self.authorizations.find_by(provider: provider)
-      tok.user_token = oauth_token.token
-      tok.save
       response
     else
       puts "Fuck Off!"
@@ -78,4 +70,5 @@ class User < ActiveRecord::Base
   def full_street_address
     [street_address, city, state, zip].compact.join(', ')
   end
+
 end
