@@ -17,7 +17,7 @@ Meetup Suggestions :
   <% @meetups.each do |meetup| %>
   <li>
     <h3>
-      <%= link_to meet.title, meetup_path(meetup.id) %>
+      <%= link_to meetup.title, question_path(meetup.id) %>
     </h3>
   </li>
   <% end %>
