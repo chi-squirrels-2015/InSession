@@ -17,7 +17,7 @@ user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
 30.times do
   user = user_array.sample
-  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.free_email, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip])
+  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.free_email, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
   sleep 1
 end
 
@@ -88,9 +88,6 @@ end
 
 responses = Response.all
 
-# response = HTTParty.get("https://data.cityofchicago.org/resource/wa2i-tm5d.json")
-# p venues = JSON.parse(response.body)
-
 venues_array = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
 
 venues_array.each do |venue|
@@ -98,8 +95,7 @@ venues_array.each do |venue|
 end
 
 
-
-50.times do
+200.times do
   venue = Venue.find(rand(Venue.count)+1)
   Meetup.create!(course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude)
 end

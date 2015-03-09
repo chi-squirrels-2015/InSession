@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class MapsController < ApplicationController
   def index
     @meetups_near_me = Array.new
     @courses = Array.new
@@ -23,29 +23,25 @@ class UsersController < ApplicationController
         geometry: {
           type: 'Point',
           coordinates: [venue.longitude, venue.latitude]
-        },
-        properties: {
-          name: venue.name,
-          address: venue.address,
-          city: venue.city,
-          state: venue.state,
-          zip: venue.zip,
-          meetups: venue.courses,
-          :'marker-color' => '#79BD9A',
-          :'marker-symbol' => 'circle',
-          :'marker-size' => 'medium'
+          },
+          properties: {
+            name: venue.name,
+            address: venue.address,
+            city: venue.city,
+            state: venue.state,
+            zip: venue.zip,
+            meetups: venue.courses,
+            :'marker-color' => '#79BD9A',
+            :'marker-symbol' => 'circle',
+            :'marker-size' => 'medium'
+          }
         }
-      }
-    end
+      end
 
-    respond_to do |format|
+      respond_to do |format|
       format.json { render json: @geojson }  # respond with the created JSON object
       format.html
     end
 
-  end
-
-  def show
-    @user = current_user.id
   end
 end

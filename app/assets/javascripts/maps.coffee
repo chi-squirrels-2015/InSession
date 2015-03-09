@@ -10,23 +10,24 @@ $(document).ready ->
 
   $.ajax
     type: 'GET'
-    url: '/users'
+    url: '/maps'
     dataType: 'json'
     success: (data) ->
+      # add custom popups to each marker
+      myLayer.on 'layeradd', (e) ->
+        marker = e.layer
+        properties = marker.feature.properties
+        # create custom popup
+        popupContent =  '<div class="popup">' +
+          '<p>' +
+          '<p>' + properties.name + ' Library</p>' +
+          '<h4> Meetups at this Location:</h4>' +
+          '<ul class="meetups">' +
+          properties.meetups.map (course) ->
+            return '<li class="meetups">' + course.name + '</li>'
+          .join("") +
+          '</ul>' +
+          '</div>'
+        # http://leafletjs.com/reference.html#popup
+        marker.bindPopup(popupContent).openPopup()
       myLayer.setGeoJSON(data)
-
-
-      # # add custom popups to each marker
-      # myLayer.on 'layeradd', (e) ->
-      #   marker = e.layer
-      #   properties = marker.feature.properties
-
-
-      #   # create custom popup
-      #   popupContent =  '<div class="popup">' +
-      #     '<h3>' + properties.name + '</h3>' +
-      #     '<p>' + properties.address + '</p>' +
-      #     '</div>'
-
-      #     # http://leafletjs.com/reference.html#popup
-      #   marker.bindPopup(popupContent).openPopup()
