@@ -21,11 +21,10 @@ class AuthorizationsController < ApplicationController
 
         unless data["maximum_exercise_progress_"] == "unstarted"
           course = Course.find_or_create_by(name: data["exercise"])
-          #does course membership already exist for user?
           coursemembership = CourseMembership.where(user_id: current_user.id).find_or_create_by(course: course)
-          # if coursemembership.maximum_exercise_progress != data["maximum_exercise_progress_"]
-            coursemembership.update(maximum_exercise_progress: data["maximum_exercise_progress_"], last_done: data["last_done", struggling: ] )
-          # end
+          if coursemembership.maximum_exercise_progress != data["maximum_exercise_progress_"]
+            coursemembership.update(maximum_exercise_progress: data["maximum_exercise_progress_"], last_done: data["last_done"], struggling: data["exercise_states"]["struggling"] )
+          end
         end
       end
 
