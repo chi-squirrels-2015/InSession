@@ -13,8 +13,11 @@ User.create!(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", 
 User.create!(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 2)
 
 # Added sleep 1 to keep Google happy
+user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
+
 30.times do
-  User.create!(first_name: Faker::Name.name, last_name: Faker::Name.name, email: Faker::Internet.email, password: "password", bio: "just want to learn", preferred_language: "english", street_address: Faker::Address.street_address, city: Faker::Address.city, zip: Faker::Address.zip_code)
+  user = user_array.sample
+  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.free_email, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip])
   sleep 1
 end
 
@@ -26,11 +29,11 @@ end
 
 courses = Course.all
 
-150.times do 
+150.times do
   Question.create!(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 end
 
-# 150.times do 
+# 150.times do
 #   Question.create!(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 # end
 
@@ -73,10 +76,10 @@ array_of_question = ["How do I use css?",
 "UNRELATED: How is cheese made?",
 "UNRELATED: What is the real story behind Cinco de Mayo?",
 "UNRELATED: When will DBC's website be rebuilt with Meteor?"]
-39.times do 
+39.times do
   Question.create!(title: array_of_question.pop, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 
-end 
+end
 questions = Question.all
 
 75.times do

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'mapbox-rails'
 # Smarter CSV for parsing Library file
 gem 'smarter_csv'
 gem 'geocoder'
@@ -21,7 +22,6 @@ gem 'omniauth-khan-academy'
 gem 'omniauth-coursera'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
