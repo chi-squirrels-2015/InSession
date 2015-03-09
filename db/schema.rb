@@ -130,9 +130,9 @@ ActiveRecord::Schema.define(version: 20150308190126) do
   add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string    "name"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "name"
     t.integer  "course_id"
     t.text     "bio"
     t.string   "preferred_language"
