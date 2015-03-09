@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-  respond_to :html, :json, :js
   def index
     @meetups_near_me = Array.new
     @courses = Array.new
 
-    @venues_near_me = Venue.near([current_user.latitude,current_user.longitude], current_user.max_distance)
+    @venues_near_me = Venue.near([current_user.latitude, current_user.longitude], current_user.max_distance)
 
     @venues_near_me.each do |venue|
       @meetups_near_me << venue.meetups if venue.meetups.length > 0
@@ -28,6 +27,9 @@ class UsersController < ApplicationController
         properties: {
           name: venue.name,
           address: venue.address,
+          city: venue.city,
+          state: venue.state,
+          zip: venue.zip,
           :'marker-color' => '#79BD9A',
           :'marker-symbol' => 'circle',
           :'marker-size' => 'medium'
@@ -36,8 +38,8 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
       format.json { render json: @geojson }  # respond with the created JSON object
+      format.html
     end
 
   end
