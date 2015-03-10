@@ -7,4 +7,5 @@ class Course < ActiveRecord::Base
 
   has_many :exercises
   belongs_to :subject
+  validates :title, uniqueness: true
 end
