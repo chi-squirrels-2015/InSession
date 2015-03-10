@@ -22,10 +22,12 @@
     <div class="col-xs-12">
       <div class="thumbnail">
         <h3>Current Courses</h3>
-        <% if @current_user.courses %>
-        <% @current_user.courses.each do |course| %>
-        <li><%= link_to "Learn how to OAuth", '#' %></li>
+        <% if @current_user.meetups %>
+        <% @current_user.meetups.each do |meetup| %>
+        <li><%= link_to meetup.course.title, '#' %></li>
         <% end %>
+        <% else %>
+        <p>You are not currently enrolled in any courses"</p>
         <% end %>
         <h4 class="completed_courses">Completed Courses</h4>
       </div>
@@ -33,6 +35,7 @@
   </div>
 
 <!-- BIO -->
+
     <div class="row">
       <div class="col-xs-12">
         <div class="thumbnail">
@@ -43,21 +46,13 @@
     </div>
 
 <!-- MEETUPS NEARBY -->
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="thumbnail">
-          <h3>Meetups</h3>
-          <p><% @courses %></p>
-        </div>
-      </div>
-    </div>
 
-<!-- SUGGESTED MEETUPS -->
     <div class="row">
       <div class="col-xs-12">
         <div class="thumbnail">
-          <h3>Bio</h3>
-          <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>
+          <% @courses.each do |course| %>
+          <li><%= link_to course, maps_path %></li>
+          <% end %>
         </div>
       </div>
     </div>

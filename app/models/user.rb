@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
   has_many :meetup_memberships
   has_many :meetups, through: :meetup_memberships
   has_many :organized_meetups, class_name: "Meetup", foreign_key: :organizer_id
-
-  has_many :course_memberships
-  has_many :courses, through: :course_memberships
+  has_many :user_exercises
+  has_many :exercises, through: :user_exercises
+  # has_many :course_memberships
+  # has_many :courses, through: :course_memberships
 
 
   has_many :questions

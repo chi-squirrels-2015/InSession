@@ -8,3 +8,6 @@ class CreateUserExercises < ActiveRecord::Migration
     end
   end
 end
+
+
+
