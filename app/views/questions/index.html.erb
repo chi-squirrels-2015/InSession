@@ -1,5 +1,6 @@
 <div class = "container" style = "margin-bottom: 30px">
-	<h3>5 Questions</h3>
+	<h3>Questions</h3>
+  
 	<%=render "questions_table", locals: {questions: @questions}%>
 	<% if current_user %>
     <%=link_to "Ask a Question", new_question_path, id: "ask-question-btn" %>
