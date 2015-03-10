@@ -7,24 +7,21 @@ class AuthorizationsController < ApplicationController
   end
 
   def create
-
     auth_hash = authenticate
 
-    user = current_user
     if current_user
       # Means our user is signed in. Add the authorization to the user
       current_user.add_provider(auth_hash)
       url_stub = "/user/exercises"
-      req = user.oauth_request(auth_hash, url_stub)
-
-      parsed_response = JSON::parse(req.body)
+      request = current_user.oauth_request(auth_hash, url_stub)
+      parsed_response = JSON::parse(request.body)
 
       parsed_response.each do |data|
         unless data["maximum_exercise_progress_"] == "unstarted"
-          course = Course.find_or_create_by(name: data["exercise"])
-          coursemembership = CourseMembership.where(user_id: current_user.id).find_or_create_by(course: course)
-          if coursemembership.maximum_exercise_progress != data["maximum_exercise_progress_"]
-            coursemembership.update(maximum_exercise_progress: data["maximum_exercise_progress_"], last_done: data["last_done"], struggling: data["exercise_states"]["struggling"] )
+          exercise = Exercise.find_or_create_by(name: data["exercise"])
+          user_exercise = UserExercise.where(user_id: current_user.id).find_or_create_by(exercise: exercise)
+          if user_exercise.maximum_exercise_progress != data["maximum_exercise_progress_"]
+            user_exercise.update(maximum_exercise_progress: data["maximum_exercise_progress_"], last_done: data["last_done"], struggling: data["exercise_states"]["struggling"] )
           end
         end
       end

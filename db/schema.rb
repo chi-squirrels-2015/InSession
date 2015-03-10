@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309233221) do
+ActiveRecord::Schema.define(version: 20150310154225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,17 +44,6 @@ ActiveRecord::Schema.define(version: 20150309233221) do
   add_index "course_meetups", ["course_id"], name: "index_course_meetups_on_course_id", using: :btree
   add_index "course_meetups", ["meetup_id"], name: "index_course_meetups_on_meetup_id", using: :btree
 
-  create_table "course_memberships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "course_id"
-    t.boolean  "struggling",                default: false
-    t.string   "maximum_exercise_progress"
-    t.datetime "last_done"
-  end
-
-  add_index "course_memberships", ["course_id"], name: "index_course_memberships_on_course_id", using: :btree
-  add_index "course_memberships", ["user_id"], name: "index_course_memberships_on_user_id", using: :btree
-
   create_table "courses", force: :cascade do |t|
     t.integer  "course_memberships_id"
     t.integer  "organization_course_id"
@@ -72,8 +61,11 @@ ActiveRecord::Schema.define(version: 20150309233221) do
     t.string   "title"
     t.text     "description"
     t.integer  "course_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "struggling",                default: false
+    t.string   "maximum_exercise_progress"
+    t.datetime "last_done"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   create_table "meetup_memberships", force: :cascade do |t|
@@ -159,6 +151,16 @@ ActiveRecord::Schema.define(version: 20150309233221) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "user_exercises", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "exercise_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "user_exercises", ["exercise_id"], name: "index_user_exercises_on_exercise_id", using: :btree
+  add_index "user_exercises", ["user_id"], name: "index_user_exercises_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

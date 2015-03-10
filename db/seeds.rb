@@ -23,10 +23,6 @@ end
 
 users = User.all
 
-10.times do
-  Course.create!(title: Faker::Company.name, organization: Faker::Company.name, description: Faker::Commerce.product_name)
-end
-
 courses = Course.all
 
 150.times do
@@ -126,6 +122,6 @@ end
 
 User.create!(name:"sarah", first_name:"sarah", last_name: "ing", email:"chocolate1@gmail.com", password:"password")
 User.create!(name:"jd", first_name:"sarah", last_name: "ing", email:"chocolate2@gmail.com", password:"password")
-User.create!(name:"john", first_name:"sarah", last_name: "ing", email:"chocolate3@gmail.com", password:"password")
+User.create!(name:"john", first_name:"John", last_name: "Schulz", email:"johnschulz75@gmail.com", password:"1234567890")
 User.create!(name:"dan", first_name:"sarah", last_name: "ing", email:"chocolate4@gmail.com", password:"password")
 User.create!(name:"matthew", first_name:"sarah", last_name: "ing", email:"chocolate5@gmail.com", password:"password")
