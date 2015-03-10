@@ -17,7 +17,7 @@ user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
 400.times do
   user = user_array.sample
-  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
+  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Hacker.noun + '@outlook.com', Faker::Lorem.word + '@aol.com', Faker::Hacker.noun + '@devbootcamp.com', Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
   sleep 0.2
 end
 
