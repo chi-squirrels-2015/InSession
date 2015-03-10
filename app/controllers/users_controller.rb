@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  def index
+  def show
+    @user = current_user.id
+
     @meetups_near_me = Array.new
     @courses = Array.new
 
@@ -12,40 +14,8 @@ class UsersController < ApplicationController
     @meetups_near_me.flatten!
 
     @meetups_near_me.each do |meetup|
-      @courses << meetup.course
+      @courses << meetup.course.title
     end
-
-    @geojson = Array.new
-
-    @venues_near_me.each do |venue|
-      @geojson << {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [venue.longitude, venue.latitude]
-        },
-        properties: {
-          name: venue.name,
-          address: venue.address,
-          city: venue.city,
-          state: venue.state,
-          zip: venue.zip,
-          meetups: venue.courses,
-          :'marker-color' => '#79BD9A',
-          :'marker-symbol' => 'circle',
-          :'marker-size' => 'medium'
-        }
-      }
-    end
-
-    respond_to do |format|
-      format.json { render json: @geojson }  # respond with the created JSON object
-      format.html
-    end
-
-  end
-
-  def show
-    @user = current_user.id
+    render :show
   end
 end

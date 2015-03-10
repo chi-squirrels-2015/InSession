@@ -12,7 +12,7 @@ class MapsController < ApplicationController
     @meetups_near_me.flatten!
 
     @meetups_near_me.each do |meetup|
-      @courses << meetup.course
+      @courses << meetup.course.title
     end
 
     @geojson = Array.new

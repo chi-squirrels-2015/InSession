@@ -2,7 +2,7 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-xs-offset-1 col-xs-10">
+      <div class="col-xs-12">
         <div class="thumbnail">
           <%= link_to image_tag("sarah.jpg", :class => "img-circle") %>
           <div class="caption">
@@ -11,13 +11,15 @@
             <li><%= @current_user.preferred_language = "Preferred Language: Spanish" %></li>
           </div>
           <i class="fa fa-leaf"></i>
-          <i class="fa fa-jsfiddle"></i>
+<!--           <i class="fa fa-jsfiddle"></i> -->
         </div>
       </div>
     </div>
 
+<!-- CURRENT COURSES -->
+
   <div class="row">
-    <div class="col-xs-offset-1 col-xs-10">
+    <div class="col-xs-12">
       <div class="thumbnail">
         <h3>Current Courses</h3>
         <% if @current_user.courses %>
@@ -28,62 +30,31 @@
         <h4 class="completed_courses">Completed Courses</h4>
       </div>
     </div>
+  </div>
 
+<!-- BIO -->
     <div class="row">
-      <div class="col-xs-offset-1 col-xs-10">
+      <div class="col-xs-12">
         <div class="thumbnail">
-          <h3>Bio</h3>
-          <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>
-        </div>
-      </div>
-    </div>
-<!-- duplicate -->
-    <div class="row">
-      <div class="col-xs-offset-1 col-xs-10">
-        <div class="thumbnail">
-          <h3>Bio</h3>
-          <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>
+          <h3>Suggested Courses</h3>
+          <p><% @current_user %></p>
         </div>
       </div>
     </div>
 
+<!-- MEETUPS NEARBY -->
     <div class="row">
-      <div class="col-xs-offset-1 col-xs-10">
+      <div class="col-xs-12">
         <div class="thumbnail">
-          <h3>Bio</h3>
-          <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>
+          <h3>Meetups</h3>
+          <p><% @courses %></p>
         </div>
       </div>
     </div>
 
+<!-- SUGGESTED MEETUPS -->
     <div class="row">
-      <div class="col-xs-offset-1 col-xs-10">
-        <div class="thumbnail">
-          <h3>Bio</h3>
-          <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>
-        </div>
-      </div>
-    </div>
-        <div class="row">
-      <div class="col-xs-offset-1 col-xs-10">
-        <div class="thumbnail">
-          <h3>Bio</h3>
-          <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-offset-1 col-xs-10">
-        <div class="thumbnail">
-          <h3>Bio</h3>
-          <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-offset-1 col-xs-10">
+      <div class="col-xs-12">
         <div class="thumbnail">
           <h3>Bio</h3>
           <p><%= @current_user.bio = 'Bacon ipsum dolor amet leberkas frankfurter ground round, alcatra ball tip beef ribs pork jowl flank corned beef bresaola porchetta tri-tip tongue boudin.' %></p>

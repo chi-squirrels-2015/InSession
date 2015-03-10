@@ -26,7 +26,7 @@ $(document).ready ->
           '<h4> Meetups at this Location:</h4>' +
           '<ul class="meetups">' +
           properties.meetups.map (course) ->
-            return '<li class="meetups">' + course.name + '</li>'
+            return '<li class="meetups">' + course.title + '</li>'
           .join("") +
           '</ul>' +
           '</div>'
