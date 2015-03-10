@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'search', to: 'search#search'
 
+  resources :meetups
   root to: 'static#index'
 
   get '/' => 'questions#index', as: :index

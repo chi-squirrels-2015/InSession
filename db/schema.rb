@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 20150310154225) do
     t.datetime "end_time"
     t.integer  "venue_id"
     t.boolean  "remote"
+    t.string   "title"
+    t.text     "description"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.float    "latitude"

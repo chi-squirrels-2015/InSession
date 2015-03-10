@@ -1,0 +1,19 @@
+<div class = "container">
+  <%= link_to "Back to Meetups", meetups_path %>
+  <h1>One Meetup:</h1>
+  <p>Name: <%= @meetup.title %></p>
+  <p>Description: <%= @meetup.description %></p><br>
+</div>
+
+
+  <% @meetup.users.each_with_index do |user, index| %>
+    <tr>
+      <td><% index +=1 %></td></br>
+      <td><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></td>
+      <td>
+        <%= link_to "Message", "/conversations/1", class: "btn btn-success btn-xs start-conversation",
+        "data-sid" => current_user.id, "data-rip" => user.id %>
+      </td>
+    </tr>
+  <% end %>
+

@@ -39,8 +39,8 @@ class MapsController < ApplicationController
       end
 
       respond_to do |format|
-      format.json { render json: @geojson }  # respond with the created JSON object
-      format.html
+        format.html
+        format.json { render json: @geojson }  # respond with the created JSON object
     end
 
   end

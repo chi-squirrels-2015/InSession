@@ -9,6 +9,9 @@ class Meetup < ActiveRecord::Base
   has_many :users, through: :meetup_memberships
   has_many :course_meetups
   has_many :courses, through: :course_meetups
+
+
+
 end
 
 Meetup.import

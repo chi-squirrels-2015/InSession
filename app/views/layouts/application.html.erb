@@ -21,6 +21,13 @@
 <div class="screen">
     <header>
       <h1>IN<b>SESSION</b></h1>
+
+        <div id="menu-back">
+          <%= link_to 'javascript:history.go(-1);' do %>
+            <i class="fa fa-2x fa-chevron-left"></i>
+          <% end %>
+        </div>
+        
         <div id="menu-button">
           <i class="fa fa-lg fa-bars"></i>
         </div>

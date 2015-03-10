@@ -1,0 +1,21 @@
+<h1>Upcoming Meetups:</h1>
+<% @upcoming.each do |meetup| %>
+  <p>Name: <%= meetup.title %></p>
+  <p>Description: <%= meetup.description %></p><br>
+<% end %>
+ 
+Meetup Suggestions :
+<ul>
+  <% if @meetups.nil? == false %>
+    <% @meetups.each do |meetup| %>
+    <li>
+      <h3>
+        <%= link_to meetup.title, meetup_path(meetup.id) %>
+      </h3>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
+
+
+ <%= link_to "Back to Home", meetups_path %>
