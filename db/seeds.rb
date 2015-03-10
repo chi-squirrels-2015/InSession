@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # require 'faker'
-
 Meetup.__elasticsearch__.delete_index!
 Question.__elasticsearch__.delete_index!
 
@@ -16,6 +15,7 @@ bio = "Biltong jerky beef prosciutto, filet mignon boudin sirloin ham hock chuck
 User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
 User.create(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
 User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
+
 
 user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
