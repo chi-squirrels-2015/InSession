@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309185944) do
+ActiveRecord::Schema.define(version: 20150309233221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,13 +58,22 @@ ActiveRecord::Schema.define(version: 20150309185944) do
   create_table "courses", force: :cascade do |t|
     t.integer  "course_memberships_id"
     t.integer  "organization_course_id"
-    t.string   "name"
+    t.string   "title"
     t.string   "organization"
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.integer  "subject_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "course_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "meetup_memberships", force: :cascade do |t|
@@ -114,6 +123,13 @@ ActiveRecord::Schema.define(version: 20150309185944) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "providers_subjects", force: :cascade do |t|
+    t.integer  "provider_id"
+    t.integer  "subject_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
@@ -136,6 +152,13 @@ ActiveRecord::Schema.define(version: 20150309185944) do
 
   add_index "responses", ["question_id"], name: "index_responses_on_question_id", using: :btree
   add_index "responses", ["user_id"], name: "index_responses_on_user_id", using: :btree
+
+  create_table "subjects", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
