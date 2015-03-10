@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # require 'faker'
+
 Meetup.__elasticsearch__.delete_index!
 Question.__elasticsearch__.delete_index!
 
