@@ -10,7 +10,6 @@ class SearchController < ApplicationController
 		    @questions = []
 		  else
 		    @questions = Question.search(params[:q])
-		    query_without_stopwords = remove_stopwords(params[:q])
 		    # @questions = Question.search(query: {match: {_all: {query: query_without_stopwords, fuzziness: 1}}})
 		  end
 	 end
