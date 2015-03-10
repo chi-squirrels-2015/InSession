@@ -37,47 +37,76 @@
 }
 
 def go_
-  url_stub = "/topictree"
-  user = User.first
-  req = user.oauth_request(@auth_hash, url_stub)
-  data = JSON::parse(req.body)
+  uri = URI("http://www.khanacademy.org/api/v1/topictree")
+  request = Net::HTTP::Get.new(uri)
+  response = Net::HTTP.start(uri.hostname, uri.port) do |http|
+    http.request(request)
+  end
+  data = JSON::parse(response.body)
 end
 
-def second_part
-data["children"].each_with_index do |subject, si|
-  si += 1
-  puts si.to_s + ". " + subject["title"]
-  puts subject["description"]
-  Subject.create!(title: subject["title"], description: subject["description"])
-  subject["children"].each_with_index do |course, ci|
-    ci += 1
-    puts "^--" + ci.to_s + ". " + course["title"]
-    c = Course.new(title: course["title"], subject: Subject.find_by(title: subject["title"]) )
-    if course.has_key?("description")
-      puts " ^==" + course["description"]
-      c.description = course["description"]
-    end
-    puts "#{c.title} saved!" if c.save
-    if course.has_key?("children")
-      course["children"].each_with_index do |exercise, ei|
-        ei += 1
-        puts "   ^--" + ei.to_s + ". " + exercise["title"]
-        e = Exercise.new(title: exercise["title"], course: Course.find_by(title: course["title"]) )
-        if exercise.has_key?("description")
-          puts "    ^==" + course["description"]
-          e.description = course["description"]
-        end
-        puts "#{e.title} saved!" if e.save
-      end
+def get_some(data)
+  data["children"].each do |subject|
+    s = Subject.create!({
+      title: subject["title"],
+      description: subject["description"]
+    })
+
+    subject["children"].each do |course|
+      add_course(s, course)
     end
   end
 end
+
+def add_course(subject, course_data)
+  c = subject.courses.create!({
+    title: course_data["title"],
+    description: course_data["description"]
+  })
+
+  if course_data.has_key?("children")
+    course_data["children"].each do |exercise|
+      c.exercises.create!({
+        title: exercise["title"],
+        description: exercise["description"]
+      })
+    end
+  end
 end
 
-def got_milk
-
+def got_milk?
+  data = go_
+  get_some(data)
+  true
 end
-
+# data["children"].each_with_index do |subject, si|
+#   si += 1
+#   puts si.to_s + ". " + subject["title"]
+#   puts subject["description"]
+#   Subject.create!(title: subject["title"], description: subject["description"])
+#   subject["children"].each_with_index do |course, ci|
+#     ci += 1
+#     puts "^--" + ci.to_s + ". " + course["title"]
+#     c = Course.new(title: course["title"], subject: Subject.find_by(title: subject["title"]) )
+#     if course.has_key?("description")
+#       puts " ^==" + course["description"]
+#       c.description = course["description"]
+#     end
+#     puts "#{c.title} saved!" if c.save
+#     if course.has_key?("children")
+#       course["children"].each_with_index do |exercise, ei|
+#         ei += 1
+#         puts "   ^--" + ei.to_s + ". " + exercise["title"]
+#         e = Exercise.new(title: exercise["title"], course: Course.find_by(title: course["title"]) )
+#         if exercise.has_key?("description")
+#           puts "    ^==" + course["description"]
+#           e.description = course["description"]
+#         end
+#         puts "#{e.title} saved!" if e.save
+#       end
+#     end
+#   end
+# end
 # .each { |e| p e["title"] } ; 1
 # v["children"][12]["children"][4]["children"][0]["children"][0]["children"][0]["description"]
 # data["children"].each_with_index do |subject, si|
