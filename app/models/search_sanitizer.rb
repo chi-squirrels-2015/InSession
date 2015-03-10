@@ -1,10 +1,12 @@
 class SearchSanitizer 
   def initialize(raw_query)
-    @raw_query = raw_query
+    @raw_query = raw_query || ""
   end
 
   def sanitized
-    remove_stopwords(@raw_query.gsub!(/[^0-9A-Za-z]/, ' ').downcase)
+    return "" if @raw_query.blank?
+
+    remove_stopwords(@raw_query.gsub(/[^0-9A-Za-z]/, ' ').downcase)
   end
 
   def remove_stopwords(sanitized_query)

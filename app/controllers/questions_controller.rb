@@ -1,14 +1,13 @@
 class QuestionsController < ApplicationController
   respond_to :html, :js
 
-  def index
+  def index 
+    @question = Question.new
     @questions = Question.order(created_at: :desc).limit(5)
+
+    p @questions
   end
 
-  def new
-   #will render new form
-   @question = Question.new
- end
 
  def create
   @question = Question.new(question_params)
@@ -17,7 +16,7 @@ class QuestionsController < ApplicationController
     @question.user = current_user
     @questions = Question.order(created_at: :desc).limit(10)
 
-    render 'new' unless @question.save
+    render 'new' unless @question.save!
 
   elsif preview?
     @content = markdown(params[:question][:content]).gsub("\n","<p></p>")

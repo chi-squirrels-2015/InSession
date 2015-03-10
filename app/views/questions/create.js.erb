@@ -1,19 +1,11 @@
-$('.content-wrapper #question-form').hide();
+// remove any existing input in the form
+$(".content-wrapper #new_question")[0].reset();
+
+// add hidden class to wrapper
+$(".content-wrapper #question-form").addClass("hidden");
+
+// Show the "Add a question" link
+$(".content-wrapper #ask-question-btn").show();
+
+// Add the new question to the list
 $(".content-wrapper .questiontable tr:first" ).after("<%= j (render 'row') %>")
-console.log('here');
-$(".content-wrapper" ).append("<%= j (render 'askquestionbutton') %>")
-
-$(document).mousedown(function (e){
-   var container = $(".content-wrapper #question-form");
-    if (!container.is(e.target) // if the target of the click isn't the container...
-        && container.has(e.target).length === 0) // ... nor a descendant of the container
-    {
-     $('.content-wrapper #ask-question-btn').show();
-         
-    }
-});
-
-$('.content-wrapper #submit-new-question-btn').on( "click", function(){
-  console.log("h");
-  $(".content-wrapper #question-form").remove();
-});

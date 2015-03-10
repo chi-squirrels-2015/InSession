@@ -1,25 +1,26 @@
+
 <% if current_user %>
-<% @users.each_with_index do |user, index| %>
-<tr>
-  <td><%= index +=1 %></td></br>
-  <td><%= user.name %></td></br>
-  <td>
-    <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
-    "data-sid" => current_user.id, "data-rip" => user.id %>
-  </td>
-</tr>
-<% end %>
+  <% @users.each_with_index do |user, index| %>
+    <tr>
+      <td><%= index +=1 %></td></br>
+      <td><%= user.name %></td></br>
+      <td>
+        <%= link_to "Send Message", "#", class: "btn btn-success btn-xs start-conversation",
+        "data-sid" => current_user.id, "data-rip" => user.id %>
+      </td>
+    </tr>
+  <% end %>
 <% end %>
 
 Meetup Suggestions :
 <ul>
   <% if @meetups.nil? == false %>
-  <% @meetups.each do |meetup| %>
-  <li>
-    <h3>
-      <%= link_to meetup.title, question_path(meetup.id) %>
-    </h3>
-  </li>
-  <% end %>
+    <% @meetups.each do |meetup| %>
+    <li>
+      <h3>
+        <%= link_to meetup.title, question_path(meetup.id) %>
+      </h3>
+    </li>
+    <% end %>
   <% end %>
 </ul>

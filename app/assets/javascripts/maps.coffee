@@ -4,6 +4,8 @@
 
 
 $(document).ready ->
+  return if $("#map").length == 0
+
   L.mapbox.accessToken = 'pk.eyJ1IjoiaGFuaWVsZGFuc29uIiwiYSI6IkFocjdTOUUifQ.xyT3gJjivbRhXnxojbrUHg'
   map = L.mapbox.map('map', 'hanieldanson.ldep8j96')
   myLayer = L.mapbox.featureLayer().addTo(map)

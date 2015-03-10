@@ -1,57 +1,27 @@
 require 'rails_helper'
 
 feature 'User creates a new question' do
-  given(:user) {User.create!(first_name: "sarah", last_name: "ing", email: Faker::Internet.email, password: "passwordchocolate")}
+  given!(:user) {User.create!(first_name: "sarah", last_name: "ing", email: "chocolate@gmail.com", password: "passwordchocolate")}
+  given!(:question) {Question.create!(title: "here", content: "super", user: user)}
 
-  scenario 'can click outside of form and hide it', js: true do
-    visit '/'
-    click_link("Login")
-    within(".new_user") do
-      fill_in 'Email', :with => user.email
-      fill_in 'Password', :with => user.password
-      click_button("Login")
+  scenario 'can click new question button and fill out form', js: true do
+    visit '/users/sign_in'
+    within(".content-wrapper #new_user") do
+      fill_in 'Email', :with => "chocolate@gmail.com"
+      fill_in 'Password', :with => "passwordchocolate"
     end
-    click_link("Ask a Question")
-    page.execute_script('$(document.elementFromPoint(0, 0)).click();')
-    expect(page).to have_no_content("Submit New Question")
-  end
+    click_button("Log in")
 
-  scenario 'user can see preview of content', js: true do
-    visit '/'
-    click_link("Login")
-    within(".new_user") do
-      fill_in 'Email', :with => user.email
-      fill_in 'Password', :with => user.password
-      click_button("Login")
-    end
+
+    visit '/questions'
     click_link("Ask a Question")
+
     within("#new_question") do
-      fill_in 'content', :with => 'New Fake Content'
+      fill_in 'title', :with => "title of question"
+      fill_in 'content', :with => "content of question"
+      click_button("Submit New Question")
     end
-    click_button("Preview")
-    expect(find('#preview-container')).to have_content("New Fake Content")
+
+    expect(page).to have_content("content of question")
   end
-
-  scenario 'user can see preview of markdown', js: true do
-    visit '/'
-    click_link("Login")
-    within(".new_user") do
-      fill_in 'Email', :with => user.email
-      fill_in 'Password', :with => user.password
-      click_button("Login")
-    end
-    click_link("Ask a Question")
-    within("#new_question") do
-      fill_in 'content', :with => "```ruby
-def method
-x = 2
-end
-```"
-    end
-    click_button("Preview")
-    # require 'pry'; binding.pry
-    expect(find("#preview-container")).to have_css(".CodeRay")
-  end
-
-
 end
