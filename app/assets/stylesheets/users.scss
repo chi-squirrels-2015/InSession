@@ -11,12 +11,42 @@ div h3 {
   text-align:center
 }
 
-.completed_courses {
-  border-top: 1px dashed;
-  margin-top: 4px;
-  color:#B6B6B6;
-  text-align:center
+.completed_courses_container,
+.meetups_nearby_container {
+  background-color: #f5f5f5;
+  padding-bottom: 3px
 }
+
+.tile-container {
+  border: 1px solid #dddddd;
+  margin-bottom: 30px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.thumbnail {
+  border: none;
+  margin-bottom: 0;
+}
+
+.completed_courses_header,
+.meetups_nearby_header {
+  margin-top: 10px;
+  padding-top: 3px;
+  font-size: 16px;
+  text-align: center
+}
+
 .hide_completed {
   visibility:hidden
+}
+
+.chevron_completed, .chevron_nearby {
+  text-align:center;
+  color:#B6B6B6;
+  margin-top:-7px
+}
+
+.meetups_nearby {
+  padding: 0  
 }
