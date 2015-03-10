@@ -29,6 +29,15 @@
           <% unless current_user %>
           <li><%= link_to 'Sign In', new_user_session_path, method: :get %></li>
           <% else %>
+          <li>
+            <%= form_for search_path, method: :get do |f| %>
+            <p>
+              <%= f.label "Search for" %>
+              <%= text_field_tag :q, params[:q] %>
+              <%= submit_tag "Go", name: nil %>
+            </p>
+          <% end %>
+          </li>
           <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
           <li><%= link_to "Profile", user_path(current_user) %></li>
           <li><%= link_to 'Questions', questions_path %></li>
