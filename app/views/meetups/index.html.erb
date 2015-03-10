@@ -5,6 +5,8 @@
 <% end %>
  
 Meetup Suggestions :
+
+Based on question : 
 <ul>
   <% if @meetups.nil? == false %>
     <% @meetups.each do |meetup| %>
@@ -17,5 +19,18 @@ Meetup Suggestions :
   <% end %>
 </ul>
 
+Based on Courses :
+
+<ul>
+  <% if @courses_based_meetups.nil? == false %>
+    <% @courses_based_meetups.each do |meetup| %>
+    <li>
+      <h3>
+        <%= link_to meetup.title, meetup_path(meetup.id) %>
+      </h3>
+    </li>
+    <% end %>
+  <% end %>
+</ul>
 
  <%= link_to "Back to Home", meetups_path %>

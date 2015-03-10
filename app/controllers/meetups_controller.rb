@@ -2,7 +2,13 @@ class MeetupsController < ApplicationController
   def index
     #upcoming and suggested
     @upcoming = upcoming_meetups
-    suggested_meetups
+    if current_user
+      array_of_titles = []
+      user_exercices = UserExercise.where(user_id:current_user.id)
+      user_exercices.each{|exercise| array_of_titles << exercise.exercise.title}
+      clean_query = SearchSanitizer.new(array_of_titles.flatten.join(" "))
+      @courses_based_meetups = Meetup.search(query: {multi_match: {_all: {query: clean_query.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
+    end
   end
 
   def show
