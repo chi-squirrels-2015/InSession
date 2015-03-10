@@ -12,12 +12,12 @@ User.create!(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", 
 User.create!(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
 User.create!(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
 
-# Added sleep 1 to keep Google happy
 user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
-400.times do
+#NOTHING LESS THAN SLEEP 0.2!!! Google gets pissy otherwise.
+200.times do
   user = user_array.sample
-  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Hacker.noun + '@outlook.com', Faker::Lorem.word + '@aol.com', Faker::Hacker.noun + '@devbootcamp.com', Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
+  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
   sleep 0.2
 end
 
@@ -120,8 +120,8 @@ users.each do |user|
                         user_secret: "user_secret" + number)
 end
 
-User.create!(name:"sarah", first_name:"sarah", last_name: "ing", email:"chocolate1@gmail.com", password:"password")
-User.create!(name:"jd", first_name:"sarah", last_name: "ing", email:"chocolate2@gmail.com", password:"password")
-User.create!(name:"john", first_name:"John", last_name: "Schulz", email:"johnschulz75@gmail.com", password:"1234567890")
-User.create!(name:"dan", first_name:"sarah", last_name: "ing", email:"chocolate4@gmail.com", password:"password")
-User.create!(name:"matthew", first_name:"sarah", last_name: "ing", email:"chocolate5@gmail.com", password:"password")
+# User.create!(name:"sarah", first_name:"sarah", last_name: "ing", email:"chocolate1@gmail.com", password:"password")
+# User.create!(name:"jd", first_name:"sarah", last_name: "ing", email:"chocolate2@gmail.com", password:"password")
+# User.create!(name:"john", first_name:"sarah", last_name: "ing", email:"chocolate3@gmail.com", password:"password")
+# User.create!(name:"dan", first_name:"sarah", last_name: "ing", email:"chocolate4@gmail.com", password:"password")
+# User.create!(name:"matthew", first_name:"sarah", last_name: "ing", email:"chocolate5@gmail.com", password:"password")

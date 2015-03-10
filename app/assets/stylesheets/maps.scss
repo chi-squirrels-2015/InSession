@@ -1,16 +1,13 @@
-body {
-  margin:10;
-  padding:0;
-}
-
 #map {
   position:absolute;
-  top:100px;
+  top:135px;
   bottom:0;
-  width:90%;
-
+  width:93%;
 }
 
+#map_nearby {
+  margin-top: -2px;
+}
 .menu-ui {
   background:#fff;
   position:absolute;
