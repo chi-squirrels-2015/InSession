@@ -93,7 +93,7 @@ end
 
 150.times do
   venue = Venue.find(rand(Venue.count)+1)
-  Meetup.create!(course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude)
+  Meetup.create!(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude)
 end
 
 meetups = Meetup.all

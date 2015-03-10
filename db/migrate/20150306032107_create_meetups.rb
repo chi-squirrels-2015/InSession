@@ -7,7 +7,8 @@ class CreateMeetups < ActiveRecord::Migration
       t.datetime  :end_time
       t.references :venue, index: true
       t.boolean   :remote
-
+      t.string    :title
+      t.text      :description
       t.timestamps null: false
     end
   end
