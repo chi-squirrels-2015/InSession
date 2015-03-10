@@ -98,12 +98,16 @@ end
 
 meetups = Meetup.all
 
-50.times do
-  CourseMembership.create!(course_id: courses.sample.id, user_id: users.sample.id)
-end
 
 50.times do
   MeetupMembership.create!(meetup_id: meetups.sample.id, user_id: users.sample.id)
+end
+
+exercises = Exercise.all
+User.all.each do |user|
+  rand(1..5).times do
+    UserExercise.create!(exercise: exercises.sample, user: user)
+  end
 end
 
 ka = Provider.create!(name: "khan_academy",
