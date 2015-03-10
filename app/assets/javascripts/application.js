@@ -16,7 +16,7 @@
 //= require bootstrap.min
 //= require private_pub
 //= require chat
-
+//= nav
 //= require_tree .
 
 
