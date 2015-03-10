@@ -1,0 +1,7 @@
+khan_academy_routes
+
+/user
+/user/exercises
+/user/exercises/progress_changes
+/user/playlists
+/topictree
