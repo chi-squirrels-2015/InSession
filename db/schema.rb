@@ -58,11 +58,12 @@ ActiveRecord::Schema.define(version: 20150309233221) do
   create_table "courses", force: :cascade do |t|
     t.integer  "course_memberships_id"
     t.integer  "organization_course_id"
-    t.string   "name"
+    t.string   "title"
     t.string   "organization"
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.integer  "subject_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

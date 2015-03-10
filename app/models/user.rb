@@ -30,13 +30,13 @@ class User < ActiveRecord::Base
 
   def oauth_request(auth_hash, url_stub)
     provider = Provider.find_by("name" => auth_hash["provider"])
-    oauth_token = auth_hash["extra"].access_token
-    consumer = auth_hash["extra"]["access_token"].consumer
+    oauth_token = OpenStruct.new(auth_hash["extra"]["access_token"])
+    consumer = OpenStruct.new(auth_hash["extra"]["access_token"]["consumer"])
     full_url = provider.site + url_stub
     uri = URI(full_url) # This is the url that we want to pull data from
     req = Net::HTTP::Get.new(uri)
     response = Net::HTTP.start(uri.hostname, uri.port) do |http|
-      req.oauth!(http, consumer, oauth_token)
+      req.oauth!(http, OpenStruct.new(consumer), oauth_token)
       http.request(req)
     end
     puts response.body

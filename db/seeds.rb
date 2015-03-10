@@ -24,7 +24,7 @@ end
 users = User.all
 
 10.times do
-  Course.create!(name: Faker::Company.name, organization: Faker::Company.name, description: Faker::Commerce.product_name)
+  Course.create!(title: Faker::Company.name, organization: Faker::Company.name, description: Faker::Commerce.product_name)
 end
 
 courses = Course.all

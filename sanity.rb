@@ -40,11 +40,61 @@ def go_
   url_stub = "/topictree"
   user = User.first
   req = user.oauth_request(@auth_hash, url_stub)
-  body = JSON::parse(req.body)
-  body["children"].each do |subject|
-    p subject["title"]
+  data = JSON::parse(req.body)
+end
+
+def second_part
+data["children"].each_with_index do |subject, si|
+  si += 1
+  puts si.to_s + ". " + subject["title"]
+  puts subject["description"]
+  Subject.create!(title: subject["title"], description: subject["description"])
+  subject["children"].each_with_index do |course, ci|
+    ci += 1
+    puts "^--" + ci.to_s + ". " + course["title"]
+    c = Course.new(title: course["title"], subject: Subject.find_by(title: subject["title"]) )
+    if course.has_key?("description")
+      puts " ^==" + course["description"]
+      c.description = course["description"]
+    end
+    puts "#{c.title} saved!" if c.save
+    if course.has_key?("children")
+      course["children"].each_with_index do |exercise, ei|
+        ei += 1
+        puts "   ^--" + ei.to_s + ". " + exercise["title"]
+        e = Exercise.new(title: exercise["title"], course: Course.find_by(title: course["title"]) )
+        if exercise.has_key?("description")
+          puts "    ^==" + course["description"]
+          e.description = course["description"]
+        end
+        puts "#{e.title} saved!" if e.save
+      end
+    end
   end
+end
+end
+
+def got_milk
+
 end
 
 # .each { |e| p e["title"] } ; 1
-# v["children"][1]["children"][0]["children"][0]["children"][0]["children"][0]["description"]
+# v["children"][12]["children"][4]["children"][0]["children"][0]["children"][0]["description"]
+# data["children"].each_with_index do |subject, si|
+#   puts si.to_s + ". " + subject["title"]
+#   puts subject["description"]
+#   subject["children"].each_with_index do |course, ci|
+#     puts "^--" + ci.to_s + ". " + course["title"]
+#     if course.has_key?("description")
+#       puts " ^==" + course["description"]
+#     end
+#     if course.has_key?("children")
+#       course["children"].each_with_index do |exercise, ei|
+#         puts "   ^--" + ei.to_s + ". " + exercise["title"]
+#         if exercise.has_key?("description")
+#           puts " ^==" + course["description"]
+#         end
+#       end
+#     end
+#   end
+# end ; 1

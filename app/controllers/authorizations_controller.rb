@@ -14,11 +14,11 @@ class AuthorizationsController < ApplicationController
     if current_user
       # Means our user is signed in. Add the authorization to the user
       current_user.add_provider(auth_hash)
-      url_stub = "/topictree"
+      url_stub = "/user/exercises"
       req = user.oauth_request(auth_hash, url_stub)
 
       parsed_response = JSON::parse(req.body)
-
+raise
       parsed_response.each do |data|
         unless data["maximum_exercise_progress_"] == "unstarted"
           course = Course.find_or_create_by(name: data["exercise"])
