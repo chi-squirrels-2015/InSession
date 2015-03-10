@@ -1,4 +1,4 @@
-{
+@auth_hash = {
   "provider"=>"khan_academy",
   "uid"=>"http://id.khanacademy.org/15b519de09734e89bfdda7e95e5f0c03",
   "info"=>{"email"=>"johnschulz75@gmail.com", "nickname"=>"John Schulz", "name"=>"John Schulz"},
