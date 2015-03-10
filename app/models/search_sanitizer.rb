@@ -1,4 +1,4 @@
-class SearchSanitizer 
+class SearchSanitizer
   def initialize(raw_query)
     @raw_query = raw_query || ""
   end
