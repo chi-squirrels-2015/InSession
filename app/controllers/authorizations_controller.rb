@@ -18,7 +18,7 @@ class AuthorizationsController < ApplicationController
 
       parsed_response.each do |data|
         unless data["maximum_exercise_progress_"] == "unstarted"
-          exercise = Exercise.find_or_create_by(name: data["exercise"])
+          exercise = Exercise.find_by(title: data["exercise"])
           user_exercise = UserExercise.where(user_id: current_user.id).find_or_create_by(exercise: exercise)
           if user_exercise.maximum_exercise_progress != data["maximum_exercise_progress_"]
             user_exercise.update(maximum_exercise_progress: data["maximum_exercise_progress_"], last_done: data["last_done"], struggling: data["exercise_states"]["struggling"] )

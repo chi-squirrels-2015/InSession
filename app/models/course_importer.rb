@@ -10,14 +10,15 @@ class CourseImporter
   end
 
   def self.import(data)
-    data["children"].each do |subject_data|
-      new_subject = Subject.create({
-        title: subject_data["title"],
-        description: subject_data["description"]
-      })
-
-      subject_data["children"].each do |course|
-        add_course(new_subject, course)
+    data["children"].each_with_index do |subject_data, index|
+      if index != 0 && index <= 8
+        new_subject = Subject.create({
+          title: subject_data["title"],
+          description: subject_data["description"]
+        })
+        subject_data["children"].each do |course|
+          add_course(new_subject, course)
+        end
       end
     end
   end
@@ -28,12 +29,23 @@ class CourseImporter
       description: course_data["description"]
     })
 
-    if course_data.has_key?("children")
-      course_data["children"].each do |exercise|
-        new_course.exercises.create!({
-          title: exercise["title"],
-          description: exercise["description"]
-        })
+    course_data['children'].each do |topic|
+      topic['children'].each do |sub_topic|
+        if sub_topic.has_key?('children')
+          sub_topic["children"].each do |exercise|
+            new_course.exercises.create!({
+              title: exercise["title"],
+              description: exercise["description"]
+            })
+          end
+        else
+          course_data["children"].each do |exercise|
+            new_course.exercises.create!({
+              title: exercise["title"],
+              description: exercise["description"]
+            })
+          end
+        end
       end
     end
   end
@@ -43,4 +55,5 @@ class CourseImporter
     import(data)
     true
   end
+
 end
