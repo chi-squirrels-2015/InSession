@@ -33,40 +33,9 @@ class User < ActiveRecord::Base
   end
 
   def oauth_request(auth_hash, url_stub)
-    provider = Provider.find_by("name" => auth_hash["provider"])
-    oauth_token = auth_hash["extra"].access_token
-    consumer = auth_hash["extra"]["access_token"].consumer
-    full_url = provider.site + url_stub
-    uri = URI(full_url) # This is the url that we want to pull data from
-    req = Net::HTTP::Get.new(uri)
-    response = Net::HTTP.start(uri.hostname, uri.port) do |http|
-      req.oauth!(http, consumer, oauth_token)
-      http.request(req)
-    end
-    # puts response.body
-    if response.code == "200"
-      response
-    else
-      puts "Fuck Off!"
-    end
   end
 
   def self.oauth_request
-    secret = "ebHgCUXVBmfmtqpQ"                                   # The user secret from the Credentials
-    token = "t6480427084414976"                                   # The user token from the Credentials
-    oauth_token = OAuth::Token.new(token, secret)
-    #                               Our Site Key        Our Site Secret           Our Site Stub
-    consumer = OAuth::Consumer.new("UHze9rM6n5NtNee2", "f9Z24DkmGTyWZx5E", site: "http://www.khanacademy.org/api/v1")
-    uri = URI("http://www.khanacademy.org/api/v1/user/playlists") # This is the url that we want to pull data from
-
-
-    req = Net::HTTP::Get.new(uri)                                 # This is the GET request
-
-    response = Net::HTTP.start(uri.hostname, uri.port) do |http|  # This is processing the request
-      req.oauth!(http, consumer, oauth_token)                     # .oauth! call which formats the request
-      http.request(req)                                           # The actual http request is made here
-    end
-    puts response.body                                            # <Net::HTTPOK:0x007f88b30485b0> body content
   end
 
   #GEOCODER
@@ -76,6 +45,5 @@ class User < ActiveRecord::Base
 
   def name
     [first_name, last_name].join(' ')
-  end  
-
+  end
 end

@@ -12,19 +12,19 @@ class ResponsesController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @response = Response.new(response_params)
-    @response.save                                                   
+    @response.save
   end
 
   def edit
     @question = Question.find(params[:question_id])
     @response = Response.find(question_id: @question.id)
-    render 'edit'  
+    render 'edit'
   end
 
   def update
     @question = Question.find(params[:question_id])
     @response = Response.find(question_id: @question.id)
-    @response.update 
+    @response.update
   end
 
   private

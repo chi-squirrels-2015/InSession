@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   respond_to :html, :js
 
-  def index 
+  def index
     @question = Question.new
     @questions = Question.order(created_at: :desc).limit(5)
 
@@ -9,42 +9,42 @@ class QuestionsController < ApplicationController
   end
 
 
- def create
-  @question = Question.new(question_params)
+  def create
+    @question = Question.new(question_params)
 
-  if submit_new_question?
-    @question.user = current_user
-    @questions = Question.order(created_at: :desc).limit(10)
+    if submit_new_question?
+      @question.user = current_user
+      @questions = Question.order(created_at: :desc).limit(10)
 
-    render 'new' unless @question.save!
+      render 'new' unless @question.save!
 
-  elsif preview?
-    @content = markdown(params[:question][:content]).gsub("\n","<p></p>")
-    render :preview
+    elsif preview?
+      @content = markdown(params[:question][:content]).gsub("\n","<p></p>")
+      render :preview
+    end
   end
-end
 
-def show
-  @question = Question.find(params[:id])
-  if @question.save
-    render 'show'
-  else
-    render 'new'
+  def show
+    @question = Question.find(params[:id])
+    if @question.save
+      render 'show'
+    else
+      render 'new'
+    end
   end
-end
 
-def edit
-  @question = Question.find(params[:id])
-  render 'edit'  
-end
+  def edit
+    @question = Question.find(params[:id])
+    render 'edit'
+  end
 
-def update
-  @question = Question.find(params[:id])
-  @question.update(question_params)
-end
+  def update
+    @question = Question.find(params[:id])
+    @question.update(question_params)
+  end
 
-private
-def question_params
+  private
+  def question_params
     #get attributed from db
     params.require(:question).permit(:content, :title)
   end

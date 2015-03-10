@@ -4,14 +4,14 @@ class SearchController < ApplicationController
 		filter = Stopwords::Filter.new stopwords
 		new_querry = filter.filter(query.split).join(" ")
 	end
-	
+
 	 def search
-		  if params[:q].nil?
-		    @questions = []
-		  else
-		    @questions = Question.search(params[:q])
-		    # @questions = Question.search(query: {match: {_all: {query: query_without_stopwords, fuzziness: 1}}})
-		  end
+     if params[:q].nil?
+       @questions = []
+     else
+       @questions = Question.search(params[:q])
+       # @questions = Question.search(query: {match: {_all: {query: query_without_stopwords, fuzziness: 1}}})
+     end
 	 end
 
 end
