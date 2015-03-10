@@ -7,10 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # require 'faker'
+Meetup.__elasticsearch__.delete_index!
+Question.__elasticsearch__.delete_index!
 
-User.create!(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
-User.create!(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
-User.create!(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
+User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
+User.create(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
+User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
 
 user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
@@ -26,11 +28,11 @@ users = User.all
 courses = Course.all
 
 150.times do
-  Question.create!(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
+  Question.create(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 end
 
 # 150.times do
-#   Question.create!(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
+#   Question.create(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 # end
 
 array_of_question = ["How do I use css?",
@@ -73,13 +75,13 @@ array_of_question = ["How do I use css?",
 "UNRELATED: What is the real story behind Cinco de Mayo?",
 "UNRELATED: When will DBC's website be rebuilt with Meteor?"]
 39.times do
-  Question.create!(title: array_of_question.pop, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
+  Question.create(title: array_of_question.pop, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 
 end
 questions = Question.all
 
 75.times do
-  Response.create!(content: Faker::Lorem.paragraph, user: users.sample, question: questions.sample )
+  Response.create(content: Faker::Lorem.paragraph, user: users.sample, question: questions.sample )
 end
 
 responses = Response.all
@@ -87,51 +89,51 @@ responses = Response.all
 venues_array = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
 
 venues_array.each do |venue|
-  Venue.create!(venue)
+  Venue.create(venue)
 end
 
 
 150.times do
   venue = Venue.find(rand(Venue.count)+1)
-  Meetup.create!(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude)
+  Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude)
 end
 
 meetups = Meetup.all
 
 # ADD WAy MORE MEETUP MEMBERSHIPS
 # 50.times do
-#   MeetupMembership.create!(meetup_id: meetups.sample.id, user_id: users.sample.id)
+#   MeetupMembership.create(meetup_id: meetups.sample.id, user_id: users.sample.id)
 # end
 
 User.all.each do |user|
   rand(1..3).times do
-    MeetupMembership.create!(meetup: meetups.sample, user: user)
+    MeetupMembership.create(meetup: meetups.sample, user: user)
   end
 end
 
 exercises = Exercise.all
 User.all.each do |user|
   rand(1..5).times do
-    UserExercise.create!(exercise: exercises.sample, user: user)
+    UserExercise.create(exercise: exercises.sample, user: user)
   end
 end
 
-ka = Provider.create!(name: "khan_academy",
+ka = Provider.create(name: "khan_academy",
                       site: "http://www.khanacademy.org/api/v1",
                       key: "UHze9rM6n5NtNee2",
                       secret: "f9Z24DkmGTyWZx5E")
 
 users.each do |user|
   number = rand(1000..9999).to_s
-  Authorization.create!(provider: Provider.find(ka.id),
+  Authorization.create(provider: Provider.find(ka.id),
                         uid: "uidstring" + number,
                         user: user,
                         user_token: "user_token" + number,
                         user_secret: "user_secret" + number)
 end
 
-# User.create!(name:"sarah", first_name:"sarah", last_name: "ing", email:"chocolate1@gmail.com", password:"password")
-# User.create!(name:"jd", first_name:"sarah", last_name: "ing", email:"chocolate2@gmail.com", password:"password")
-# User.create!(name:"john", first_name:"sarah", last_name: "ing", email:"chocolate3@gmail.com", password:"password")
-# User.create!(name:"dan", first_name:"sarah", last_name: "ing", email:"chocolate4@gmail.com", password:"password")
-# User.create!(name:"matthew", first_name:"sarah", last_name: "ing", email:"chocolate5@gmail.com", password:"password")
+# User.create(name:"sarah", first_name:"sarah", last_name: "ing", email:"chocolate1@gmail.com", password:"password")
+# User.create(name:"jd", first_name:"sarah", last_name: "ing", email:"chocolate2@gmail.com", password:"password")
+# User.create(name:"john", first_name:"sarah", last_name: "ing", email:"chocolate3@gmail.com", password:"password")
+# User.create(name:"dan", first_name:"sarah", last_name: "ing", email:"chocolate4@gmail.com", password:"password")
+# User.create(name:"matthew", first_name:"sarah", last_name: "ing", email:"chocolate5@gmail.com", password:"password")
