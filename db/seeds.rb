@@ -17,7 +17,7 @@ user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 #NOTHING LESS THAN SLEEP 0.2!!! Google gets pissy otherwise.
 200.times do
   user = user_array.sample
-  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
   sleep 0.2
 end
 
@@ -98,9 +98,15 @@ end
 
 meetups = Meetup.all
 
+# ADD WAy MORE MEETUP MEMBERSHIPS
+# 50.times do
+#   MeetupMembership.create!(meetup_id: meetups.sample.id, user_id: users.sample.id)
+# end
 
-50.times do
-  MeetupMembership.create!(meetup_id: meetups.sample.id, user_id: users.sample.id)
+User.all.each do |user|
+  rand(1..3).times do
+    MeetupMembership.create!(meetup: meetups.sample, user: user)
+  end
 end
 
 exercises = Exercise.all
