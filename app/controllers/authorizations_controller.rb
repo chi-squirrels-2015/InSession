@@ -18,7 +18,7 @@ class AuthorizationsController < ApplicationController
       req = user.oauth_request(auth_hash, url_stub)
 
       parsed_response = JSON::parse(req.body)
-raise
+
       parsed_response.each do |data|
         unless data["maximum_exercise_progress_"] == "unstarted"
           course = Course.find_or_create_by(name: data["exercise"])
@@ -41,9 +41,10 @@ raise
   def authenticate
     auth_hash = request.env['omniauth.auth']
     provider = Provider.find_by(name: auth_hash.provider)
-    auth = current_user.authorizations.find_by(provider: provider)
+    auth = current_user.authorizations.find_or_create_by(provider: provider)
     auth.user_secret = auth_hash.credentials.secret
     auth.user_token = auth_hash.credentials.token
+    auth.uid = auth_hash.credentials.uid
     auth.save
     auth_hash
   end
