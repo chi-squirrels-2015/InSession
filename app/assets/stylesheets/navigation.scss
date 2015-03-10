@@ -110,16 +110,17 @@ position: relative;
   z-index: 2;
 }
 
-#menu-back {
+#menu-back a{
   position:absolute;
   left:11%;
   padding:6px 8px;
   top: 31px;
   opacity: 0.3;
   z-index: 2;
+  color:black;
 }
 
-#menu-button:active, #menu-button:hover, #menu-back:active, #menu-back:hover {
+#menu-button:active, #menu-button:hover, #menu-back:active a, #menu-back:hover a{
   opacity: 0.7;
   color:black;
 }

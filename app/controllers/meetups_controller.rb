@@ -8,6 +8,7 @@ class MeetupsController < ApplicationController
   def show
     # @users = User.all find users in the particular meetup
     @meetup = Meetup.find(params[:id])
+    @users = User.all
   end
 
   def upcoming_meetups
