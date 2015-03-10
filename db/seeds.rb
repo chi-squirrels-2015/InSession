@@ -23,10 +23,6 @@ end
 
 users = User.all
 
-10.times do
-  Course.create!(title: Faker::Company.name, organization: Faker::Company.name, description: Faker::Commerce.product_name)
-end
-
 courses = Course.all
 
 150.times do

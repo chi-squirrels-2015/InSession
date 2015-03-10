@@ -1,6 +1,6 @@
-class Course_importer
+class CourseImporter
 
-  def pull_data_from_api
+  def self.pull_data_from_api
     uri = URI("http://www.khanacademy.org/api/v1/topictree")
     request = Net::HTTP::Get.new(uri)
     response = Net::HTTP.start(uri.hostname, uri.port) do |http|
@@ -9,7 +9,7 @@ class Course_importer
     data = JSON::parse(response.body)
   end
 
-  def import(data)
+  def self.import(data)
     data["children"].each do |subject_data|
       new_subject = Subject.create({
         title: subject_data["title"],
@@ -22,7 +22,7 @@ class Course_importer
     end
   end
 
-  def add_course(subject, course_data)
+  def self.add_course(subject, course_data)
     new_course = subject.courses.create({
       title: course_data["title"],
       description: course_data["description"]
@@ -38,7 +38,7 @@ class Course_importer
     end
   end
 
-  def runner
+  def self.run
     data = pull_data_from_api
     import(data)
     true

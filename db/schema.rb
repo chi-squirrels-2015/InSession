@@ -45,11 +45,8 @@ ActiveRecord::Schema.define(version: 20150309233221) do
   add_index "course_meetups", ["meetup_id"], name: "index_course_meetups_on_meetup_id", using: :btree
 
   create_table "course_memberships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "course_id"
-    t.boolean  "struggling",                default: false
-    t.string   "maximum_exercise_progress"
-    t.datetime "last_done"
+    t.integer "user_id"
+    t.integer "course_id"
   end
 
   add_index "course_memberships", ["course_id"], name: "index_course_memberships_on_course_id", using: :btree
@@ -72,8 +69,11 @@ ActiveRecord::Schema.define(version: 20150309233221) do
     t.string   "title"
     t.text     "description"
     t.integer  "course_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "struggling",                default: false
+    t.string   "maximum_exercise_progress"
+    t.datetime "last_done"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   create_table "meetup_memberships", force: :cascade do |t|

@@ -7,15 +7,13 @@ class AuthorizationsController < ApplicationController
   end
 
   def create
-
     auth_hash = authenticate
 
-    user = current_user
     if current_user
       # Means our user is signed in. Add the authorization to the user
       current_user.add_provider(auth_hash)
       url_stub = "/user/exercises"
-      req = user.oauth_request(auth_hash, url_stub)
+      req = current_user.oauth_request(auth_hash, url_stub)
 
       parsed_response = JSON::parse(req.body)
 
