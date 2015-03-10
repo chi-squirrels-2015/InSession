@@ -8,17 +8,17 @@
 
 # require 'faker'
 
-User.create!(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 2)
-User.create!(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 2)
-User.create!(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 2)
+User.create!(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
+User.create!(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
+User.create!(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
 
 # Added sleep 1 to keep Google happy
 user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
-30.times do
+400.times do
   user = user_array.sample
-  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.free_email, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
-  sleep 1
+  User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
+  sleep 0.2
 end
 
 users = User.all
@@ -91,7 +91,7 @@ venues_array.each do |venue|
 end
 
 
-200.times do
+150.times do
   venue = Venue.find(rand(Venue.count)+1)
   Meetup.create!(course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude)
 end
