@@ -29,10 +29,9 @@ class User < ActiveRecord::Base
   end
 
   def oauth_request(auth_hash, url_stub)
-    provider = Provider.find_by(name: auth_hash[:provider])
-
-    oauth_token = auth_hash[:extra].access_token
-    consumer = auth_hash[:extra][:access_token].consumer
+    provider = Provider.find_by("name" => auth_hash["provider"])
+    oauth_token = auth_hash["extra"].access_token
+    consumer = auth_hash["extra"]["access_token"].consumer
     full_url = provider.site + url_stub
     uri = URI(full_url) # This is the url that we want to pull data from
     req = Net::HTTP::Get.new(uri)
