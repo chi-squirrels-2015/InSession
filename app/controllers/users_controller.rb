@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
     @meetups_near_me = Array.new
     @courses = Array.new
+    @meetups = Array.new
 
     @venues_near_me = Venue.near([current_user.latitude, current_user.longitude], current_user.max_distance)
 
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
     @meetups_near_me.each do |meetup|
 
       @courses << meetup.course.title
+      @meetups << meetup.id
     end
     render :show
   end
