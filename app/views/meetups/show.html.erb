@@ -1,4 +1,5 @@
 <div class = "container">
+
   <%= link_to "Back to Meetups", meetups_path %><br>
   <%= link_to "Back to Home", meetups_path %><br><br>
   <% if Meetup.last == @meetup %>
@@ -13,14 +14,36 @@
    <p><b>End Time: </b><%= @meetup.end_time.strftime(" %H:%M") %></p>
   <p>Location: <%= link_to @venue.name %></p>
   <p>Organizer: <%= @organizer.name %></p>
-
-
-  
-  <div>
-    <% @meetup.users.each_with_index do |user, index| %>
-      <p><%= link_to user.name, user_path(user) %></p>
-      <%= link_to "Message", "/conversations/1", class: "btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" => user.id %>
-    <% end %>
+        <div class="meetup-list">
+          <% @meetup.users.each_with_index do |user, index| %>
+          <div class="col-xs-12">
+            <div class="chat-button col-xs-2" >
+              <%= link_to "", "/conversations/1", class: "fa fa-envelope btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" =>   user.id%>
+            </div>
+            <div class="meetup-member col-xs-9" style="v-align: middle">
+              <%= link_to user.name, user_path(user) %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
+
+  <div class="row">
+    <div class="col-xs-12 tile-container">
+      <div class="thumbnail">
+
+        <% unless current_user.meetups.include?(@meetup) %>
+          <%= link_to "Join this Meetup", new_meetup_membership_path(id: @meetup.id), class: "btn btn-success" %>
+        <% else %>
+          <%= link_to "Leave this Meetup", meetup_membership_path(@meetup.meetup_memberships.find_by(user: current_user)), method: :delete, class: "btn btn-warning"%>
+        <% end %>
+        <% if current_user == @organizer %>
+          <%= link_to "Delete this Meetup", meetup_path(@meetup), method: :delete, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
