@@ -15,11 +15,23 @@
   <p>Organizer: <%= @organizer.name %></p>
 
 
-  
+
   <div>
     <% @meetup.users.each_with_index do |user, index| %>
-      <p><%= link_to user.name, user_path(user) %></p>
-      <%= link_to "Message", "/conversations/1", class: "btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" => user.id %>
+      <div class="col-xs-12">
+        <div class="chat-button col-xs-2" >
+          <%= link_to "", "/conversations/1", class: "fa fa-envelope btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" =>   user.id%>
+        </div>
+        <div class="meetup-member col-xs-9" style="v-align: middle">
+          <%= link_to user.name, user_path(user) %>
+        </div>
+      </div>
+    <% end %>
+    <% unless current_user.meetups.include?(@meetup) %>
+      <%= button_to "This should sign you up", meetup_path(@meetup)%>
+    <% end %>
+    <% if current_user.id == @organizer %>
+      <%= button_to "This should delete the meetup", meetup_path(@meetup)%>
     <% end %>
   </div>
 </div>
