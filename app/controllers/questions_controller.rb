@@ -3,9 +3,8 @@ class QuestionsController < ApplicationController
 
   def index 
     @question = Question.new
-    @questions = Question.order(created_at: :desc).limit(5)
+    @questions = Question.paginate(:page => params[:page]).order('created_at ASC')
 
-    p @questions
   end
 
 
