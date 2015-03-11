@@ -17,17 +17,13 @@
     </div>
 
 <!-- CURRENT COURSES -->
-
+<% if @current_user.meetups %>
   <div class="row">
     <div class="col-xs-12 tile-container">
       <div class="thumbnail">
         <h3>Current Courses</h3>
-        <% if @current_user.meetups %>
         <% @current_user.meetups.each do |meetup| %>
-        <li><%= link_to meetup.course.title, '#' %></li>
-        <% end %>
-        <% else %>
-        <p>You are not currently enrolled in any courses"</p>
+        <li><%= link_to meetup.course.title, meetup_path(meetup) %></li>
         <% end %>
       </div>
       <div class="completed_courses_container">        
@@ -38,7 +34,7 @@
       </div>
     </div>
   </div>
-
+<% end %>
 
 
 
@@ -51,12 +47,12 @@
         <ul class="meetups_nearby">
           <div class="visible_meetups_nearby">
             <% @courses[0...4].each do |course| %>
-              <li><%= link_to course, maps_path %></li>
+              <li><%= link_to course, meetups_path %></li>
             <% end %>
           </div>
           <div class="hidden_meetups_nearby">
             <% @courses[5...@courses.length].each do |course| %>
-              <li><%= link_to course, maps_path %></li>
+              <li><%= link_to course, meetups_path %></li>
             <% end %>
           </div>
         </ul>
