@@ -181,7 +181,6 @@ ActiveRecord::Schema.define(version: 20150311020603) do
     t.integer  "course_id"
     t.text     "bio"
     t.string   "preferred_language"
-    t.integer  "course_memberships_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
