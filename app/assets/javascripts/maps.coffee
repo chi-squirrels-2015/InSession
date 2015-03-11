@@ -23,10 +23,11 @@ $(document).ready ->
         popupContent =  '<div class="popup">' +
           '<p>' +
           '<p>' + properties.name + ' Library</p>' +
+          # '<p>' + properties.meetup_url + ' Library</p>' +
           '<h4> Meetups at this Location:</h4>' +
           '<ul class="meetups">' +
-          properties.meetups.map (course) ->
-            return '<li class="meetups">' + course.title + '</li>'
+          properties.meetup_urls.map (url) ->
+             return '<li class="meetups">' + url + '</li>'
           .join("") +
           '</ul>' +
           '</div>'
