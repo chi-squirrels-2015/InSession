@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.references  :course
       t.text        :bio
       t.string      :preferred_language
-
+      t.references :course_memberships
       t.timestamps null: false
     end
   end

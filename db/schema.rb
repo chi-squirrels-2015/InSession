@@ -71,11 +71,8 @@ ActiveRecord::Schema.define(version: 20150311020603) do
     t.string   "title"
     t.text     "description"
     t.integer  "course_id"
-    t.boolean  "struggling",                default: false
-    t.string   "maximum_exercise_progress"
-    t.datetime "last_done"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "meetup_memberships", force: :cascade do |t|
@@ -168,8 +165,11 @@ ActiveRecord::Schema.define(version: 20150311020603) do
   create_table "user_exercises", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "exercise_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "struggling",                default: false
+    t.string   "maximum_exercise_progress"
+    t.datetime "last_done"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   add_index "user_exercises", ["exercise_id"], name: "index_user_exercises_on_exercise_id", using: :btree
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(version: 20150311020603) do
     t.integer  "course_id"
     t.text     "bio"
     t.string   "preferred_language"
+    t.integer  "course_memberships_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false

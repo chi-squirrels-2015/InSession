@@ -17,6 +17,7 @@ User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", p
 User.create(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
 User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
 
+
 user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
 #NOTHING LESS THAN SLEEP 0.2!!! Google gets pissy otherwise.

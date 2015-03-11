@@ -17,13 +17,17 @@
     </div>
 
 <!-- CURRENT COURSES -->
-<% if @current_user.meetups %>
+
   <div class="row">
     <div class="col-xs-12 tile-container">
       <div class="thumbnail">
         <h3>Current Courses</h3>
+        <% if @current_user.meetups %>
         <% @current_user.meetups.each do |meetup| %>
-        <li><%= link_to meetup.course.title, meetup_path(meetup) %></li>
+        <li><%= link_to meetup.course.title, '#' %></li>
+        <% end %>
+        <% else %>
+        <p>You are not currently enrolled in any courses"</p>
         <% end %>
       </div>
       <div class="completed_courses_container">        
@@ -34,37 +38,12 @@
       </div>
     </div>
   </div>
-<% end %>
+
+
+
 
 <!-- MEETUPS NEARBY -->
 
-  <div class="row">
-    <div class="col-xs-12 tile-container">
-      <div class="thumbnail">
-        <h3>Meetups Nearby</h3>
-        <ul class="meetups_nearby">
-          <div class="visible_meetups_nearby">
-            <% @courses[0...4].each do |course| %>
-              <li><%= link_to course[0], meetup_path(course[1]) %></li>
-            <% end %>
-          </div>
-          <div class="hidden_meetups_nearby">
-            <% @courses[5...@courses.length].each do |course| %>
-              <li><%= link_to course[0], meetup_path(course[1]) %></li>
-            <% end %>
-          </div>
-        </ul>
-      </div>
-      <div class="meetups_nearby_container">
-        <h4 class="meetups_nearby_header">More</h4>
-        <div class="chevron_nearby">
-          <a href="#"><i class="fa fa-chevron-down"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- BIO -->
   <div class="row">
     <div class="col-xs-12 tile-container">
       <div class="thumbnail">
@@ -77,7 +56,7 @@
           </div>
           <div class="hidden_meetups_nearby">
             <% @courses[5...@courses.length].each do |course| %>
-              <li><%= link_to course, meetups_path %></li>
+              <li><%= link_to course, maps_path %></li>
             <% end %>
           </div>
         </ul>
@@ -90,6 +69,7 @@
       </div>
     </div>
   </div>
+
 <!-- BIO -->
 
   <div class="row">
@@ -98,7 +78,7 @@
         <h3>Bio</h3>
         <p><%= @current_user.bio %></p>
       </div>
-    </div>>>>>>>> update user show(controller,css,html) and seeds
+    </div>
   </div>
 
 </div>
