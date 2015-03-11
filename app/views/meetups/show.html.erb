@@ -14,22 +14,22 @@
    <p><b>End Time: </b><%= @meetup.end_time.strftime(" %H:%M") %></p>
   <p>Location: <%= link_to @venue.name %></p>
   <p>Organizer: <%= @organizer.name %></p>
-
-
-
-  <div>
-    <% @meetup.users.each_with_index do |user, index| %>
-      <div class="col-xs-12">
-        <div class="chat-button col-xs-2" >
-          <%= link_to "", "/conversations/1", class: "fa fa-envelope btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" =>   user.id%>
-        </div>
-        <div class="meetup-member col-xs-9" style="v-align: middle">
-          <%= link_to user.name, user_path(user) %>
-
+        <div class="meetup-list">
+          <% @meetup.users.each_with_index do |user, index| %>
+          <div class="col-xs-12">
+            <div class="chat-button col-xs-2" >
+              <%= link_to "", "/conversations/1", class: "fa fa-envelope btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" =>   user.id%>
+            </div>
+            <div class="meetup-member col-xs-9" style="v-align: middle">
+              <%= link_to user.name, user_path(user) %>
+            </div>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
+
 
   <div class="row">
     <div class="col-xs-12 tile-container">
