@@ -7,8 +7,12 @@ class MeetupsController < ApplicationController
       user_exercices = current_user.exercises
       user_exercices.each{|exercise| array_of_titles << exercise.title}
       clean_query = SearchSanitizer.new(array_of_titles.flatten.join(" "))
-      # @courses_based_meetups = Meetup.search(query: {multi_match: {_all: {query: clean_query.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
-      @courses_based_meetups = Meetup.search(clean_query.sanitized)
+
+      # puts clean_query.sanitized
+      @courses_based_meetups = Meetup.search(query: {multi_match: {_all: {query: clean_query.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
+
+     test = SearchSanitizer.new(current_user.questions.pluck(:title).join(" "))
+      @meetups = Meetup.search(query: {multi_match: {_all: {query: test.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
     end
   end
 
@@ -21,7 +25,7 @@ class MeetupsController < ApplicationController
     @course = Course.find_by_title(params[:meetup][:course])
     @venue = Venue.find_by_name(params[:meetup][:venue])
     @meetup = Meetup.create(
-      course: @course, 
+      course: @course,
       venue: @venue,
       organizer: current_user,
       title: params[:meetup][:title],
@@ -50,16 +54,28 @@ class MeetupsController < ApplicationController
     @meetups
   end
 
-  def suggested_meetups
-    if current_user
-      test = SearchSanitizer.new(current_user.questions.pluck(:title).join(" "))
-      @meetups = Meetup.search(query: {multi_match: {_all: {query: test.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
+  # def suggested_meetups
+  #   if current_user
+  #     test = SearchSanitizer.new(current_user.questions.pluck(:title).join(" "))
+  #     @meetups = Meetup.search(query: {multi_match: {_all: {query: test.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
+  #     binding.pry
+  #     p @meetups
+  #     p @meetups
+  #   end
+  # end
+
+  def destroy
+    meetup = Meetup.find(params[:id])
+    if meetup
+      meetup.destroy
+      redirect_to meetups_path
+    else
+      redirect_to meetups_path
     end
   end
 
-def meetup_params
+  def meetup_params
     #get attributed from db
     params.require(:meetup).permit(:title, :venue)
   end
-
 end

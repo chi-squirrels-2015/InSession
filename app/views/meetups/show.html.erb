@@ -1,4 +1,5 @@
 <div class = "container">
+
   <%= link_to "Back to Meetups", meetups_path %><br>
   <%= link_to "Back to Home", meetups_path %><br><br>
   <% if Meetup.last == @meetup %>
@@ -24,15 +25,25 @@
         </div>
         <div class="meetup-member col-xs-9" style="v-align: middle">
           <%= link_to user.name, user_path(user) %>
+
         </div>
       </div>
-    <% end %>
-    <% unless current_user.meetups.include?(@meetup) %>
-      <%= button_to "This should sign you up", meetup_path(@meetup)%>
-    <% end %>
-    <% if current_user.id == @organizer %>
-      <%= button_to "This should delete the meetup", meetup_path(@meetup)%>
-    <% end %>
+    </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-xs-12 tile-container">
+      <div class="thumbnail">
+
+        <% unless current_user.meetups.include?(@meetup) %>
+          <%= link_to "Join this Meetup", new_meetup_membership_path(id: @meetup.id), class: "btn btn-success" %>
+        <% else %>
+          <%= link_to "Leave this Meetup", meetup_membership_path(@meetup.meetup_memberships.find_by(user: current_user)), method: :delete, class: "btn btn-warning"%>
+        <% end %>
+        <% if current_user == @organizer %>
+          <%= link_to "Delete this Meetup", meetup_path(@meetup), method: :delete, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
