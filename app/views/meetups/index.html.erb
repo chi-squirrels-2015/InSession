@@ -1,36 +1,47 @@
-<h1>Upcoming Meetups:</h1>
-<% @upcoming.each do |meetup| %>
-  <p>Name: <%= meetup.title %></p>
-  <p>Description: <%= meetup.description %></p><br>
+<div class="container">
+
+<%if not @upcoming.empty? %>
+  <div class="row">
+    <div class="col-xs-12 tile-container">
+      <div class="thumbnail">
+        <h1>Your Upcoming Meetups</h1>
+
+        <% @upcoming.each do |meetup| %>
+
+        <%= link_to meetup_path(meetup.id) do %>
+          <p><b><%= meetup.title %></b></p>
+        <% end %>
+          <p><%= meetup.description %></p><br>
+        <% end %>
+      </div> 
+    </div> 
+  </div>
 <% end %>
- 
-Meetup Suggestions :
 
-Based on question : 
-<ul>
-  <% if @meetups.nil? == false %>
-    <% @meetups.each do |meetup| %>
-    <li>
-      <h3>
-        <%= link_to meetup.title, meetup_path(meetup.id) %>
-      </h3>
-    </li>
-    <% end %>
-  <% end %>
-</ul>
+<% if not @meetups.first.nil? %>
+  <div class="row">
+    <div class="col-xs-12 tile-container">
+      <div class="thumbnail">
+        <h1>Meetups Based on Your Previous Questions</h1>
+        <% @meetups.each do |meetup| %>
+        <p><b><%= link_to meetup.title, meetup_path(meetup.id) %></b></p>
+        <p><%= meetup.description %></p><br>
+        <% end %>
+      </div> 
+    </div> 
+  </div>
+<% end %>
 
-Based on Courses :
-
-<ul>
-  <% if @courses_based_meetups.nil? == false %>
-    <% @courses_based_meetups.each do |meetup| %>
-    <li>
-      <h3>
-        <%= link_to meetup.title, meetup_path(meetup.id) %>
-      </h3>
-    </li>
-    <% end %>
-  <% end %>
-</ul>
-
- <%= link_to "Back to Home", meetups_path %>
+<% if not @courses_based_meetups.first.nil? %>
+  <div class="row">
+    <div class="col-xs-12 tile-container">
+      <div class="thumbnail">
+        <h1>Meetups Based on Your Courses</h1>
+        <% @courses_based_meetups.each do |meetup| %>
+          <p><b><%= link_to meetup.title, meetup_path(meetup.id) %></p></b>
+        <% end %>
+        <%= link_to "Back to Home", meetups_path %>
+      </div> 
+    </div> 
+  </div>
+<% end %>
