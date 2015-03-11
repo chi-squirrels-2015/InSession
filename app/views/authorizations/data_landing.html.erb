@@ -2,12 +2,12 @@
 
 <br>
 
-<% enrolled_courses.each do |membership| %>
-<h2 style="color: #02117d"><%= Course.find(membership.course_id).name %></h2>
+<% active_exercises.each do |user_exercise| %>
+<h2 style="color: #02117d"><%= Course.find(user_exercise.exercise.course_id).name %></h2>
   <p style="font-size:18px; color: #0d4e8f;">
-    Struggling - <%= membership.struggling %><br>
-    Progress - <%= membership.maximum_exercise_progress %><br>
-    Last Worked On - <%= time_ago_in_words(membership.last_done) %> ago<br>
+    Struggling - <%= user_exercise.struggling %><br>
+    Progress - <%= user_exercise.maximum_exercise_progress %><br>
+    Last Worked On - <%= time_ago_in_words(user_exercise.last_done) %> ago<br>
   </p>
 <% end %>
 
