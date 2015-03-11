@@ -13,6 +13,7 @@ Question.__elasticsearch__.delete_index!
 Exercise.__elasticsearch__.delete_index!
 UserExercise.__elasticsearch__.delete_index!
 
+
 bio = "Biltong jerky beef prosciutto, filet mignon boudin sirloin ham hock chuck. Ball tip fatback andouille frankfurter beef ribs. Brisket venison capicola ball tip tenderloin cupim chicken, meatloaf ground round prosciutto bresaola cow turducken boudin."
 
 User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
@@ -101,8 +102,10 @@ end
 
 150.times do
   venue = Venue.find(rand(Venue.count)+1)
-  Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude)
+  Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude, scheduled_date: Time.now, begin_time: Time.now, end_time: Time.now + rand(1..4).days))
 end
+
+# scheduled_date: Time.at(rand(1000000..5000000) + Time.now.to_i), begin_time: Time.now, end_time: Time.now + rand(1..4).days))
 
 meetups = Meetup.all
 

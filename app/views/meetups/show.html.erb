@@ -12,7 +12,7 @@
   <p><b>Start Day: </b><%= @meetup.scheduled_date.strftime("%B %d, %Y") %></p>
   <p><b>Start Time:</b> <%= @meetup.begin_time.strftime(" %H:%M") %></p>
    <p><b>End Time: </b><%= @meetup.end_time.strftime(" %H:%M") %></p>
-  <p>Location: <%= link_to @venue.name %></p>
+  <p>Location: <%= link_to @venue.name, "/maps?meetup_id=#{@meetup.id}" %></p>
   <p>Organizer: <%= @organizer.name %></p>
         <div class="meetup-list">
           <% @meetup.users.each_with_index do |user, index| %>
