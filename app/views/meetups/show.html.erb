@@ -1,12 +1,21 @@
 <div class = "container">
-  <%= link_to "Back to Meetups", meetups_path %>
-  <h1>One Meetup:</h1>
-  <p>Name: <%= @meetup.title %></p>
-  <p>Description: <%= @meetup.description %></p><br>
+  <%= link_to "Back to Meetups", meetups_path %><br>
+  <%= link_to "Back to Home", meetups_path %><br><br>
+  <% if Meetup.last == @meetup %>
+     <h3> Meetup successfully created!</h3>
+  <% end %>
+  <div class = "jumbotron">
+  <h1><%= @meetup.title %></h1>
+  <p>Course: <%= @meetup.course.title %></p><br>
+  <p>Description of Meetup: <%= @meetup.description %></p><br>
+  <p><b>Start Day: </b><%= @meetup.scheduled_date.strftime("%B %d, %Y") %></p>
+  <p><b>Start Time:</b> <%= @meetup.begin_time.strftime(" %H:%M") %></p>
+   <p><b>End Time: </b><%= @meetup.end_time.strftime(" %H:%M") %></p>
   <p>Location: <%= link_to @venue.name %></p>
   <p>Organizer: <%= @organizer.name %></p>
 
 
+  
   <div>
     <% @meetup.users.each_with_index do |user, index| %>
       <p><%= link_to user.name, user_path(user) %></p>
@@ -14,4 +23,4 @@
     <% end %>
   </div>
 </div>
-
+</div>

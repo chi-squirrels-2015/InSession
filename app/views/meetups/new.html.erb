@@ -1,0 +1,40 @@
+<div class = "container">
+<h2>Add A New Meetup</h2>
+<%= form_for @meetup do |f|  %>
+
+ <div class="field"> 
+      <%= f.label :course, "Course Title:" %> <br /> 
+      <%= f.select 'course', current_user.courses.map {|course| [ course.title, course.title ] }, { prompt: "Select Course" } %>
+</div>
+<div class="field"> 
+      <%= f.label :name, "Venue: " %> <br /> 
+      <%= f.select 'venue', @venues.map {|venue| [ venue.name + " Library", venue.name ] }, { prompt: "Select Venue" } %>
+</div>
+
+<div class="field"> 
+      <%= f.label :title, "Meetup Name: " %> <br /> 
+      <%= f.text_field :title %>
+</div>
+<div class="field"> 
+      <%= f.label :description, "Description: " %> <br /> 
+      <%= f.text_area :description %>
+</div>
+<div class="field"> 
+      <%= f.label :scheduled_date, "Meetup Day: " %> <br /> 
+      <%= f.date_field :scheduled_date %>
+</div>
+
+<div class="field"> 
+      <%= f.label :begin_time, "Begin Time: " %> <br /> 
+      <%= f.time_field :begin_time %>
+</div>
+<div class="field"> 
+      <%= f.label :end_time, "End Time: " %> <br /> 
+      <%= f.time_field :end_time %>
+
+</div> 
+
+<br /> 
+    <%= submit_tag "Create New Meetup", id: "submit-new-meetup-btn",class: "btn btn-success" %>
+<% end %>
+</div>
