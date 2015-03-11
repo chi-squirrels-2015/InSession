@@ -3,17 +3,15 @@
   <h1>One Meetup:</h1>
   <p>Name: <%= @meetup.title %></p>
   <p>Description: <%= @meetup.description %></p><br>
+  <p>Location: <%= link_to @venue.name %></p>
+  <p>Organizer: <%= @organizer.name %></p>
+
+
+  <div>
+    <% @meetup.users.each_with_index do |user, index| %>
+      <p><%= link_to user.name, user_path(user) %></p>
+      <%= link_to "Message", "/conversations/1", class: "btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" => user.id %>
+    <% end %>
+  </div>
 </div>
-
-
-  <% @meetup.users.each_with_index do |user, index| %>
-    <tr>
-      <td><% index +=1 %></td></br>
-      <td><%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %></td>
-      <td>
-        <%= link_to "Message", "/conversations/1", class: "btn btn-success btn-xs start-conversation",
-        "data-sid" => current_user.id, "data-rip" => user.id %>
-      </td>
-    </tr>
-  <% end %>
 

@@ -14,7 +14,9 @@ class MeetupsController < ApplicationController
   def show
     # @users = User.all find users in the particular meetup
     @meetup = Meetup.find(params[:id])
-    @users = User.all
+    @users = MeetupMembership.where(meetup: @meetup).map{ |e| User.find(e.user_id)}
+    @organizer = User.find(@meetup.organizer_id)
+    @venue = Venue.find(@meetup.venue_id)
   end
 
   def upcoming_meetups
