@@ -7,15 +7,6 @@ class MapsController < ApplicationController
 
     @venues_near_me.to_a.reject!{|v| v.meetups.length == 0}
 
-    # @venues_near_me.each do |venue|
-    #   @meetups_near_me << venue.meetups if venue.meetups.length > 0
-    # end
-    # @meetups_near_me.flatten!
-
-    # @meetups_near_me.each do |meetup|
-    #   @courses << [meetup.course.title, meetup.id]
-    # end
-
     @geojson = Array.new
 
     @venues_near_me.each do |venue|  
