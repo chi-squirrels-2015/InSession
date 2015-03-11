@@ -21,10 +21,9 @@ $(document).ready ->
         properties = marker.feature.properties
         # create custom popup
         popupContent =  '<div class="popup">' +
-          '<p>' +
-          '<p>' + properties.name + ' Library</p>' +
+          '<h3>' +'<b>Meetups at:</b> &nbsp;' + properties.name + ' Library</h3>' +
           # '<p>' + properties.meetup_url + ' Library</p>' +
-          '<h4> Meetups at this Location:</h4>' +
+          # '<h4> Meetups at this Location:</h4>' +
           '<ul class="meetups">' +
           properties.meetup_urls.map (url) ->
              return '<li class="meetups">' + url + '</li>'
