@@ -15,9 +15,7 @@ class UsersController < ApplicationController
     @meetups_near_me.flatten!
 
     @meetups_near_me.each do |meetup|
-
-      @courses << meetup.course.title
-      @meetups << meetup.id
+      @courses << [meetup.course.title, meetup.id]
     end
     render :show
   end

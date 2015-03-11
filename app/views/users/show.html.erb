@@ -36,8 +36,6 @@
   </div>
 <% end %>
 
-
-
 <!-- MEETUPS NEARBY -->
 
   <div class="row">
@@ -47,12 +45,12 @@
         <ul class="meetups_nearby">
           <div class="visible_meetups_nearby">
             <% @courses[0...4].each do |course| %>
-              <li><%= link_to course, meetups_path %></li>
+              <li><%= link_to course[0], meetup_path(course[1]) %></li>
             <% end %>
           </div>
           <div class="hidden_meetups_nearby">
             <% @courses[5...@courses.length].each do |course| %>
-              <li><%= link_to course, meetups_path %></li>
+              <li><%= link_to course[0], meetup_path(course[1]) %></li>
             <% end %>
           </div>
         </ul>
