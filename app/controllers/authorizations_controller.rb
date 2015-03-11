@@ -18,7 +18,7 @@ class AuthorizationsController < ApplicationController
 
       parsed_response.each do |data|
         unless data["maximum_exercise_progress_"] == "unstarted"
-          exercise = Exercise.find_by(title: data["exercise"])
+          exercise = Exercise.find_or_create_by(title: data["exercise"])
           user_exercise = UserExercise.where(user_id: current_user.id).find_or_create_by(exercise: exercise)
           if user_exercise.maximum_exercise_progress != data["maximum_exercise_progress_"]
             user_exercise.update(maximum_exercise_progress: data["maximum_exercise_progress_"], last_done: data["last_done"], struggling: data["exercise_states"]["struggling"] )
@@ -26,8 +26,8 @@ class AuthorizationsController < ApplicationController
         end
       end
 
-      enrolled_courses = CourseMembership.where(user_id: current_user.id)
-      render :data_landing, locals: {provider: Provider.find_by(name: auth_hash[:provider]), enrolled_courses: enrolled_courses, auth_hash: auth_hash}
+      active_exercises = UserExercise.where(user_id: current_user.id)
+      render :data_landing, locals: {provider: Provider.find_by(name: auth_hash[:provider]), active_exercises: active_exercises, auth_hash: auth_hash}
 
     else
       raise
