@@ -88,14 +88,15 @@ ActiveRecord::Schema.define(version: 20150311020603) do
   create_table "meetups", force: :cascade do |t|
     t.integer  "course_id"
     t.integer  "organizer_id"
-    t.datetime "begin_time"
-    t.datetime "end_time"
+    t.time     "begin_time"
+    t.time     "end_time"
+    t.date     "scheduled_date"
     t.integer  "venue_id"
     t.boolean  "remote"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.float    "latitude"
     t.float    "longitude"
   end

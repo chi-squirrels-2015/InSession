@@ -16,6 +16,28 @@ class MeetupsController < ApplicationController
     end
   end
 
+  def new
+    @meetup = Meetup.new
+    @venues = Venue.all
+  end
+
+  def create
+    @course = Course.find_by_title(params[:meetup][:course])
+    @venue = Venue.find_by_name(params[:meetup][:venue])
+    @meetup = Meetup.create(
+      course: @course, 
+      venue: @venue,
+      organizer: current_user,
+      title: params[:meetup][:title],
+      description: params[:meetup][:description],
+      scheduled_date: params[:meetup][:scheduled_date],
+      begin_time: params[:meetup][:begin_time],
+      end_time: params[:meetup][:end_time]
+    )
+    redirect_to meetup_path(@meetup)
+
+  end
+
   def show
     # @users = User.all find users in the particular meetup
     @meetup = Meetup.find(params[:id])
@@ -39,6 +61,9 @@ class MeetupsController < ApplicationController
     end
   end
 
-
+def meetup_params
+    #get attributed from db
+    params.require(:meetup).permit(:title, :venue)
+  end
 
 end
