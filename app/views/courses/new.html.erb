@@ -1,0 +1,25 @@
+<div class = "container">
+<h2>Add A New Course</h2>
+<%= form_for @course do |f|  %>
+
+ <div class="field"> 
+      <%= f.label :title, "Course Title:" %> <br /> 
+      <%= f.text_field :title %>
+</div>
+<div class="field"> 
+      <%= f.label :organization, "School/Provider: " %> <br /> 
+      <%= f.text_field :organization %>
+</div>
+<div class="field"> 
+      <%= f.label :start_date, "Start Date: " %> <br /> 
+      <%= f.date_field :start_date %>
+</div>
+<div class="field"> 
+      <%= f.label :end_date, "End Date: " %> <br /> 
+      <%= f.date_field :end_date %>
+
+</div>
+<br /> 
+    <%= submit_tag "Submit New Course", id: "submit-new-course-btn",class: "btn btn-success" %>
+<% end %>
+</div>

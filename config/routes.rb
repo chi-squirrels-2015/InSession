@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :questions do
     resources :responses
   end
-  resources :courses, only: [:index, :show]
+  resources :courses
   resources :groups, only: [:index]
   resources :conversations do
     resources :messages
