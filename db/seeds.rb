@@ -7,19 +7,22 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # require 'faker'
+
 Meetup.__elasticsearch__.delete_index!
 Question.__elasticsearch__.delete_index!
 
-User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
-User.create(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
-User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5)
+bio = "Biltong jerky beef prosciutto, filet mignon boudin sirloin ham hock chuck. Ball tip fatback andouille frankfurter beef ribs. Brisket venison capicola ball tip tenderloin cupim chicken, meatloaf ground round prosciutto bresaola cow turducken boudin."
+
+User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
+User.create(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
+User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
 
 user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
 #NOTHING LESS THAN SLEEP 0.2!!! Google gets pissy otherwise.
 200.times do
   user = user_array.sample
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: "just want to learn", preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: bio, preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
   sleep 0.2
 end
 

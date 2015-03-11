@@ -14,10 +14,9 @@ class UsersController < ApplicationController
     @meetups_near_me.flatten!
 
     @meetups_near_me.each do |meetup|
+
       @courses << meetup.course.title
     end
     render :show
   end
 end
-
-Users.userexercises
