@@ -8,6 +8,10 @@ class MeetupsController < ApplicationController
       user_exercices.each{|exercise| array_of_titles << exercise.title}
       clean_query = SearchSanitizer.new(array_of_titles.flatten.join(" "))
    
+      puts clean_query
+      puts clean_query
+      puts clean_query.sanitized
+      puts clean_query.sanitized
       # @courses_based_meetups = Meetup.search(query: {multi_match: {_all: {query: clean_query.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
       @courses_based_meetups = Meetup.search(clean_query.sanitized)
     end
