@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
     CourseMembership.create(user: current_user, course: @course)
     @user = current_user
     @courses = current_user.courses
+
     render 'index'
   end
 
