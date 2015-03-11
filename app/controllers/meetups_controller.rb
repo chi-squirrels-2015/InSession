@@ -4,10 +4,15 @@ class MeetupsController < ApplicationController
     @upcoming = upcoming_meetups
     if current_user
       array_of_titles = []
-      user_exercices = UserExercise.where(user_id:current_user.id)
-      user_exercices.each{|exercise| array_of_titles << exercise.exercise.title}
+      user_exercices = current_user.exercises
+      user_exercices.each{|exercise| array_of_titles << exercise.title}
       clean_query = SearchSanitizer.new(array_of_titles.flatten.join(" "))
-      @courses_based_meetups = Meetup.search(query: {multi_match: {_all: {query: clean_query.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
+      puts clean_query
+      puts clean_query
+      puts clean_query.sanitized
+      puts clean_query.sanitized
+      # @courses_based_meetups = Meetup.search(query: {multi_match: {_all: {query: clean_query.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
+      @courses_based_meetups = Meetup.search(clean_query.sanitized)
     end
   end
 
