@@ -10,6 +10,8 @@
 
 Meetup.__elasticsearch__.delete_index!
 Question.__elasticsearch__.delete_index!
+Exercise.__elasticsearch__.delete_index!
+UserExercise.__elasticsearch__.delete_index!
 
 bio = "Biltong jerky beef prosciutto, filet mignon boudin sirloin ham hock chuck. Ball tip fatback andouille frankfurter beef ribs. Brisket venison capicola ball tip tenderloin cupim chicken, meatloaf ground round prosciutto bresaola cow turducken boudin."
 
