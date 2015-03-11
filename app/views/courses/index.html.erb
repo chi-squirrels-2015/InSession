@@ -1,10 +1,11 @@
   <div class = "container" style = "margin-bottom: 30px">
     <h1 class = "center">Courses Student Is Taking</h1>
     <% @courses.each do |course| %>
-    <h2 class = "center">Course Name: <%=course.name%></h2>
+    <h2 class = "center">Course Name: <%=course.title%></h2>
     <h2>Course Org: <%= course.organization %></h2>
     <br>
     <p class = "center">Description: <%= course.description %></p>
+    <p class = "center"><b>Start Date: </b><%= course.start_date.strftime("%B %d, %Y") %><br><b>End Date: </b><%= course.end_date.strftime("%B %d, %Y")  %></p>
     <% end %>
   </div>
 

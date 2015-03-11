@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   respond_to :html, :js
 
   def index
-    @user = User.find(current_user)
+    @user = current_user
     @courses = @user.courses
   end
 
@@ -13,7 +13,9 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.create(course_params)
-    @course.user = current_user
+    CourseMembership.create(user: current_user, course: @course)
+    @user = current_user
+    @courses = current_user.courses
     render 'index'
   end
 
@@ -31,6 +33,6 @@ class CoursesController < ApplicationController
 private
 def course_params
     #get attributed from db
-    params.require(:course).permit(:organization, :title)
+    params.require(:course).permit(:organization, :title, :description, :start_date, :end_date)
   end
 end
