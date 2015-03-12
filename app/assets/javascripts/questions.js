@@ -6,6 +6,7 @@ $(document).on('ready', function() {
     event.preventDefault();
 
     $(".content-wrapper #question-form").removeClass("hidden");
+    // $(".content-wrapper #question-form").focus();
     $(this).hide();
   })
 })

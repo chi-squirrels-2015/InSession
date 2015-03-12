@@ -8,10 +8,12 @@
 	<% if current_user %>
     <%=link_to "Ask a Question", new_question_path, id: "ask-question-btn" %>
 	<% end %>
+
+  <div id="question-form" class="hidden">
+    <%=render "form" %>
+  </div>
+
 </div>
 
-<div id="question-form" class="hidden">
-  <%=render "form" %>
-</div>
 
 
