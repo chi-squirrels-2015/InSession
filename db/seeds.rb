@@ -23,14 +23,16 @@ john = User.create(first_name:"John", last_name: "Schulz", email:"john@gmail.com
 daniel = User.create(first_name:"Daniel", last_name: "Hanson", email:"daniel@gmail.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: "I am an experienced web developer and am passionate about helping budding programmers!")
 User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
 
-venues_array = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
+venue_hashes = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
+
+venues_array = venue_hashes.map { |venue| Venue.create(venue) }
 
 user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
 #NOTHING LESS THAN SLEEP 0.2!!! Google gets pissy otherwise.
 200.times do
   user = user_array.sample
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: bio, preferred_language: "English", street_address: user[:address], city: user[:city], state: user[:state], zip: user[:zip], max_distance: rand(5...20))
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: bio, preferred_language: "English")
   sleep 0.2
 end
 
@@ -39,12 +41,12 @@ users = User.all
 newbies = Course.create(title: "Ruby For Newbies", organization: "Khan Academy", description: "Dip your feet into Ruby! We'll introduce you to programming basics and syntax.", start_date: "03/03/2015", end_date: "04/03/2015")
 rails = Course.create(title: "Ruby on Rails", organization: "Khan Academy", description: "Learn web development with Rails framework. We will provide you a tutorial to make your very own web app!", start_date: "04/03/2015", end_date: "06/03/2015")
 oop = Course.create(title: "OOP in Ruby", organization: "Khan Academy", description: "Ever heard of Practical Object Oriented Design in Ruby? We'll go over Sandi Metz's principles and teach you to design your code accordingly.", start_date: "02/03/2015", end_date: "05/03/2015")
-reloaded = Course.create(title: "Ruby Reloaded: Intermediate Level", organization: "Khan Academy", description: "Now it's time to really get acquainted with Ruby. We'll introduce you to Sinatra and touch on learning Rails. Get ready!", start_date: "05/02/2015", end_date: "07/23/2015")
+reloaded = Course.create(title: "Ruby Reloaded: Intermediate Level", organization: "Khan Academy", description: "Now it's time to really get acquainted with Ruby. We'll introduce you to Sinatra and touch on learning Rails. Get ready!", start_date: "05/02/2015", end_date: "05/02/2015")
 testing = Course.create(title:"Testing in Ruby on Rails", organization: "Khan Academy", description: "Heard of Capybara? We'll walk through some of the wonderful testing tools for testing your app.", start_date: "05/08/2015", end_date: "06/10/2015")
 
 venue1 = venues_array.sample
 
-ruby_newbies = Meetup.create(title: "Ruby For Newbies", course: newbies, description: "This is our first meetup for beginners who are interested in learning Ruby. We will take the time to go over some programming basics and answer any questions you have. Food will be provided!", organizer: daniel, venue: venue1, remote: true, latitude: venue1.latitude, longitude: venue1.longitude, scheduled_date: Time.now, begin_time: Time.now, end_time: Time.now + rand(1..4).days))
+ruby_newbies = Meetup.create(title: "Ruby For Newbies", course: newbies, description: "This is our first meetup for beginners who are interested in learning Ruby. We will take the time to go over some programming basics and answer any questions you have. Food will be provided!", organizer: daniel, venue: venue1, remote: true, latitude: venue1.latitude, longitude: venue1.longitude, scheduled_date: Time.now, begin_time: Time.now, end_time: Time.now + rand(1..4).days)
 
 [matthew, john, sarah].each do |person|
   ruby_newbies.users << person
@@ -113,15 +115,12 @@ array_of_question = ["How do I use css?",
 
 # responses = Response.all
 
-venues_array.each do |venue|
-  Venue.create(venue)
-end
-
 
 150.times do
   venue = Venue.find(rand(Venue.count)+1)
   base_time = Faker::Time.forward(rand(60)+1, :evening)
   Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude, scheduled_date: base_time, begin_time: base_time, end_time: base_time + 3600)
+  sleep 0.2  
 end
 
 meetups = Meetup.all
