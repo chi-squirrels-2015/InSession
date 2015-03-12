@@ -16,10 +16,14 @@ UserExercise.__elasticsearch__.delete_index!
 
 bio = "Biltong jerky beef prosciutto, filet mignon boudin sirloin ham hock chuck. Ball tip fatback andouille frankfurter beef ribs. Brisket venison capicola ball tip tenderloin cupim chicken, meatloaf ground round prosciutto bresaola cow turducken boudin."
 
-User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
-User.create(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
+
+sarah = User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: "I am eager to see what this programming business is about! Willing to learn from anyone with more experience.")
+matthew = User.create(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
+john = User.create(first_name:"John", last_name: "Schulz", email:"john@gmail.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: "I like candy!")
+daniel = User.create(first_name:"Daniel", last_name: "Hanson", email:"daniel@gmail.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: "I am an experienced web developer and am passionate about helping budding programmers!")
 User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
 
+venues_array = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
 
 user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
@@ -32,11 +36,27 @@ end
 
 users = User.all
 
+newbies = Course.create(title: "Ruby For Newbies", organization: "Khan Academy", description: "Dip your feet into Ruby! We'll introduce you to programming basics and syntax.", start_date: "03/03/2015", end_date: "04/03/2015")
+rails = Course.create(title: "Ruby on Rails", organization: "Khan Academy", description: "Learn web development with Rails framework. We will provide you a tutorial to make your very own web app!", start_date: "04/03/2015", end_date: "06/03/2015")
+oop = Course.create(title: "OOP in Ruby", organization: "Khan Academy", description: "Ever heard of Practical Object Oriented Design in Ruby? We'll go over Sandi Metz's principles and teach you to design your code accordingly.", start_date: "02/03/2015", end_date: "05/03/2015")
+reloaded = Course.create(title: "Ruby Reloaded: Intermediate Level", organization: "Khan Academy", description: "Now it's time to really get acquainted with Ruby. We'll introduce you to Sinatra and touch on learning Rails. Get ready!", start_date: "05/02/2015", end_date: "07/23/2015")
+testing = Course.create(title:"Testing in Ruby on Rails", organization: "Khan Academy", description: "Heard of Capybara? We'll walk through some of the wonderful testing tools for testing your app.", start_date: "05/08/2015", end_date: "06/10/2015")
+
+venue1 = venues_array.sample
+
+ruby_newbies = Meetup.create(title: "Ruby For Newbies", course: newbies, description: "This is our first meetup for beginners who are interested in learning Ruby. We will take the time to go over some programming basics and answer any questions you have. Food will be provided!", organizer: daniel, venue: venue1, remote: true, latitude: venue1.latitude, longitude: venue1.longitude, scheduled_date: Time.now, begin_time: Time.now, end_time: Time.now + rand(1..4).days))
+
+[matthew, john, sarah].each do |person|
+  ruby_newbies.users << person
+end
+
+sarah.courses << newbies
+
 courses = Course.all
 
-150.times do
-  Question.create(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
-end
+# 150.times do
+#   Question.create(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
+# end
 
 # 150.times do
 #   Question.create(title: Faker::Hacker.say_something_smart, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
@@ -68,32 +88,30 @@ array_of_question = ["How do I use css?",
 "How do I change the navbar position with css?",
 "How do I create a dotted border line with css?",
 "How do I create a dashed border line with css?",
-"UNRELATED: Can SASS be used to style a webpage",
-"UNRELATED: What is the answer to life, the universe, and everything?",
-"UNRELATED: How can I use Meteor to build a beautiful website?",
-"UNRELATED: Can you tell me how to get to Sesame Street.com on the web?",
-"UNRELATED: What is a banana?",
-"UNRELATED: Where is the best place to get ingredients?",
-"UNRELATED: Where should I schedule my dinner on Friday?",
-"UNRELATED: How do I learn to dougie?",
-"UNRELATED: When will Duke Jokes be back?",
-"UNRELATED: When will DBC buy me an Airwheel?",
-"UNRELATED: How is cheese made?",
-"UNRELATED: What is the real story behind Cinco de Mayo?",
-"UNRELATED: When will DBC's website be rebuilt with Meteor?"]
-39.times do
-  Question.create(title: array_of_question.pop, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
+"Can SASS be used to style a webpage",
+"What is the answer to life, the universe, and everything?",
+"How can I use Meteor to build a beautiful website?",
+"Can you tell me how to get to Sesame Street.com on the web?",
+"What is a banana?",
+"Where is the best place to get ingredients?",
+"Where should I schedule my dinner on Friday?",
+"How do I learn to dougie?",
+"When will Duke Jokes be back?",
+"When will DBC buy me an Airwheel?",
+"How is cheese made?",
+"What is the real story behind Cinco de Mayo?",
+"When will DBC's website be rebuilt with Meteor?"]
+# 39.times do
+#   Question.create(title: array_of_question.pop, content: Faker::Hacker.say_something_smart, user: users.sample, course: courses.sample)
 
-end
-questions = Question.all
+# end
+# questions = Question.all
 
-75.times do
-  Response.create(content: Faker::Lorem.paragraph, user: users.sample, question: questions.sample )
-end
+# 75.times do
+#   Response.create(content: Faker::Lorem.paragraph, user: users.sample, question: questions.sample )
+# end
 
-responses = Response.all
-
-venues_array = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
+# responses = Response.all
 
 venues_array.each do |venue|
   Venue.create(venue)
@@ -139,9 +157,3 @@ users.each do |user|
                         user_token: "user_token" + number,
                         user_secret: "user_secret" + number)
 end
-
-# User.create(name:"sarah", first_name:"sarah", last_name: "ing", email:"chocolate1@gmail.com", password:"password")
-# User.create(name:"jd", first_name:"sarah", last_name: "ing", email:"chocolate2@gmail.com", password:"password")
-# User.create(name:"john", first_name:"sarah", last_name: "ing", email:"chocolate3@gmail.com", password:"password")
-# User.create(name:"dan", first_name:"sarah", last_name: "ing", email:"chocolate4@gmail.com", password:"password")
-# User.create(name:"matthew", first_name:"sarah", last_name: "ing", email:"chocolate5@gmail.com", password:"password")
