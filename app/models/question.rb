@@ -8,7 +8,7 @@ class Question < ActiveRecord::Base
   has_many :responses
   validates_presence_of :content, :title, :user_id
 
-  self.per_page = 10
+  self.per_page = 20
 end
 
 Question.import
