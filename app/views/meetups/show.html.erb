@@ -6,17 +6,17 @@
      <h3> Meetup successfully created!</h3>
   <% end %>
   <div class = "jumbotron">
-  <h1><%= @meetup.title %></h1>
-  <p>Course: <%= @meetup.course.title %></p><br>
-  <p>Description of Meetup: <%= @meetup.description %></p><br>
-  <p><b>Start Day: </b><%= @meetup.scheduled_date.strftime("%B %d, %Y") %></p>
-  <p><b>Start Time:</b> <%= @meetup.begin_time.strftime(" %H:%M") %></p>
-   <p><b>End Time: </b><%= @meetup.end_time.strftime(" %H:%M") %></p>
-  <p>Location: <%= link_to @venue.name, "/maps?meetup_id=#{@meetup.id}" %></p>
-  <p>Organizer: <%= @organizer.name %></p>
+        <h1><%= @meetup.title %></h1>
+        <p>Course: <%= @meetup.course.title %></p><br>
+        <p>Description of Meetup: <%= @meetup.description %></p><br>
+        <p><b>Start Day: </b><%= @meetup.scheduled_date.strftime("%B %d, %Y") %></p>
+        <p><b>Start Time:</b> <%= @meetup.begin_time.strftime(" %H:%M") %></p>
+         <p><b>End Time: </b><%= @meetup.end_time.strftime(" %H:%M") %></p>
+        <p>Location: <%= link_to @venue.name, "/maps?meetup_id=#{@meetup.id}" %></p>
+        <p>Organizer: <%= @organizer.name %></p>
         <div class="meetup-list">
           <% @meetup.users.each_with_index do |user, index| %>
-          <div class="col-xs-12">
+          <div class="row">
             <div class="chat-button col-xs-2" >
               <%= link_to "", "/conversations/1", class: "fa fa-envelope btn btn-success btn-xs start-conversation", "data-sid" => current_user.id, "data-rip" =>   user.id%>
             </div>
