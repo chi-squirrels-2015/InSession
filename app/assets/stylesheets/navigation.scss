@@ -109,6 +109,7 @@ position: relative;
   border-radius: 50px;
   opacity: 0.3;
   z-index: 2;
+  transition: -webkit-transform 1.25s;
 }
 
 #menu-back a{
