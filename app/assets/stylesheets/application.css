@@ -16,10 +16,11 @@
  *= require_self
  */
 
- .navbar{
+.navbar {
   padding-top: 10px;
   min-height: 100px;
 }
+
 .navbar-brand {
   font-size: 40px;
   text-align: center;
@@ -27,4 +28,9 @@
 
 #layout_container {
   padding-top: 200px;
+}
+
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
 }

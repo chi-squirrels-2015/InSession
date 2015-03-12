@@ -129,8 +129,18 @@ position: relative;
 #menu-items {
   position:absolute;
   text-align: center;
-  width: 90%;
+  width: 100%;
   z-index: 5;
+  h4 {
+    font-size: 17px;
+  }
+  ul {
+    padding-left: 0;
+  }
+  input {
+    text-align: center;
+    margin-right: 5px
+  }
 }
 
 
