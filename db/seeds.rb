@@ -54,7 +54,6 @@ users = User.all
 end
 
 ruby_newbies = Meetup.create(title: "Ruby For Newbies", course: newbies, description: "This is our first meetup for beginners who are interested in learning Ruby. We will take the time to go over some programming basics and answer any questions you have. Food will be provided!", organizer: daniel, venue: venue1, remote: true, latitude: venue1.latitude, longitude: venue1.longitude, scheduled_date: Time.now, begin_time: Time.now, end_time: Time.now + rand(1..4).days)
-user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
 #NOTHING LESS THAN SLEEP 0.2!!! Google gets pissy otherwise.
 200.times do
@@ -127,7 +126,7 @@ array_of_question = ["How do I use css?",
   venue = Venue.find(rand(Venue.count)+1)
   base_time = Faker::Time.forward(rand(60)+1, :evenin g)
   Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude, scheduled_date: base_time, begin_time: base_time, end_time: base_time + 3600)
-  sleep 0.2  
+  sleep 0.2
 end
 
 
@@ -148,6 +147,13 @@ exercises = Exercise.all
 User.all.each do |user|
   rand(1..5).times do
     UserExercise.create(exercise: exercises.sample, user: user)
+  end
+end
+
+User.all.each do |user|
+  completed = [true, false]
+  rand(1..3).times do
+    CourseMembership.create(course: courses.sample, user: user, completed: completed.sample )
   end
 end
 

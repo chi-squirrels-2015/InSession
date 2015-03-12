@@ -21,13 +21,21 @@
       <div class="thumbnail">
         <h3><%= link_to "Add a Course", new_course_path, class: "btn btn-success" %></h3>
         <h3>Current Courses</h3>
-        <% @current_user.meetups.each do |meetup| %>
-        <li><%= meetup.course.subject.title %>: <%= link_to meetup.course.title, meetup_path(meetup) %></li>
+        <% if meetup.course.completed == false %>
+          <% @current_user.meetups.each do |meetup| %>
+            <li><%= meetup.course.subject.title %>: <%= link_to meetup.course.title, meetup_path(meetup) %></li>
+          <% end %>
         <% end %>
       </div>
       <div class="completed_courses_container">
         <h4 class="completed_courses_header">Completed Courses</h4>
         <div class="chevron_completed">
+          <ul>
+            <% @current_user.meetups.each do |meetup| %>
+              <% if meetup.course.completed == true %>
+              <li><%= meetup.course.subject.title %></li>li>
+            <% end %>
+          </ul>
           <a href="#"><i class="fa fa-chevron-down completed"></i></a>
         </div>
       </div>
