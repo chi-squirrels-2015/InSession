@@ -1,6 +1,6 @@
 <div class = "container" style = "margin-bottom: 30px">
 	<h3>Questions</h3>
-  
+
 	<%=render "questions_table", locals: {questions: @questions}%>
 
   <p><%= will_paginate @questions, :params => {:controller => 'questions', :action => 'index' } %></p>

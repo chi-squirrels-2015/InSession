@@ -1,9 +1,10 @@
 class QuestionsController < ApplicationController
   respond_to :html, :js
 
-  def index 
+  def index
     @question = Question.new
     @questions = Question.paginate(:page => params[:page]).order('created_at ASC')
+
 
   end
 
@@ -34,7 +35,7 @@ end
 
 def edit
   @question = Question.find(params[:id])
-  render 'edit'  
+  render 'edit'
 end
 
 def update
