@@ -15,6 +15,14 @@
         </div>
       </div>
     </div>
+      <% else %>
+       <div class = "container">
+         <h2>We're glad you're here.</h2><br>
+         <p>Learning solo can be difficult. <br>
+          In Session is an online community providing students with a way to learn and support each other. <br>Through our website, students can join in-person study sessions, chat with peers and post on forums.</p>
+
+          <p>In Session is a website created by five DevBootcamp students. As constant learners, often online, we recognized the void of student interaction. </p>
+      </div>
   <% end %>
 
   <% if not @meetups.first.nil? %>
@@ -44,12 +52,4 @@
       </div>
     </div>
   <% end %>
-</div>
-
-<div class = "container">
-<h2>We're glad you're here.</h2><br>
-  <p>Learning solo can be difficult. <br>
-    In Session is an online community providing students with a way to learn and support each other. <br>Through our website, students can join in-person study sessions, chat with peers and post on forums.</p>
-
-  <p>In Session is a website created by five DevBootcamp students. As constant learners, often online, we recognized the void between students </p>
 </div>
