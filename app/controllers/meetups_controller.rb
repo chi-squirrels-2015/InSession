@@ -4,9 +4,10 @@ class MeetupsController < ApplicationController
     @upcoming = upcoming_meetups
     if current_user
       array_of_titles = []
-      user_exercices = current_user.exercises
-      user_exercices.each{|exercise| array_of_titles << exercise.title}
+      user_courses = current_user.courses
+      user_courses.each{|course| array_of_titles << course.title}
       clean_query = SearchSanitizer.new(array_of_titles.flatten.join(" "))
+      @courses_based_meetups = Meetup.search(query: {match: {_all: {query: clean_query.sanitized, fuzziness: 1}}})
 
       # OLDER IF ISSUE ASK JD ####################################################################
       # @courses_based_meetups = Meetup.search(query: {multi_match: {_all: {query: clean_query.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
@@ -15,12 +16,11 @@ class MeetupsController < ApplicationController
       #############################################################################@##############
 
       # puts clean_query.sanitized
-      @courses_based_meetups = Meetup.search(query: {multi_match: {_all: {query: clean_query.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
 
-     test = SearchSanitizer.new(current_user.questions.pluck(:title).join(" "))
-      puts "#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-        puts test.sanitized
-      puts "#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+      test = SearchSanitizer.new(current_user.questions.pluck(:title).join(" "))
+      puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+      puts clean_query.sanitized
+      puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
       @meetups = Meetup.search(test.sanitized)
       @meetups = Meetup.search(query: {match: {_all: {query: test.sanitized, fuzziness: 1}}})
     end

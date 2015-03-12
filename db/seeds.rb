@@ -1,6 +1,6 @@
 Meetup.__elasticsearch__.delete_index!
 Question.__elasticsearch__.delete_index!
-Exercise.__elasticsearch__.delete_index!
+Course.__elasticsearch__.delete_index!
 
 bio = "Biltong jerky beef prosciutto, filet mignon boudin sirloin ham hock chuck. Ball tip fatback andouille frankfurter beef ribs. Brisket venison capicola ball tip tenderloin cupim chicken, meatloaf ground round prosciutto bresaola cow turducken boudin."
 
@@ -107,7 +107,7 @@ end
 User.all.each do |user|
   rand(1..3).times do
     course = courses.sample
-    Question.create(title: "What is #{course}?", content: Faker::Lorem.paragraph, course: course, user: user)
+    Question.create(title: "What is #{course.title}?", content: Faker::Hacker.say_something_smart, course: course, user: user)
   end
 end
 
