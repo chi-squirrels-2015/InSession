@@ -23,8 +23,10 @@ $( document ).ready(function() {
   $("#menu-button").on("click", function(){
     if ( $("header").height() === 90 ){
       $("header").css("height", "310px");
+      $('#menu-button').css('webkit-transform', 'rotate(-90deg)');
     } else {
       $("header").css("height","90px");
+      $('#menu-button').css('webkit-transform', 'rotate(1deg)');
     }
   });
 });
