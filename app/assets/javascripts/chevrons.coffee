@@ -3,6 +3,7 @@ $(document).ready ->
   $(document).on 'ready', ->
   $(document).on 'click', '.chevron_nearby', (event) ->
     $('.hidden_meetups_nearby li').slideToggle("slow")
+    
     return
   return
 
