@@ -102,10 +102,9 @@ end
 
 150.times do
   venue = Venue.find(rand(Venue.count)+1)
-  Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude, scheduled_date: Time.now, begin_time: Time.now, end_time: Time.now + rand(1..4).days))
+  base_time = Faker::Time.forward(rand(60)+1, :evening)
+  Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude, scheduled_date: base_time, begin_time: base_time, end_time: base_time + 3600)
 end
-
-# scheduled_date: Time.at(rand(1000000..5000000) + Time.now.to_i), begin_time: Time.now, end_time: Time.now + rand(1..4).days))
 
 meetups = Meetup.all
 

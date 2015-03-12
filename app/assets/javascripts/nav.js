@@ -22,7 +22,7 @@ $( document ).ready(function() {
 
   $("#menu-button").on("click", function(){
     if ( $("header").height() === 90 ){
-      $("header").css("height","300px");
+      $("header").css("height", "310px");
     } else {
       $("header").css("height","90px");
     }
