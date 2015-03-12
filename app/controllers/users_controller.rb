@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   def show
     @user = current_user.id
 
+
+
     @meetups_near_me = Array.new
     @courses = Array.new
     @meetups = Array.new
