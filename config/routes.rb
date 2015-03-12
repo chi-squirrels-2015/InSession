@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root to: 'meetups#index'
+
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   resources :users, only: [:show]
   resources :maps, only: [:index]
@@ -10,9 +13,8 @@ Rails.application.routes.draw do
 
   resources :meetups
   resources :meetup_memberships
-  root to: 'static#index'
 
-  get '/' => 'questions#index', as: :index
+  # get '/' => 'questions#index', as: :index
   resources :questions do
     resources :responses
   end
