@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   has_many :course_memberships
   has_many :users, through: :course_memberships
   has_many :questions
@@ -9,3 +11,5 @@ class Course < ActiveRecord::Base
   belongs_to :subject
   validates :title, uniqueness: true
 end
+Course.import
+

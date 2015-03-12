@@ -20,7 +20,7 @@
     <div class="col-xs-12 tile-container">
       <div class="thumbnail">
         <h3><%= link_to "Add a Course", new_course_path, class: "btn btn-success" %></h3>
-        <h3>Current Courses</h3>
+        <h3>Current Meetups</h3>
         <% @current_user.meetups.each do |meetup| %>
         <li><%= link_to meetup.course.title, meetup_path(meetup) %></li>
         <% end %>
