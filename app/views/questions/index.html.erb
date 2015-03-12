@@ -3,11 +3,11 @@
 
 	<%=render "questions_table", locals: {questions: @questions}%>
 
-  <p><%= will_paginate @questions, :params => {:controller => 'questions', :action => 'index' } %></p>
-
 	<% if current_user %>
     <%=link_to "Ask a Question", new_question_path, id: "ask-question-btn" %>
 	<% end %>
+
+  <p><%= will_paginate @questions, :params => {:controller => 'questions', :action => 'index' } %></p>
 
   <div id="question-form" class="hidden">
     <%=render "form" %>
