@@ -34,7 +34,17 @@ div h3 {
   margin-top: 10px;
   padding-top: 3px;
   font-size: 16px;
-  text-align: center
+  text-align: center;
+  visibility: visible
+}
+
+.completed_courses_headerz,
+.meetups_nearby_headerz {
+  margin-top: 10px;
+  padding-top: 3px;
+  font-size: 16px;
+  text-align: center;
+  visibility: hidden
 }
 
 .hide_completed {
@@ -49,4 +59,10 @@ div h3 {
 
 .meetups_nearby {
   padding: 0  
+}
+
+.bio {
+  max-width: 50%;
+  margin-left: 300px;
+  text-align: center
 }
