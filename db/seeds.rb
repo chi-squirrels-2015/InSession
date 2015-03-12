@@ -44,7 +44,7 @@ testing = Course.create(title:"Testing in Ruby on Rails", organization: "Khan Ac
 
 venue1 = venues_array.sample
 
-ruby_newbies = Meetup.create(title: "Ruby For Newbies", course: newbies, description: "This is our first meetup for beginners who are interested in learning Ruby. We will take the time to go over some programming basics and answer any questions you have. Food will be provided!", organizer: daniel, venue: venue1, remote: true, latitude: venue1.latitude, longitude: venue1.longitude, scheduled_date: Time.now, begin_time: Time.now, end_time: Time.now + rand(1..4).days))
+ruby_newbies = Meetup.create(title: "Ruby For Newbies", course: newbies, description: "This is our first meetup for beginners who are interested in learning Ruby. We will take the time to go over some programming basics and answer any questions you have. Food will be provided!", organizer: daniel, venue: venue1, remote: true, latitude: venue1.latitude, longitude: venue1.longitude, scheduled_date: Time.now, begin_time: Time.now, end_time: Time.now + rand(1..4).days)
 
 [matthew, john, sarah].each do |person|
   ruby_newbies.users << person
@@ -141,6 +141,13 @@ exercises = Exercise.all
 User.all.each do |user|
   rand(1..5).times do
     UserExercise.create(exercise: exercises.sample, user: user)
+  end
+end
+
+User.all.each do |user|
+  completed = [true, false]
+  rand(1..3).times do
+    CourseMembership.create(course: courses.sample, user: user, completed: completed.sample )
   end
 end
 
