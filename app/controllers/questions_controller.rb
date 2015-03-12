@@ -3,11 +3,10 @@ class QuestionsController < ApplicationController
 
   def index
     @question = Question.new
-    @questions = Question.paginate(:page => params[:page]).order('created_at ASC')
+    @questions = Question.paginate(:page => params[:page]).order('created_at DESC')
 
 
   end
-
 
  def create
   @question = Question.new(question_params)

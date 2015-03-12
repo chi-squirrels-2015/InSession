@@ -2,10 +2,10 @@
 
 <%=form_for @question, remote: true do |f| %>
   <br>
-  <%= f.text_field :title, placeholder: "title" %>
+  <%= f.text_field :title, placeholder: "Question Subject" %>
   <br>
   <br>
-  <%= f.text_area :content, placeholder: "content"%>
+  <%= f.text_area :content, placeholder: "Ask your question here.", cols: "40", rows: "5" %>
   <br>
   <br>
   <%= submit_tag "Submit New Question", id: "submit-new-question-btn",class: "btn btn-success" %>
