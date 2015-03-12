@@ -1,17 +1,18 @@
 <div class = "container" style = "margin-bottom: 30px">
 	<h3>Questions</h3>
 
-	<%=render "questions_table", locals: {questions: @questions}%>
+  <% if current_user %>
+    <h3><%=link_to "Ask a Question", new_question_path, class: "btn btn-success", id: "ask-question-btn" %></h3>
+  <% end %>
 
-	<% if current_user %>
-    <%=link_to "Ask a Question", new_question_path, id: "ask-question-btn" %>
-	<% end %>
-
-  <p><%= will_paginate @questions, :params => {:controller => 'questions', :action => 'index' } %></p>
 
   <div id="question-form" class="hidden">
     <%=render "form" %>
   </div>
+
+  <%=render "questions_table", locals: {questions: @questions}%>
+
+  <footer class ="question-footer"><%= will_paginate @questions, :params => {:controller => 'questions', :action => 'index' } %></footer>
 
 </div>
 
