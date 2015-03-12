@@ -6,7 +6,7 @@ $(document).on('ready', function() {
     event.preventDefault();
 
     $(".content-wrapper #question-form").removeClass("hidden");
-    window.scrollBy(0, 500);
+    // $(".content-wrapper #question-form").focus();
     $(this).hide();
   });
 });
