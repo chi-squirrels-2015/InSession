@@ -16,9 +16,28 @@ UserExercise.__elasticsearch__.delete_index!
 
 bio = "Biltong jerky beef prosciutto, filet mignon boudin sirloin ham hock chuck. Ball tip fatback andouille frankfurter beef ribs. Brisket venison capicola ball tip tenderloin cupim chicken, meatloaf ground round prosciutto bresaola cow turducken boudin."
 
-venues_array = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
-venues_array.map { |venue| Venue.create(venue)}
 
+
+sarah = User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail.com", password:"chocolate", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: "I am eager to see what this programming business is about! Willing to learn from anyone with more experience.")
+matthew = User.create(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
+john = User.create(first_name:"John", last_name: "Schulz", email:"john@gmail.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: "I like candy!")
+daniel = User.create(first_name:"Daniel", last_name: "Hanson", email:"daniel@gmail.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: "I am an experienced web developer and am passionate about helping budding programmers!")
+User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
+
+venue_hashes = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
+
+venues_array = venue_hashes.map { |venue| Venue.create(venue) }
+
+user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
+
+#NOTHING LESS THAN SLEEP 0.2!!! Google gets pissy otherwise.
+200.times do
+  user = user_array.sample
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: [Faker::Internet.free_email, Faker::Internet.email, Faker::Internet.safe_email].sample, password: 'password', bio: bio, preferred_language: "English")
+  sleep 0.2
+end
+
+users = User.all
 
 newbies = Course.create(title: "Ruby For Newbies", organization: "Khan Academy", description: "Dip your feet into Ruby! We'll introduce you to programming basics and syntax.", start_date: "03/03/2015", end_date: "04/03/2015")
 rails = Course.create(title: "Ruby on Rails", organization: "Khan Academy", description: "Learn web development with Rails framework. We will provide you a tutorial to make your very own web app!", start_date: "04/03/2015", end_date: "06/03/2015")
@@ -34,7 +53,7 @@ users = User.all
   Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude, scheduled_date: base_time, begin_time: base_time, end_time: base_time + 3600)
 end
 
-
+ruby_newbies = Meetup.create(title: "Ruby For Newbies", course: newbies, description: "This is our first meetup for beginners who are interested in learning Ruby. We will take the time to go over some programming basics and answer any questions you have. Food will be provided!", organizer: daniel, venue: venue1, remote: true, latitude: venue1.latitude, longitude: venue1.longitude, scheduled_date: Time.now, begin_time: Time.now, end_time: Time.now + rand(1..4).days)
 user_array = SmarterCSV.process('db/Addresses.csv', row_sep: "\r")
 
 #NOTHING LESS THAN SLEEP 0.2!!! Google gets pissy otherwise.
@@ -103,6 +122,13 @@ array_of_question = ["How do I use css?",
 # end
 
 # responses = Response.all
+
+150.times do
+  venue = Venue.find(rand(Venue.count)+1)
+  base_time = Faker::Time.forward(rand(60)+1, :evenin g)
+  Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude, scheduled_date: base_time, begin_time: base_time, end_time: base_time + 3600)
+  sleep 0.2  
+end
 
 
 meetups = Meetup.all
