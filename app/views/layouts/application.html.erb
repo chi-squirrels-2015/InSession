@@ -39,6 +39,7 @@
             <ul>
               <% unless current_user %>
               <li><%= link_to 'Sign In', new_user_session_path, method: :get %></li>
+              <li><%= link_to 'Sign Up', new_user_registration_path, method: :get %></li>
               <% else %>
 <!--               <h4>Questions Search</h4>   -->              
               <%= form_tag search_path, method: :get do %>
@@ -54,6 +55,7 @@
                <p></p>
               <li><%= link_to 'Message Board', questions_path %></li>
               <li><%= link_to 'Meetups', meetups_path %></li>
+              <li><%= link_to 'Create a New Meetup', new_meetup_path %></li>
               <li><%= link_to 'Maps', maps_path %></li>
               <% end %>
             </ul>
