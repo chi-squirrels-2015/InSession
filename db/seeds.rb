@@ -1,7 +1,6 @@
 Meetup.__elasticsearch__.delete_index!
 Question.__elasticsearch__.delete_index!
 Exercise.__elasticsearch__.delete_index!
-UserExercise.__elasticsearch__.delete_index!
 
 bio = "Biltong jerky beef prosciutto, filet mignon boudin sirloin ham hock chuck. Ball tip fatback andouille frankfurter beef ribs. Brisket venison capicola ball tip tenderloin cupim chicken, meatloaf ground round prosciutto bresaola cow turducken boudin."
 
@@ -9,7 +8,7 @@ sarah = User.create(first_name:"Sarah", last_name: "Ing", email:"chocolate@gmail
 matthew = User.create(first_name:"Matthew", last_name: "Who", email:"matthewwho@me.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
 john = User.create(first_name:"John", last_name: "Schulz", email:"john@gmail.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: "I like candy!")
 daniel = User.create(first_name:"Daniel", last_name: "Hanson", email:"daniel@gmail.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: "I am an experienced web developer and am passionate about helping budding programmers!")
-User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 60654, max_distance: 5, bio: bio)
+User.create(first_name:"test", last_name: "test", email:"test@test.com", password:"password", street_address: "351 West Hubbard Street", city: "Chicago", state: "IL", zip: 54, max_distance: 5, bio: bio)
 
 venue_hashes = SmarterCSV.process('db/Libraries.csv', row_sep: "\r")
 
@@ -38,7 +37,7 @@ users = User.all
 150.times do
   venue = Venue.find(rand(Venue.count)+1)
   base_time = Faker::Time.forward(rand(60)+1, :evening)
-  Meetup.create(title: Faker::Company.name, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude, scheduled_date: base_time, begin_time: base_time, end_time: base_time + 3600)
+  Meetup.create(title: Faker::Hacker.say_something_smart, description: Faker::Hacker.say_something_smart, course: courses.sample, organizer: users.sample, venue: venue, remote: true, latitude: venue.latitude, longitude: venue.longitude, scheduled_date: base_time, begin_time: base_time, end_time: base_time + 3600)
   sleep 0.2
 end
 
@@ -98,6 +97,17 @@ exercises = Exercise.all
 User.all.each do |user|
   rand(1..5).times do
     UserExercise.create(exercise: exercises.sample, user: user)
+  end
+end
+
+array_of_question.each do |question|
+  Question.create(title: question, content: Faker::Hacker.say_something_smart, course: Course.all.sample, user: User.all.sample)
+end
+
+User.all.each do |user|
+  rand(1..3).times do
+    course = courses.sample
+    Question.create(title: "What is #{course}?", content: Faker::Lorem.paragraph, course: course, user: user)
   end
 end
 

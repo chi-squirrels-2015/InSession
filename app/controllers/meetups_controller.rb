@@ -18,7 +18,11 @@ class MeetupsController < ApplicationController
       @courses_based_meetups = Meetup.search(query: {multi_match: {_all: {query: clean_query.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
 
      test = SearchSanitizer.new(current_user.questions.pluck(:title).join(" "))
-      @meetups = Meetup.search(query: {multi_match: {_all: {query: test.sanitized, fuzziness: 1, fields: ['title^10', 'body']}}})
+      puts "#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+        puts test.sanitized
+      puts "#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+      @meetups = Meetup.search(test.sanitized)
+      @meetups = Meetup.search(query: {match: {_all: {query: test.sanitized, fuzziness: 1}}})
     end
   end
 
