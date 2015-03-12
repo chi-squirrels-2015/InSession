@@ -12,8 +12,6 @@
 
   <%=render "questions_table", locals: {questions: @questions}%>
 
-  <footer class ="question-footer"><%= will_paginate @questions, :params => {:controller => 'questions', :action => 'index' } %></footer>
-
 </div>
 
 

@@ -9,4 +9,5 @@
       <td><%=question.content %></td>
     </tr>
   <%end %>
+  <footer class ="question-footer apple_pagination"><%= will_paginate @questions, :params => {:controller => 'questions', :action => 'index' } %></footer>  
 </table>
