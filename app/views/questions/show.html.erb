@@ -1,22 +1,45 @@
-
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 tile-container">
+        <div class="thumbnail">
 <div>
   <h1 class = "center"><%=@question.title%></h1>
   <br>
   <p class = "left"><%= @question.content %></p>
   <p class = "text-info"><small>Author: <%=@question.user.email%></small></p>
 </div>
+</div>
+</div>
 
+
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 tile-container">
+        <div class="thumbnail">
 <div class = "answers">
   <% @question.responses.each do |response| %>
   <p class = "left">Response: <%= response.content%></p>
   <% end %>
 </div>
-
-<%=link_to "Respond", new_question_response_path(question_id: @question.id), remote: true, id: "add-response-btn" %>
-<br><br>
-<% if current_user == @question.user%>
-<%=link_to "Edit Question", edit_question_path(question: @question), remote: true, id: "edit-question-btn" %>
-<% end %>
+</div>
 </div>
 
-<div id = "edit-question-form"></div>
+<div class="container">
+
+    <div class="row">
+      <div class="col-xs-12 tile-container">
+        <div class="thumbnail">
+<%=link_to "Respond", new_question_response_path(question_id: @question.id), remote: true, id: "add-response-btn", class: "btn btn-success" %>
+<br>
+<br>
+<div id = "respond-question-form"></div>
+
+<% if current_user == @question.user%>
+  <%=link_to "Edit Question", edit_question_path(question: @question), remote: true, id: "edit-question-btn", class: "btn btn-warning" %>
+  <% end %>
+  <div id = "edit-question-form"></div>
+</div>
+</div>
+</div>
+
+
