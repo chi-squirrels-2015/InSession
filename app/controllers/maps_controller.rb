@@ -12,7 +12,6 @@ class MapsController < ApplicationController
           @courses = Array.new
 
           @venues_near_me = Venue.near([current_user.latitude, current_user.longitude], current_user.max_distance)
-
           @venues_near_me.to_a.reject!{|v| v.meetups.length == 0}
         end
 
