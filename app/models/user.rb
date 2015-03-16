@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
     if response.code == "200"
       response
     else
-      puts "Fuck Off!"
+      puts "Error"
     end
   end
 
