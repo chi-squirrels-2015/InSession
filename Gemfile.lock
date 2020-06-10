@@ -121,7 +121,7 @@ GEM
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.9.6)
-    geocoder (1.2.7)
+    geocoder (1.6.1)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     hashie (3.4.0)
